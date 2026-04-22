@@ -8,14 +8,14 @@ package VIEW;
  *
  * @author Usuari
  */
-public class frmGestioEntranador extends javax.swing.JFrame {
+public class frmUsuari extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmGestioEntranador.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmUsuari.class.getName());
 
     /**
-     * Creates new form frmGestioEntranador
+     * Creates new form frmUsuari
      */
-    public frmGestioEntranador() {
+    public frmUsuari() {
         initComponents();
     }
 
@@ -28,27 +28,17 @@ public class frmGestioEntranador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel3.setText("GESTIO ENTRENADOR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(141, 141, 141))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(278, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -76,10 +66,9 @@ public class frmGestioEntranador extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new frmGestioEntranador().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frmUsuari().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

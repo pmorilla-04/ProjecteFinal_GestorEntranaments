@@ -8,14 +8,14 @@ package VIEW;
  *
  * @author Usuari
  */
-public class frmGestioAdministrador extends javax.swing.JFrame {
+public class frmAdmin extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmGestioAdministrador.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmAdmin.class.getName());
 
     /**
-     * Creates new form frmGestioAdministrador
+     * Creates new form frmAdmin
      */
-    public frmGestioAdministrador() {
+    public frmAdmin() {
         initComponents();
     }
 
@@ -28,27 +28,17 @@ public class frmGestioAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel3.setText("GESTIO ADMINISTRADOR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(141, 141, 141))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(278, Short.MAX_VALUE))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -76,10 +66,9 @@ public class frmGestioAdministrador extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new frmGestioAdministrador().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frmAdmin().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
