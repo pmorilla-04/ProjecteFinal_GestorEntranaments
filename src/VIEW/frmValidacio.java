@@ -5,6 +5,7 @@
 package VIEW;
 
 import CONTROLLER.GestioFitxersXML;
+import CONTROLLER.GestiorFitxersTXT;
 import static CONTROLLER.Principal.rol;
 import javax.swing.JOptionPane;
 
@@ -118,30 +119,35 @@ public class frmValidacio extends javax.swing.JFrame {
                 txtNom.getText(),
                 new String(txtPassword.getPassword())
         );
-        
-          switch(rol){
-                case "admin":
-                     JOptionPane.showMessageDialog(null, "Ets administrador");
-                     
-                     //OBRIM FORMULARI ROL ADMIN
-                      frmAdmin f = new frmAdmin();
-                       f.setVisible(true);
-                     break;
-                case "esportista":
-                     JOptionPane.showMessageDialog(null, "Ets esportista");
-                     
-                      //OBRIM FORMULARI ROL ESPORTISTA
-                     frmEsportista e = new frmEsportista();
-                     e.setVisible(true);
-                     break;
-                case "entrenador": 
-                     JOptionPane.showMessageDialog(null, "Ets entrenador");
-                     
-                      //OBRIM FORMULARI ROL ENTRANADOR
-                     frmEntranador E = new frmEntranador();
-                     E.setVisible(true);
-                     break;
-            }
+
+        switch (rol) {
+            case "admin":
+                JOptionPane.showMessageDialog(null, "Ets administrador");
+                GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari adimin");
+
+                //OBRIM FORMULARI ROL ADMIN
+                frmAdmin f = new frmAdmin();
+                f.setVisible(true);
+                break;
+                
+            case "esportista":
+                JOptionPane.showMessageDialog(null, "Ets esportista");
+                GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari esportista");
+                
+                //OBRIM FORMULARI ROL ESPORTISTA
+                frmEsportista e = new frmEsportista();
+                e.setVisible(true);
+                break;
+                
+            case "entrenador":
+                JOptionPane.showMessageDialog(null, "Ets entrenador");
+                GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari entrenador");
+                
+                //OBRIM FORMULARI ROL ENTRANADOR
+                frmEntranador E = new frmEntranador();
+                E.setVisible(true);
+                break;
+        }
     }//GEN-LAST:event_btnValidarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

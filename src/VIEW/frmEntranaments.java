@@ -8,14 +8,14 @@ package VIEW;
  *
  * @author Usuari
  */
-public class frmEntranament extends javax.swing.JFrame {
+public class frmEntranaments extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEntranament.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEntranaments.class.getName());
 
     /**
      * Creates new form frmEsportista
      */
-    public frmEntranament() {
+    public frmEntranaments() {
         initComponents();
     }
 
@@ -59,7 +59,7 @@ public class frmEntranament extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblEntrenaments);
 
-        jLabel1.setText("ENTRANAMENT");
+        jLabel1.setText("ENTRANAMENTS");
 
         jLabel2.setText("ACTIVITAT");
 
@@ -188,7 +188,7 @@ public class frmEntranament extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new frmEntranament().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frmEntranaments().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
