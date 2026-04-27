@@ -6,6 +6,7 @@ package MODEL;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,15 +20,19 @@ public class Entrenament {
     private int duradaMinuts;
     private String descripcio;
     private boolean completat;
-    ArrayList<Comentari> comentaris = new ArrayList<Comentari>();
+    private List<Comentari> comentaris;
 
     public Entrenament(int id, LocalDate data, String tipus, int duradaMinuts, String descripcio, boolean completat) {
-        this.id = id;
-        this.data = data;
-        this.tipus = tipus;
-        this.duradaMinuts = duradaMinuts;
-        this.descripcio = descripcio;
-        this.completat = completat;
+    this.id = id;
+    this.data = data;
+    this.tipus = tipus;
+    this.duradaMinuts = duradaMinuts;
+    this.descripcio = descripcio;
+    this.completat = completat;
+}
+
+    public void afegirComentari(Comentari c) {
+        comentaris.add(c);
     }
 
     public int getId() {
@@ -78,14 +83,14 @@ public class Entrenament {
         this.completat = completat;
     }
 
-    public ArrayList<Comentari> getComentaris() {
+    public List<Comentari> getComentaris() {
         return comentaris;
     }
 
-    public void setComentaris(ArrayList<Comentari> comentaris) {
+    public void setComentaris(List<Comentari> comentaris) {
         this.comentaris = comentaris;
     }
-    
+
     
 
 }

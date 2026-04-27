@@ -4,6 +4,7 @@
  */
 package DATA;
 
+import CONTROLLER.GestiorFitxersTXT;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,9 +27,11 @@ public class Conexion {
         try {
             con = DriverManager.getConnection(url, user, password);
             System.out.println("Connexió OK");
+            GestiorFitxersTXT.escripturaAFitxerLog("Conexio a la base de dades correcte");
         } catch (SQLException e) {
             System.out.println("No s'ha pogut establir la connexió");
             e.printStackTrace();
+            GestiorFitxersTXT.escripturaAFitxerLog("Algo ha fallat al conectar amb la base de dades");
         }
 
         return con;

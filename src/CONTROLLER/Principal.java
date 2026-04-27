@@ -5,7 +5,11 @@
 package CONTROLLER;
 
 import DATA.Conexion;
+import MODEL.Comentari;
+import MODEL.Entrenament;
+import MODEL.Esportista;
 import VIEW.frmValidacio;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +22,10 @@ public class Principal {
      */
     public static String rol;
     public static String rutaIFitxerLogActual;
+
+    public static ArrayList<Esportista> esportistes = new ArrayList<>();
+    public static ArrayList<Comentari> comentaris = new ArrayList<>();
+    public static ArrayList<Entrenament> entrenaments = new ArrayList<>();
 
     public static void main(String[] args) {
         // TODO code application logic here

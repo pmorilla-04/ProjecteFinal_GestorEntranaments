@@ -4,12 +4,14 @@
  */
 package VIEW;
 
+import CONTROLLER.GestiorFitxersTXT;
+
 /**
  *
  * @author Usuari
  */
 public class frmAdmin extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmAdmin.class.getName());
 
     /**
@@ -53,8 +55,18 @@ public class frmAdmin extends javax.swing.JFrame {
         jLabel1.setText("ADMINISTRADOR");
 
         btnEntranaments.setText("GESTIO ENTRANAMENTS");
+        btnEntranaments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntranamentsActionPerformed(evt);
+            }
+        });
 
         btnUsuaris.setText("GESTIO USUARIS");
+        btnUsuaris.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuarisActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +107,20 @@ public class frmAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEntranamentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntranamentsActionPerformed
+        // TODO add your handling code here:
+        frmEntranaments f = new frmEntranaments();
+        f.setVisible(true);
+        GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari entrenaments");
+    }//GEN-LAST:event_btnEntranamentsActionPerformed
+
+    private void btnUsuarisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarisActionPerformed
+        // TODO add your handling code here:
+        frmUsuari f = new frmUsuari();
+        f.setVisible(true);
+        GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari usuaris");
+    }//GEN-LAST:event_btnUsuarisActionPerformed
 
     /**
      * @param args the command line arguments

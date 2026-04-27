@@ -4,12 +4,14 @@
  */
 package VIEW;
 
+import CONTROLLER.GestiorFitxersTXT;
+
 /**
  *
  * @author Usuari
  */
 public class frmEsportista extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEsportista.class.getName());
 
     /**
@@ -73,6 +75,11 @@ public class frmEsportista extends javax.swing.JFrame {
         jLabel5.setText("DATA");
 
         btnEntrenament.setText("GESTIONAR ENTRENAMENT");
+        btnEntrenament.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrenamentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,9 +105,7 @@ public class frmEsportista extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addGap(29, 29, 29)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(40, 40, 40))
+                                    .addComponent(jLabel5)
                                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,6 +164,14 @@ public class frmEsportista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEntrenamentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenamentActionPerformed
+        // TODO add your handling code here:
+        frmEsportista f = new frmEsportista();
+        f.setVisible(true);
+        GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari entrenaments");
+
+    }//GEN-LAST:event_btnEntrenamentActionPerformed
 
     /**
      * @param args the command line arguments
