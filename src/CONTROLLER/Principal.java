@@ -16,13 +16,18 @@ public class Principal {
     /**
      * @param args the command line arguments
      */
+    public static String rol;
+
     public static void main(String[] args) {
         // TODO code application logic here
         Conexion ccc = new Conexion();
         ccc.connectar();
-        
+
         frmValidacio f = new frmValidacio();
         f.setVisible(true);
+
+        GestiorFitxersTXT.creacioLog();
+        GestiorFitxersTXT.escripturaAFitxerLog("programa iniciat");
     }
-    
+
 }

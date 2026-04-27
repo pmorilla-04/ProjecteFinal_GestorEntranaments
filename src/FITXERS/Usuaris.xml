@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="windows-1250"?>
 <usuaris>
     <usuari id="1">
-        <nom>Admin1</nom>
+        <nom>Carles</nom>
         <contrassenya>1234</contrassenya>
-        <rol>Admin</rol>
+        <rol>admin</rol>
     </usuari>
     
     <usuari id="2">
         <nom>Pau</nom>
         <contrassenya>1234</contrassenya>
-        <rol>Esportista</rol>
+        <rol>esportista</rol>
     </usuari>
     
     <usuari id="3">
         <nom>Joan</nom>
         <contrassenya>1234</contrassenya>
-        <rol>Entrenador</rol>
+        <rol>entrenador</rol>
     </usuari>
 </usuaris>
