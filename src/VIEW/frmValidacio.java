@@ -115,11 +115,17 @@ public class frmValidacio extends javax.swing.JFrame {
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         // TODO add your handling code here:
-        GestioFitxersXML.validaUsuari(
+        boolean valid = GestioFitxersXML.validaUsuari(
                 "src/FITXERS/Usuaris.xml",
                 txtNom.getText(),
                 new String(txtPassword.getPassword())
         );
+        
+        if (!valid) {
+    JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrectes");
+    GestiorFitxersTXT.escripturaAFitxerLog("Validacio no completada usuari o contrasenya incorrectes ");
+    return;
+}
 
         switch (rol) {
             case "admin":

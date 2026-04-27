@@ -27,11 +27,11 @@ public class Conexion {
         try {
             con = DriverManager.getConnection(url, user, password);
             System.out.println("Connexió OK");
-            GestiorFitxersTXT.escripturaAFitxerLog("Conexio a la base de dades correcte");
+            //GestiorFitxersTXT.escripturaAFitxerLog("Conexio a la base de dades correcte");
         } catch (SQLException e) {
             System.out.println("No s'ha pogut establir la connexió");
             e.printStackTrace();
-            GestiorFitxersTXT.escripturaAFitxerLog("Algo ha fallat al conectar amb la base de dades");
+           // GestiorFitxersTXT.escripturaAFitxerLog("Algo ha fallat al conectar amb la base de dades");
         }
 
         return con;
