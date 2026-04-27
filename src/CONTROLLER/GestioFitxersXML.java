@@ -38,7 +38,7 @@ public class GestioFitxersXML {
 
             String pnom = "";
             String ppass = "";
-            String prol = "";
+            
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
 
@@ -50,7 +50,6 @@ public class GestioFitxersXML {
 
                     pnom = eElement.getElementsByTagName("nom").item(0).getTextContent();
                     ppass = eElement.getElementsByTagName("contrassenya").item(0).getTextContent();
-
                     CONTROLLER.Principal.rol = eElement.getElementsByTagName("rol").item(0).getTextContent();
 
                     if (pnom.equals(nom) && (ppass.equals(pass))) {
@@ -63,6 +62,7 @@ public class GestioFitxersXML {
             }
         } catch (Exception e) {
             e.printStackTrace();
+             GestiorFitxersTXT.escripturaAFitxerLog("Error en la validacio de l'usuari");
         }
         return usuariTrobat;
     }

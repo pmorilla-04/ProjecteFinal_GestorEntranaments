@@ -22,6 +22,7 @@ public class frmValidacio extends javax.swing.JFrame {
      */
     public frmValidacio() {
         initComponents();
+         
     }
 
     /**
@@ -111,7 +112,7 @@ public class frmValidacio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         // TODO add your handling code here:
         GestioFitxersXML.validaUsuari(
@@ -128,24 +129,27 @@ public class frmValidacio extends javax.swing.JFrame {
                 //OBRIM FORMULARI ROL ADMIN
                 frmAdmin f = new frmAdmin();
                 f.setVisible(true);
+                GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari rol admin");
                 break;
-                
+
             case "esportista":
                 JOptionPane.showMessageDialog(null, "Ets esportista");
                 GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari esportista");
-                
+
                 //OBRIM FORMULARI ROL ESPORTISTA
                 frmEsportista e = new frmEsportista();
                 e.setVisible(true);
+                GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari rol esportista");
                 break;
-                
+
             case "entrenador":
                 JOptionPane.showMessageDialog(null, "Ets entrenador");
                 GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari entrenador");
-                
+
                 //OBRIM FORMULARI ROL ENTRANADOR
                 frmEntranador E = new frmEntranador();
                 E.setVisible(true);
+                GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari rol entrenador");
                 break;
         }
     }//GEN-LAST:event_btnValidarActionPerformed
@@ -154,6 +158,7 @@ public class frmValidacio extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtNom.setText("");
         txtPassword.setText("");
+        GestiorFitxersTXT.escripturaAFitxerLog("Validacio cancelada");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
@@ -179,6 +184,8 @@ public class frmValidacio extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new frmValidacio().setVisible(true));
+        
+        GestiorFitxersTXT.escripturaAFitxerLog("Programa iniciat");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
