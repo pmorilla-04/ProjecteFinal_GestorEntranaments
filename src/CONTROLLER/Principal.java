@@ -28,7 +28,8 @@ public class Principal {
         f.setVisible(true);
 
         GestiorFitxersTXT.creacioLog();
-        
+        GestiorFitxersTXT.escripturaAFitxerLog("Programa iniciat");
+
     }
 
 }

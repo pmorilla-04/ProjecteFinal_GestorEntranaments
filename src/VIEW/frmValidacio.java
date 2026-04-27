@@ -22,7 +22,7 @@ public class frmValidacio extends javax.swing.JFrame {
      */
     public frmValidacio() {
         initComponents();
-         
+
     }
 
     /**
@@ -112,7 +112,7 @@ public class frmValidacio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         // TODO add your handling code here:
         GestioFitxersXML.validaUsuari(
@@ -184,8 +184,6 @@ public class frmValidacio extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new frmValidacio().setVisible(true));
-        
-        GestiorFitxersTXT.escripturaAFitxerLog("Programa iniciat");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
