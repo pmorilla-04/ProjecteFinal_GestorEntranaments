@@ -91,6 +91,7 @@ public class Querys {
             ps.setBoolean(4, completat);
             ps.setInt(5, usuari_id);
             ps.setInt(6, tipus_esport_id);
+            
             int files = ps.executeUpdate();
             System.out.println("Files inserides: " + files);
 
