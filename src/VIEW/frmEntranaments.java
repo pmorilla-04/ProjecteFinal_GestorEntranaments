@@ -4,12 +4,14 @@
  */
 package VIEW;
 
+import DATA.Querys;
+
 /**
  *
  * @author Usuari
  */
 public class frmEntranaments extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEntranaments.class.getName());
 
     /**
@@ -17,6 +19,9 @@ public class frmEntranaments extends javax.swing.JFrame {
      */
     public frmEntranaments() {
         initComponents();
+
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
     }
 
     /**
@@ -165,6 +170,25 @@ public class frmEntranaments extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void omplirTaulaEntrenaments() {
+        String[] columnes = {"ID", "DATA", "TIPUS", "DURADA", "DESCRIPCIO", "COMPLETAT"};
+
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+            Object[] fila = {
+                e.getId(),
+                e.getData(),
+                e.getTipus(),
+                e.getDuradaMinuts(),
+                e.getDescripcio(),
+                e.isCompletat(),};
+            model.addRow(fila);
+        }
+
+        tblEntrenaments.setModel(model);
+    }
 
     /**
      * @param args the command line arguments

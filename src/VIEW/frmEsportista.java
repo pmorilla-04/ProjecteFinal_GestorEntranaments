@@ -187,8 +187,6 @@ public class frmEsportista extends javax.swing.JFrame {
         }
 
         tblEntrenaments.setModel(model);
-        GestiorFitxersTXT.escripturaAFitxerLog("Mostrem dades a la taula de entrenaments");
-
     }
 
     private void btnEntrenamentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenamentActionPerformed

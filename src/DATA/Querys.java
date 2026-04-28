@@ -23,7 +23,7 @@ public class Querys {
 
     //MOSTRAR ENTRENAMENTS
     public static void mostrarEntrenaments() {
-
+         entrenaments.clear();
         String sql = "SELECT * FROM entrenament";
 
         try (
