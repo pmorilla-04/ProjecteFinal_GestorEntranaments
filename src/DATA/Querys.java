@@ -24,31 +24,55 @@ public class Querys {
     //MOSTRAR ENTRENAMENTS
     public static void mostrarEntrenaments() {
 
-    String sql = "SELECT id, data, duradaMinuts, descripcio, intensitat, completat FROM entrenament";
+        String sql = "SELECT * FROM entrenament";
 
-    try (
-        Connection conn = DriverManager.getConnection(url, user, password);
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(sql)
-    ) {
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
-        while (rs.next()) {
+            while (rs.next()) {
 
-            int id = rs.getInt("id");
-            LocalDate data = rs.getDate("data").toLocalDate();
-            int duradaMinuts = rs.getInt("duradaMinuts");
-            String descripcio = rs.getString("descripcio");
-            String tipus = rs.getString("intensitat");
-            boolean completat = rs.getBoolean("completat");
+                int id = rs.getInt("id");
+                LocalDate data = rs.getDate("data").toLocalDate();
+                int duradaMinuts = rs.getInt("duradaMinuts");
+                String descripcio = rs.getString("descripcio");
+                String tipus = rs.getString("intensitat");
+                boolean completat = rs.getBoolean("completat");
 
-            entrenaments.add(
-                new Entrenament(id, data, tipus, duradaMinuts, descripcio, completat)
-            );
+                entrenaments.add(
+                        new Entrenament(id, data, tipus, duradaMinuts, descripcio, completat)
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+    //FILTRAR ENTRENAMENTS
+    /*public static void filtrarEntrenament(String cadena) {
+        String sql = "";
+
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + cadena + "%");
+            entrenaments.clear();
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                entrenaments.add(new Entrenament(
+                        rs.getInt("Id"),
+                        rs.getDate("data").toLocalDate(),
+                        rs.getInt("duradaMinuts"),
+                        rs.getString("descripcio"),
+                        rs.getString("intensitat"),
+                        rs.getBoolean("completat")
+                ));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }*/
 }
-    }
-    

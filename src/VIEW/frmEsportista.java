@@ -5,6 +5,8 @@
 package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
+import DATA.Querys;
+import MODEL.Entrenament;
 
 /**
  *
@@ -19,6 +21,9 @@ public class frmEsportista extends javax.swing.JFrame {
      */
     public frmEsportista() {
         initComponents();
+
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
     }
 
     /**
@@ -164,10 +169,31 @@ public class frmEsportista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void omplirTaulaEntrenaments() {
+        String[] columnes = {"ID", "DATA", "TIPUS", "DURADA", "DESCRIPCIO", "COMPLETAT"};
+
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+            Object[] fila = {
+                e.getId(),
+                e.getData(),
+                e.getTipus(),
+                e.getDuradaMinuts(),
+                e.getDescripcio(),
+                e.isCompletat(),};
+            model.addRow(fila);
+        }
+
+        tblEntrenaments.setModel(model);
+        GestiorFitxersTXT.escripturaAFitxerLog("Mostrem dades a la taula de entrenaments");
+
+    }
 
     private void btnEntrenamentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenamentActionPerformed
         // TODO add your handling code here:
-        frmEsportista f = new frmEsportista();
+        frmEntranaments f = new frmEntranaments();
         f.setVisible(true);
         GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari entrenaments");
 
