@@ -106,15 +106,16 @@ public class Querys {
         String sql = "UPDATE entrenament SET data = ?, duradaMinuts = ?, descripcio = ?, intensitat = ?, completat = ?, usuari_id = ?, tipus_esport_id = ? WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ps.setDate(1, java.sql.Date.valueOf(data));
-            ps.setInt(2, duradaMinuts);
-            ps.setString(3, descripcio);
-            ps.setString(4, intensitat);
-            ps.setBoolean(5, completat);
-            ps.setInt(6, usuari_id);
-            ps.setInt(7, tipus_esport_id);
-            ps.setInt(8, id);
+            
+             ps.setInt(1, id);
+            ps.setDate(2, java.sql.Date.valueOf(data));
+            ps.setInt(3, duradaMinuts);
+            ps.setString(4, descripcio);
+            ps.setString(5, intensitat);
+            ps.setBoolean(6, completat);
+            ps.setInt(7, usuari_id);
+            ps.setInt(8, tipus_esport_id);
+           
 
             int files = ps.executeUpdate();
             System.out.println("Files actualitzades: " + files);

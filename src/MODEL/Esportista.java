@@ -5,22 +5,30 @@
 package MODEL;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *
  * @author Usuari
  */
+
+ 
 public class Esportista extends Usuari {
 
-    private List<Entrenament> entrenaments;
+    private ArrayList<Entrenament> entrenaments = new ArrayList<>();
 
-    public Esportista(int id, String nom, String contassenya, String rol) {
-        super(id, nom, contassenya, rol);
-
+    public Esportista(int id, String nom, String contrasenya) {
+        super(id, nom, contrasenya);
     }
 
-    public List<Entrenament> getEntrenaments() {
+    public ArrayList<Entrenament> getEntrenaments() {
         return entrenaments;
     }
+
+    public void setEntrenaments(ArrayList<Entrenament> entrenaments) {
+        this.entrenaments = entrenaments;
+    }
+
+    
 }
+

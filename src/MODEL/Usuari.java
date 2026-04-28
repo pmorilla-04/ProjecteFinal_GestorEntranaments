@@ -4,22 +4,29 @@
  */
 package MODEL;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuari
  */
-public class Usuari {
+public abstract class Usuari {
     private int id;
     private String nom;
     private String contrassenya;
-    private String rol;
+    
+    public enum Rol {
+    ADMIN, ESPORTISTA, ENTRENADOR
+}
 
-    public Usuari(int id, String nom, String contassenya, String rol) {
+    public Usuari(int id, String nom, String contrassenya) {
         this.id = id;
         this.nom = nom;
-        this.contrassenya = contassenya;
-        this.rol = rol;
+        this.contrassenya = contrassenya;
     }
+    
+
+  
 
     
     
@@ -47,13 +54,7 @@ public class Usuari {
         this.contrassenya = contassenya;
     }
 
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
+    
     
     
 }

@@ -4,17 +4,13 @@
  */
 package MODEL;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Usuari
  */
-public class Entranador extends Usuari{
-            
+public class Admin extends Usuari {
 
-    public Entranador(int id, String nom, String contassenya, String rol) {
-        super(id, nom, contassenya, rol);
+    public Admin(int id, String nom, String contrasenya) {
+        super(id, nom, contrasenya);
     }
-    
 }
