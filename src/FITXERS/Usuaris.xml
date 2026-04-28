@@ -13,7 +13,7 @@
     </usuari>
     
     <usuari id="3">
-        <nom>Joan</nom>
+        <nom>Pep</nom>
         <contrassenya>1234</contrassenya>
         <rol>entrenador</rol>
     </usuari>

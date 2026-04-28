@@ -5,10 +5,12 @@
 package DATA;
 
 import static CONTROLLER.Principal.entrenaments;
+import static CONTROLLER.Principal.usuaris;
 import static DATA.Conexion.password;
 import static DATA.Conexion.url;
 import static DATA.Conexion.user;
 import MODEL.Entrenament;
+import MODEL.Usuari;
 
 import java.sql.*;
 
@@ -49,7 +51,7 @@ public class Querys {
     }
 
     //FILTRAR ENTRENAMENTS
-    /*public static void filtrarEntrenament(String cadena) {
+  /*public static void filtrarEntrenament(String cadena) {
         String sql = "";
 
         try (
@@ -116,6 +118,34 @@ public class Querys {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+    }
+     
+     
+     //USUARIS
+     
+     //MOSTRAR USUARIS
+      public static void mostrarUsuaris() {
+         usuaris.clear();
+        String sql = "SELECT * FROM usuari";
 
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+                String contrassenya = rs.getString("contrasenya");
+               String rol = rs.getString("rol");
+
+                usuaris.add(
+                        new Usuari(id, nom, contrassenya, rol)
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -11,13 +11,13 @@ package MODEL;
 public class Usuari {
     private int id;
     private String nom;
-    private String contassenya;
+    private String contrassenya;
     private String rol;
 
     public Usuari(int id, String nom, String contassenya, String rol) {
         this.id = id;
         this.nom = nom;
-        this.contassenya = contassenya;
+        this.contrassenya = contassenya;
         this.rol = rol;
     }
 
@@ -40,11 +40,11 @@ public class Usuari {
     }
 
     public String getContassenya() {
-        return contassenya;
+        return contrassenya;
     }
 
     public void setContassenya(String contassenya) {
-        this.contassenya = contassenya;
+        this.contrassenya = contassenya;
     }
 
     public String getRol() {

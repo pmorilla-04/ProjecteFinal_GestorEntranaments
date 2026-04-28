@@ -4,12 +4,14 @@
  */
 package VIEW;
 
+import DATA.Querys;
+
 /**
  *
  * @author Usuari
  */
 public class frmUsuari extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmUsuari.class.getName());
 
     /**
@@ -17,6 +19,9 @@ public class frmUsuari extends javax.swing.JFrame {
      */
     public frmUsuari() {
         initComponents();
+        
+        Querys.mostrarUsuaris();
+       omplirTaulaUsuaris();
     }
 
     /**
@@ -29,7 +34,7 @@ public class frmUsuari extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblUsuaris = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
@@ -46,7 +51,7 @@ public class frmUsuari extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuaris.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -57,7 +62,7 @@ public class frmUsuari extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblUsuaris);
 
         jLabel1.setText("NOM");
 
@@ -155,6 +160,25 @@ public class frmUsuari extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public void omplirTaulaUsuaris() {
+        String[] columnes = {"ID", "NOM", "CONTRASSENYA","ROL"};
+
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Usuari u : CONTROLLER.Principal.usuaris) {
+            Object[] fila = {
+                u.getId(),
+                u.getNom(),
+                u.getContassenya(),
+                u.getRol()
+            };
+            model.addRow(fila);
+        }
+
+        tblUsuaris.setModel(model);
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -189,7 +213,7 @@ public class frmUsuari extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblUsuaris;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNom;
     private javax.swing.JPasswordField txtPassword;
