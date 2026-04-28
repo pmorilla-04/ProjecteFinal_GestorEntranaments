@@ -25,7 +25,7 @@ public class Querys {
 
     //MOSTRAR ENTRENAMENTS
     public static void mostrarEntrenaments() {
-         entrenaments.clear();
+        entrenaments.clear();
         String sql = "SELECT * FROM entrenament";
 
         try (
@@ -51,7 +51,7 @@ public class Querys {
     }
 
     //FILTRAR ENTRENAMENTS
-  /*public static void filtrarEntrenament(String cadena) {
+    /*public static void filtrarEntrenament(String cadena) {
         String sql = "";
 
         try (
@@ -77,21 +77,21 @@ public class Querys {
             e.printStackTrace();
         }
     }*/
-    
     //AFEGIR ENTRENAMENT
-    public static void afegirEntrenament(LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id){
-    String sql="INSERT INTO entrenament (data, duradaMinuts, descripcio, intensitat, completat, usuari_id, tipus_esport_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    
-       try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
-           
+    public static void afegirEntrenament(LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
+
+        String sql = "INSERT INTO entrenament (data, duradaMinuts, descripcio, intensitat, completat, usuari_id, tipus_esport_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setDate(1, java.sql.Date.valueOf(data));
             ps.setInt(2, duradaMinuts);
-            ps.setString(2, descripcio);
-            ps.setString(3, intensitat);
-            ps.setBoolean(4, completat);
-            ps.setInt(5, usuari_id);
-            ps.setInt(6, tipus_esport_id);
-            
+            ps.setString(3, descripcio);
+            ps.setString(4, intensitat);
+            ps.setBoolean(5, completat);
+            ps.setInt(6, usuari_id);
+            ps.setInt(7, tipus_esport_id);
+
             int files = ps.executeUpdate();
             System.out.println("Files inserides: " + files);
 
@@ -99,14 +99,34 @@ public class Querys {
             e.printStackTrace();
         }
     }
-    
+
     //MODIFICAR ENTRENAMENT
-    public static void modificarEntrenament(int id, LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id){
-        String sql = "UPADTE entrenament SET id = ?, data = ?";
+    public static void actualitzarEntrenament(int id, LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
+
+        String sql = "UPDATE entrenament SET data = ?, duradaMinuts = ?, descripcio = ?, intensitat = ?, completat = ?, usuari_id = ?, tipus_esport_id = ? WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setDate(1, java.sql.Date.valueOf(data));
+            ps.setInt(2, duradaMinuts);
+            ps.setString(3, descripcio);
+            ps.setString(4, intensitat);
+            ps.setBoolean(5, completat);
+            ps.setInt(6, usuari_id);
+            ps.setInt(7, tipus_esport_id);
+            ps.setInt(8, id);
+
+            int files = ps.executeUpdate();
+            System.out.println("Files actualitzades: " + files);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    
+
     //ELIMINAR ENTRENAMENT
-     public static void eliminarEntrenament(int id) {
+    public static void eliminarEntrenament(int id) {
+
         String sql = "DELETE FROM entrenament WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -119,15 +139,12 @@ public class Querys {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
     }
-     
-     
-     //USUARIS
-     
-     //MOSTRAR USUARIS
-      public static void mostrarUsuaris() {
-         usuaris.clear();
+
+    //USUARIS
+    //MOSTRAR USUARIS
+    public static void mostrarUsuaris() {
+        usuaris.clear();
         String sql = "SELECT * FROM usuari";
 
         try (
@@ -138,7 +155,7 @@ public class Querys {
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
                 String contrassenya = rs.getString("contrasenya");
-               String rol = rs.getString("rol");
+                String rol = rs.getString("rol");
 
                 usuaris.add(
                         new Usuari(id, nom, contrassenya, rol)
