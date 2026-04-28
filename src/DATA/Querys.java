@@ -75,4 +75,47 @@ public class Querys {
             e.printStackTrace();
         }
     }*/
+    
+    //AFEGIR ENTRENAMENT
+    public static void afegirEntrenament(LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id){
+    String sql="INSERT INTO entrenament (data, duradaMinuts, descripcio, intensitat, completat, usuari_id, tipus_esport_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+       try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+           
+            ps.setDate(1, java.sql.Date.valueOf(data));
+            ps.setInt(2, duradaMinuts);
+            ps.setString(2, descripcio);
+            ps.setString(3, intensitat);
+            ps.setBoolean(4, completat);
+            ps.setInt(5, usuari_id);
+            ps.setInt(6, tipus_esport_id);
+            int files = ps.executeUpdate();
+            System.out.println("Files inserides: " + files);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    //MODIFICAR ENTRENAMENT
+    public static void modificarEntrenament(int id, LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id){
+        String sql = "UPADTE entrenament SET id = ?, data = ?";
+    }
+    
+    //ELIMINAR ENTRENAMENT
+     public static void eliminarEntrenament(int id) {
+        String sql = "DELETE FROM entrenament WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            int files = ps.executeUpdate();
+            System.out.println("Files eliminades: " + files);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
