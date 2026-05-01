@@ -11,6 +11,6 @@ package MODEL;
 public class Admin extends Usuari {
 
     public Admin(int id, String nom, String contrasenya) {
-        super(id, nom, contrasenya);
+        super(id, nom, contrasenya, Rol.ADMIN);
     }
 }

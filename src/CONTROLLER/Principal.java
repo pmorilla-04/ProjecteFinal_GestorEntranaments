@@ -25,9 +25,9 @@ public class Principal {
     public static String rutaIFitxerLogActual;
 
     public static ArrayList<Usuari> usuaris = new ArrayList<>();
-    //public static ArrayList<Esportista> esportistes = new ArrayList<>();
-    // public static ArrayList<Comentari> comentaris = new ArrayList<>();
-    //public static ArrayList<Entrenament> entrenaments = new ArrayList<>();
+    public static ArrayList<Esportista> esportistes = new ArrayList<>();
+    public static ArrayList<Comentari> comentaris = new ArrayList<>();
+    public static ArrayList<Entrenament> entrenaments = new ArrayList<>();
 
     public static void main(String[] args) {
         // TODO code application logic here

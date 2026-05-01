@@ -170,8 +170,7 @@ public class frmUsuari extends javax.swing.JFrame {
             Object[] fila = {
                 u.getId(),
                 u.getNom(),
-                u.getContassenya(),
-                u.getRol()
+                u.getContassenya()
             };
             model.addRow(fila);
         }

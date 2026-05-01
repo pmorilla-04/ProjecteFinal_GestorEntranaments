@@ -11,25 +11,21 @@ import java.util.ArrayList;
  * @author Usuari
  */
 public abstract class Usuari {
+
     private int id;
     private String nom;
     private String contrassenya;
-    
-    public enum Rol {
-    ADMIN, ESPORTISTA, ENTRENADOR
-}
 
-    public Usuari(int id, String nom, String contrassenya) {
+    public enum Rol {
+        ADMIN, ESPORTISTA, ENTRENADOR
+    }
+
+    public Usuari(int id, String nom, String contrassenya, Rol rol) {
         this.id = id;
         this.nom = nom;
         this.contrassenya = contrassenya;
     }
-    
 
-  
-
-    
-    
     public int getId() {
         return id;
     }
@@ -54,7 +50,4 @@ public abstract class Usuari {
         this.contrassenya = contassenya;
     }
 
-    
-    
-    
 }

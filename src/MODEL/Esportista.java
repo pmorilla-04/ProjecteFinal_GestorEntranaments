@@ -18,7 +18,7 @@ public class Esportista extends Usuari {
     private ArrayList<Entrenament> entrenaments = new ArrayList<>();
 
     public Esportista(int id, String nom, String contrasenya) {
-        super(id, nom, contrasenya);
+        super(id, nom, contrasenya, Rol.ESPORTISTA);
     }
 
     public ArrayList<Entrenament> getEntrenaments() {

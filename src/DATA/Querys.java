@@ -11,10 +11,10 @@ import static DATA.Conexion.url;
 import static DATA.Conexion.user;
 import MODEL.Entrenament;
 import MODEL.Usuari;
+import MODEL.Usuari.Rol;
 
 import java.sql.*;
 
-import com.mysql.cj.protocol.Resultset;
 import java.time.LocalDate;
 
 /**
@@ -51,7 +51,7 @@ public class Querys {
     }
 
     //FILTRAR ENTRENAMENTS
-    /*public static void filtrarEntrenament(String cadena) {
+    public static void filtrarEntrenament(String cadena) {
         String sql = "";
 
         try (
@@ -64,11 +64,11 @@ public class Querys {
 
             while (rs.next()) {
                 entrenaments.add(new Entrenament(
-                        rs.getInt("Id"),
+                        rs.getInt("id"),
                         rs.getDate("data").toLocalDate(),
+                        rs.getString("intensitat"), 
                         rs.getInt("duradaMinuts"),
                         rs.getString("descripcio"),
-                        rs.getString("intensitat"),
                         rs.getBoolean("completat")
                 ));
             }
@@ -76,7 +76,8 @@ public class Querys {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }*/
+    }
+
     //AFEGIR ENTRENAMENT
     public static void afegirEntrenament(LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
 
@@ -106,8 +107,8 @@ public class Querys {
         String sql = "UPDATE entrenament SET data = ?, duradaMinuts = ?, descripcio = ?, intensitat = ?, completat = ?, usuari_id = ?, tipus_esport_id = ? WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
-            
-             ps.setInt(1, id);
+
+            ps.setInt(1, id);
             ps.setDate(2, java.sql.Date.valueOf(data));
             ps.setInt(3, duradaMinuts);
             ps.setString(4, descripcio);
@@ -115,7 +116,6 @@ public class Querys {
             ps.setBoolean(6, completat);
             ps.setInt(7, usuari_id);
             ps.setInt(8, tipus_esport_id);
-           
 
             int files = ps.executeUpdate();
             System.out.println("Files actualitzades: " + files);
@@ -144,27 +144,30 @@ public class Querys {
 
     //USUARIS
     //MOSTRAR USUARIS
-    public static void mostrarUsuaris() {
-        usuaris.clear();
-        String sql = "SELECT * FROM usuari";
+ public static void mostrarUsuaris() {
+    usuaris.clear();
+    String sql = "SELECT * FROM usuari";
 
-        try (
-                Connection conn = DriverManager.getConnection(url, user, password); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+    try (
+        Connection conn = DriverManager.getConnection(url, user, password);
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql)
+    ) {
 
-            while (rs.next()) {
+        while (rs.next()) {
 
-                int id = rs.getInt("id");
-                String nom = rs.getString("nom");
-                String contrassenya = rs.getString("contrasenya");
-                String rol = rs.getString("rol");
+            int id = rs.getInt("id");
+            String nom = rs.getString("nom");
+            String contrassenya = rs.getString("contrasenya");
+            Rol rol = Rol.valueOf(rs.getString("rol").toUpperCase());
 
-                usuaris.add(
-                        new Usuari(id, nom, contrassenya, rol)
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            usuaris.add(
+                new Usuari(id, nom, contrassenya, rol) {}
+            );
         }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
 }

@@ -15,7 +15,7 @@ public class Entrenador extends Usuari {
     private ArrayList<Comentari> comentaris = new ArrayList<>();
 
     public Entrenador(int id, String nom, String contrasenya) {
-        super(id, nom, contrasenya);
+        super(id, nom, contrasenya, Rol.ENTRENADOR);
     }
 
     public ArrayList<Comentari> getComentaris() {
