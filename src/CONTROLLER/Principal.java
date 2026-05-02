@@ -23,6 +23,7 @@ public class Principal {
      */
     public static String rol;
     public static String rutaIFitxerLogActual;
+    public static Integer usuariId;
 
     public static ArrayList<Usuari> usuaris = new ArrayList<>();
     public static ArrayList<Esportista> esportistes = new ArrayList<>();

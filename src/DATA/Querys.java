@@ -71,13 +71,51 @@ public class Querys {
     }
 
     //FILTRAR ENTRENAMENTS
-    public static void filtrarEntrenament(String cadena) {
-        String sql = "";
+    public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
+            Integer distancia,
+            Entrenament.Intensitat intensitat,
+            Boolean completat,
+            Integer tipusEsportId) {
+        String sql = "SELECT * FROM entrenament\n"
+                + "WHERE usuari_id = ?\n"
+                + "AND (? IS NULL OR id = ?)\n"
+                + "AND (? IS NULL OR data = ?)\n"
+                + "AND (? IS NULL OR duradaMinuts = ?)\n"
+                + "AND (? IS NULL OR distancia = ?)\n"
+                + "AND (? IS NULL OR intensitat = ?)\n"
+                + "AND (? IS NULL OR completat = ?)\n"
+                + "AND (? IS NULL OR tipus_esport_id = ?)";
 
         try (
                 Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setString(1, "%" + cadena + "%");
+            //USUARI ID
+            ps.setInt(1, CONTROLLER.Principal.usuariId);
+
+            //ID
+            ps.setObject(2, id);
+            ps.setObject(3, id);
+
+            //DATA
+            ps.setObject(4, data);
+            ps.setObject(5, data != null ? java.sql.Date.valueOf(data) : null);
+
+            //DISTANCIA
+            ps.setObject(8, distancia);
+            ps.setObject(9, distancia);
+
+            //INTENSITAT
+            ps.setString(10, intensitat != null ? intensitat.name() : null);
+            ps.setString(11, intensitat != null ? intensitat.name() : null);
+
+            //COMPLETAT
+            ps.setObject(12, completat);
+            ps.setObject(13, completat);
+            //TIPUS ESPORT
+            ps.setObject(14, tipusEsportId);
+            ps.setObject(15, tipusEsportId);
+            
+            
             entrenaments.clear();
 
             ResultSet rs = ps.executeQuery();
@@ -108,6 +146,12 @@ public class Querys {
             e.printStackTrace();
         }
     }
+    
+    
+    
+    
+    
+    
 
     //AFEGIR ENTRENAMENT
     public static void afegirEntrenament(LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
