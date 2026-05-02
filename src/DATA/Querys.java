@@ -83,14 +83,25 @@ public class Querys {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                entrenaments.add(new Entrenament(
-                        rs.getInt("id"),
-                        rs.getDate("data").toLocalDate(),
-                        rs.getString("intensitat"),
-                        rs.getInt("duradaMinuts"),
-                        rs.getString("descripcio"),
-                        rs.getBoolean("completat")
-                ));
+
+                Entrenament.Intensitat intens
+                        = Entrenament.Intensitat.valueOf(
+                                rs.getString("intensitat").toUpperCase()
+                        );
+
+                entrenaments.add(
+                        new Entrenament(
+                                rs.getInt("id"),
+                                rs.getDate("data").toLocalDate(),
+                                rs.getInt("duradaMinuts"),
+                                rs.getInt("distancia"),
+                                rs.getString("descripcio"),
+                                rs.getBoolean("completat"),
+                                intens,
+                                rs.getInt("usuari_id"),
+                                rs.getInt("tipus_esport_id")
+                        )
+                );
             }
 
         } catch (SQLException e) {
