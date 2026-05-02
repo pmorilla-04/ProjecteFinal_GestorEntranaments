@@ -16,23 +16,38 @@ public class Entrenament {
 
     private int id;
     private LocalDate data;
-    private String tipus;
     private int duradaMinuts;
+    private int distancia;
     private String descripcio;
     private boolean completat;
-    private List<Comentari> comentaris;
 
-    public Entrenament(int id, LocalDate data, String tipus, int duradaMinuts, String descripcio, boolean completat) {
-    this.id = id;
-    this.data = data;
-    this.tipus = tipus;
-    this.duradaMinuts = duradaMinuts;
-    this.descripcio = descripcio;
-    this.completat = completat;
-}
+    private Intensitat intensitat;
 
-    public void afegirComentari(Comentari c) {
-        comentaris.add(c);
+    private int usuariId;
+    private int tipusEsportId;
+
+    public enum Intensitat {
+        BAIXA, MITJA, ALTA
+    }
+
+    public Entrenament(int id, LocalDate data, int duradaMinuts, int distancia, String descripcio, boolean completat, Intensitat intensitat, int usuariId, int tipusEsportId) {
+        this.id = id;
+        this.data = data;
+        this.duradaMinuts = duradaMinuts;
+        this.distancia = distancia;
+        this.descripcio = descripcio;
+        this.completat = completat;
+        this.intensitat = intensitat;
+        this.usuariId = usuariId;
+        this.tipusEsportId = tipusEsportId;
+    }
+
+    public int getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(int distancia) {
+        this.distancia = distancia;
     }
 
     public int getId() {
@@ -49,14 +64,6 @@ public class Entrenament {
 
     public void setData(LocalDate data) {
         this.data = data;
-    }
-
-    public String getTipus() {
-        return tipus;
-    }
-
-    public void setTipus(String tipus) {
-        this.tipus = tipus;
     }
 
     public int getDuradaMinuts() {
@@ -83,14 +90,31 @@ public class Entrenament {
         this.completat = completat;
     }
 
-    public List<Comentari> getComentaris() {
-        return comentaris;
+    public int getUsuariId() {
+        return usuariId;
     }
 
-    public void setComentaris(List<Comentari> comentaris) {
-        this.comentaris = comentaris;
+    public void setUsuariId(int usuariId) {
+        this.usuariId = usuariId;
     }
 
+    public int getTipusEsportId() {
+        return tipusEsportId;
+    }
+
+    public void setTipusEsportId(int tipusEsportId) {
+        this.tipusEsportId = tipusEsportId;
+    }
+
+    public Intensitat getIntensitat() {
+        return intensitat;
+    }
+
+    public void setIntensitat(Intensitat intensitat) {
+        this.intensitat = intensitat;
+    }
+    
+    
     
 
 }

@@ -25,6 +25,7 @@ public class Querys {
 
     //MOSTRAR ENTRENAMENTS
     public static void mostrarEntrenaments() {
+
         entrenaments.clear();
         String sql = "SELECT * FROM entrenament";
 
@@ -36,12 +37,31 @@ public class Querys {
                 int id = rs.getInt("id");
                 LocalDate data = rs.getDate("data").toLocalDate();
                 int duradaMinuts = rs.getInt("duradaMinuts");
+                int distancia = rs.getInt("distancia");
                 String descripcio = rs.getString("descripcio");
-                String tipus = rs.getString("intensitat");
+
+                //  ENUM conversió 
+                Entrenament.Intensitat intensitat
+                        = Entrenament.Intensitat.valueOf(
+                                rs.getString("intensitat")
+                        );
+
                 boolean completat = rs.getBoolean("completat");
+                int usuariId = rs.getInt("usuari_id");
+                int tipusEsportId = rs.getInt("tipus_esport_id");
 
                 entrenaments.add(
-                        new Entrenament(id, data, tipus, duradaMinuts, descripcio, completat)
+                        new Entrenament(
+                                id,
+                                data,
+                                duradaMinuts,
+                                distancia,
+                                descripcio,
+                                completat,
+                                intensitat,
+                                usuariId,
+                                tipusEsportId
+                        )
                 );
             }
 
@@ -66,7 +86,7 @@ public class Querys {
                 entrenaments.add(new Entrenament(
                         rs.getInt("id"),
                         rs.getDate("data").toLocalDate(),
-                        rs.getString("intensitat"), 
+                        rs.getString("intensitat"),
                         rs.getInt("duradaMinuts"),
                         rs.getString("descripcio"),
                         rs.getBoolean("completat")
@@ -144,30 +164,28 @@ public class Querys {
 
     //USUARIS
     //MOSTRAR USUARIS
- public static void mostrarUsuaris() {
-    usuaris.clear();
-    String sql = "SELECT * FROM usuari";
+    public static void mostrarUsuaris() {
+        usuaris.clear();
+        String sql = "SELECT * FROM usuari";
 
-    try (
-        Connection conn = DriverManager.getConnection(url, user, password);
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(sql)
-    ) {
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
-        while (rs.next()) {
+            while (rs.next()) {
 
-            int id = rs.getInt("id");
-            String nom = rs.getString("nom");
-            String contrassenya = rs.getString("contrasenya");
-            Rol rol = Rol.valueOf(rs.getString("rol").toUpperCase());
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+                String contrassenya = rs.getString("contrasenya");
+                Rol rol = Rol.valueOf(rs.getString("rol").toUpperCase());
 
-            usuaris.add(
-                new Usuari(id, nom, contrassenya, rol) {}
-            );
+                usuaris.add(
+                        new Usuari(id, nom, contrassenya, rol) {
+                }
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 }

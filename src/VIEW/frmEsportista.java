@@ -6,7 +6,6 @@ package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
-import MODEL.Entrenament;
 
 /**
  *
@@ -166,20 +165,34 @@ public class frmEsportista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void omplirTaulaEntrenaments() {
-        String[] columnes = {"ID", "DATA", "TIPUS", "DURADA", "DESCRIPCIO", "COMPLETAT"};
+public void omplirTaulaEntrenaments() {
 
-        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        String[] columnes = {
+            "ID", "DATA", "DURADA", "DISTANCIA",
+            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "ID_USUARI", "ID_TIPUS"
+        };
+
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
         model.setColumnIdentifiers(columnes);
 
         for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+
             Object[] fila = {
                 e.getId(),
                 e.getData(),
-                e.getTipus(),
                 e.getDuradaMinuts(),
+                e.getDistancia(),
                 e.getDescripcio(),
-                e.isCompletat(),};
+                
+                e.getIntensitat(),
+                e.isCompletat(),
+                e.getUsuariId(),
+                e.getTipusEsportId()
+            };
+
             model.addRow(fila);
         }
 

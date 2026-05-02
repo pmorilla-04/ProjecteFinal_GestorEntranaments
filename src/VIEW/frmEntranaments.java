@@ -250,21 +250,36 @@ public class frmEntranaments extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+         GestiorFitxersTXT.escripturaAFitxerLog("Entrenament modificat");
     }//GEN-LAST:event_btnModificarActionPerformed
-    public void omplirTaulaEntrenaments() {
-        String[] columnes = {"ID", "DATA", "TIPUS", "DURADA", "DESCRIPCIO", "COMPLETAT"};
+public void omplirTaulaEntrenaments() {
 
-        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+        String[] columnes = {
+            "ID", "DATA", "DURADA", "DISTANCIA",
+            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "ID_USUARI", "ID_TIPUS"
+        };
+
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
         model.setColumnIdentifiers(columnes);
 
         for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+
             Object[] fila = {
                 e.getId(),
                 e.getData(),
-                e.getTipus(),
                 e.getDuradaMinuts(),
+                e.getDistancia(),
                 e.getDescripcio(),
-                e.isCompletat(),};
+                
+                e.getIntensitat(),
+                e.isCompletat(),
+                e.getUsuariId(),
+                e.getTipusEsportId()
+            };
+
             model.addRow(fila);
         }
 
