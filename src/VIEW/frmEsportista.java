@@ -25,6 +25,7 @@ public class frmEsportista extends javax.swing.JFrame {
         initComponents();
 
         Querys.carregarTipusEsport(cbmTipus);
+        carregarIntensitats();
 
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
@@ -331,6 +332,19 @@ public void omplirTaulaEntrenaments() {
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+ private void carregarIntensitats() {
+
+    cbmIntensitat.removeAllItems();
+
+    cbmIntensitat.addItem(null); // opció "Totes"
+
+    for (Entrenament.Intensitat i : Entrenament.Intensitat.values()) {
+        cbmIntensitat.addItem(i);
+    }
+}
+ 
+ 
+ 
     private void cbmIntensitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmIntensitatActionPerformed
         // TODO add your handling code here:
 
