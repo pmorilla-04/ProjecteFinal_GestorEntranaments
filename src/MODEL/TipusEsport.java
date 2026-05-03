@@ -35,7 +35,7 @@ public class TipusEsport {
 
     @Override
     public String toString() {
-        return "TipusEsport{" + "id=" + id + ", nom=" + nom + '}';
+        return nom ;
     }
     
     

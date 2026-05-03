@@ -242,6 +242,46 @@ public class Querys {
         }
     }
 
+    
+    public static ResultSet getIntensitats() throws SQLException {
+    Connection conn = Conexion.connectar();
+
+    String sql = "SHOW COLUMNS FROM entrenament LIKE 'intensitat'";
+
+    PreparedStatement ps = conn.prepareStatement(sql);
+    return ps.executeQuery();
+}
+    
+    public static ResultSet getTipusEsport() throws SQLException {
+    Connection conn = Conexion.connectar();
+
+    String sql = "SELECT id, nom FROM tipus_esport";
+
+    PreparedStatement ps = conn.prepareStatement(sql);
+    return ps.executeQuery();
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //USUARIS
     //MOSTRAR USUARIS
     public static void mostrarUsuaris() {
@@ -284,8 +324,7 @@ public class Querys {
             cbmTipus.addItem(new TipusEsport(0, "Tots"));
 
             while (rs.next()) {
-                cbmTipus.addItem(
-                        new TipusEsport(
+                cbmTipus.addItem(new TipusEsport(
                                 rs.getInt("id"),
                                 rs.getString("nom")
                         )

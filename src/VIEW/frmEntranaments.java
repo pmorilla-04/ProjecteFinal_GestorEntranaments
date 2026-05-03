@@ -7,7 +7,10 @@ package VIEW;
 import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
 import MODEL.Entrenament.Intensitat;
+import MODEL.TipusEsport;
 import java.time.LocalDate;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -25,6 +28,8 @@ public class frmEntranaments extends javax.swing.JFrame {
 
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
+         carregarTipusEsport();
+        carregarIntensitats();
     }
 
     /**
@@ -109,6 +114,12 @@ public class frmEntranaments extends javax.swing.JFrame {
         jLabel8.setText("ID TIPUS ESPORT");
 
         jLabel9.setText("DURADA");
+
+        cbmTipus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmTipusActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("DESCRIPCIO");
 
@@ -230,7 +241,55 @@ public class frmEntranaments extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void carregarIntensitats() {
 
+        cbmIntensitat.removeAllItems();
+
+        try {
+
+            ResultSet rs = Querys.getIntensitats();
+
+            if (rs.next()) {
+
+                String enumValue = rs.getString(2); 
+
+                enumValue = enumValue
+                        .replace("enum(", "")
+                        .replace(")", "")
+                        .replace("'", "");
+
+                String[] values = enumValue.split(",");
+
+                for (String v : values) {
+                    cbmIntensitat.addItem(v.trim());
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void carregarTipusEsport() {
+
+        cbmTipus.removeAllItems();
+
+        try {
+
+            ResultSet rs = Querys.getTipusEsport();
+
+            while (rs.next()) {
+
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+
+                cbmTipus.addItem(new TipusEsport(id, nom));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(txtId.getText());
@@ -329,8 +388,8 @@ public class frmEntranaments extends javax.swing.JFrame {
         );
 
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenament modificat");
-        
-         txtData.setText("");
+
+        txtData.setText("");
         txtDurada.setText("");
         txtDistancia.setText("");
         txtDescripcio.setText("");
@@ -345,7 +404,13 @@ public class frmEntranaments extends javax.swing.JFrame {
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
     }//GEN-LAST:event_btnModificarActionPerformed
-    
+
+    private void cbmTipusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTipusActionPerformed
+        // TODO add your handling code here:
+        TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
+        int id = t.getId();
+    }//GEN-LAST:event_cbmTipusActionPerformed
+
     public void omplirTaulaEntrenaments() {
 
         String[] columnes = {
@@ -409,7 +474,7 @@ public class frmEntranaments extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNou;
     private javax.swing.JComboBox<String> cbmIntensitat;
-    private javax.swing.JComboBox<String> cbmTipus;
+    private javax.swing.JComboBox<TipusEsport> cbmTipus;
     private javax.swing.JCheckBox chkCompletat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

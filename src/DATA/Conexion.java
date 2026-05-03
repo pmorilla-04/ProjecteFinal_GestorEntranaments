@@ -20,7 +20,7 @@ public class Conexion {
     public static String password = "PauMO223*";
     //public static String sql = "SELECT id, nom FROM persones";
 
-    public Connection connectar() {
+    public static Connection connectar() {
 
         Connection con = null;
 
@@ -36,4 +36,6 @@ public class Conexion {
 
         return con;
     }
+    
+    
 }
