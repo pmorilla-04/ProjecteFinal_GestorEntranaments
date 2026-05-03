@@ -315,7 +315,9 @@ public void omplirTaulaEntrenaments() {
             omplirTaulaEntrenaments();
 
         } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Error en els filtres!");
+            // javax.swing.JOptionPane.showMessageDialog(this, "Error en els filtres!");
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
@@ -332,19 +334,18 @@ public void omplirTaulaEntrenaments() {
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
- private void carregarIntensitats() {
+    private void carregarIntensitats() {
 
-    cbmIntensitat.removeAllItems();
+        cbmIntensitat.removeAllItems();
 
-    cbmIntensitat.addItem(null); // opció "Totes"
+        cbmIntensitat.addItem("Totes");
 
-    for (Entrenament.Intensitat i : Entrenament.Intensitat.values()) {
-        cbmIntensitat.addItem(i);
+        for (Entrenament.Intensitat i : Entrenament.Intensitat.values()) {
+            cbmIntensitat.addItem(i.name());
+        }
     }
-}
- 
- 
- 
+
+
     private void cbmIntensitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmIntensitatActionPerformed
         // TODO add your handling code here:
 
@@ -354,7 +355,7 @@ public void omplirTaulaEntrenaments() {
         // TODO add your handling code here:
         TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
 
-        Integer tipusId = (t == null || t.getId() == 0) ? null : t.getId();
+        Integer tipus = (t == null || t.getId() == 0) ? null : t.getId();
     }//GEN-LAST:event_cbmTipusActionPerformed
 
     /**

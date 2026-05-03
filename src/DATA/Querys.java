@@ -10,6 +10,7 @@ import static DATA.Conexion.password;
 import static DATA.Conexion.url;
 import static DATA.Conexion.user;
 import MODEL.Entrenament;
+import MODEL.Entrenament.Intensitat;
 import MODEL.TipusEsport;
 import MODEL.Usuari;
 import MODEL.Usuari.Rol;
@@ -72,82 +73,6 @@ public class Querys {
         }
     }
 
-    //FILTRAR ENTRENAMENTS
-    /* public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
-            Integer distancia,
-            Entrenament.Intensitat intensitat,
-            Boolean completat,
-            Integer tipusEsportId) {
-        String sql = "SELECT * FROM entrenament\n"
-                + "WHERE usuari_id = ?\n"
-                + "AND (? IS NULL OR id = ?)\n"
-                + "AND (? IS NULL OR data = ?)\n"
-                + "AND (? IS NULL OR duradaMinuts = ?)\n"
-                + "AND (? IS NULL OR distancia = ?)\n"
-                + "AND (? IS NULL OR intensitat = ?)\n"
-                + "AND (? IS NULL OR completat = ?)\n"
-                + "AND (? IS NULL OR tipus_esport_id = ?)";
-
-        try (
-                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            //USUARI ID
-            ps.setInt(1, CONTROLLER.Principal.usuariId);
-
-            //ID
-            ps.setObject(2, id);
-            ps.setObject(3, id);
-
-            //DATA
-            ps.setObject(4, data);
-            ps.setObject(5, data != null ? java.sql.Date.valueOf(data) : null);
-
-            //DISTANCIA
-            ps.setObject(8, distancia);
-            ps.setObject(9, distancia);
-
-            //INTENSITAT
-            ps.setString(10, intensitat != null ? intensitat.name() : null);
-            ps.setString(11, intensitat != null ? intensitat.name() : null);
-
-            //COMPLETAT
-            ps.setObject(12, completat);
-            ps.setObject(13, completat);
-            //TIPUS ESPORT
-            ps.setObject(14, tipusEsportId);
-            ps.setObject(15, tipusEsportId);
-            
-            
-            entrenaments.clear();
-
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                Entrenament.Intensitat intens
-                        = Entrenament.Intensitat.valueOf(
-                                rs.getString("intensitat").toUpperCase()
-                        );
-
-                entrenaments.add(
-                        new Entrenament(
-                                rs.getInt("id"),
-                                rs.getDate("data").toLocalDate(),
-                                rs.getInt("duradaMinuts"),
-                                rs.getInt("distancia"),
-                                rs.getString("descripcio"),
-                                rs.getBoolean("completat"),
-                                intens,
-                                rs.getInt("usuari_id"),
-                                rs.getInt("tipus_esport_id")
-                        )
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
     public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
             Integer distancia,
             Entrenament.Intensitat intensitat,
@@ -236,19 +161,22 @@ public class Querys {
     }
 
     //AFEGIR ENTRENAMENT
-    public static void afegirEntrenament(LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
+    public static void afegirEntrenament(LocalDate data, int duradaMinuts, int distancia, String descripcio, Intensitat intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
 
-        String sql = "INSERT INTO entrenament (data, duradaMinuts, descripcio, intensitat, completat, usuari_id, tipus_esport_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = " INSERT INTO entrenament \n"
+                + "        (data, duradaMinuts, distancia, descripcio, intensitat, completat, usuari_id, tipus_esport_id)\n"
+                + "        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setDate(1, java.sql.Date.valueOf(data));
             ps.setInt(2, duradaMinuts);
-            ps.setString(3, descripcio);
-            ps.setString(4, intensitat);
-            ps.setBoolean(5, completat);
-            ps.setInt(6, usuari_id);
-            ps.setInt(7, tipus_esport_id);
+            ps.setInt(3, distancia);
+            ps.setString(4, descripcio);
+            ps.setString(5, intensitat.name());
+            ps.setBoolean(6, completat);
+            ps.setInt(7, usuari_id);
+            ps.setInt(8, tipus_esport_id);
 
             int files = ps.executeUpdate();
             System.out.println("Files inserides: " + files);
@@ -259,20 +187,35 @@ public class Querys {
     }
 
     //MODIFICAR ENTRENAMENT
-    public static void actualitzarEntrenament(int id, LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
+    public static void actualitzarEntrenament(int id,
+            LocalDate data,
+            int duradaMinuts,
+            int distancia,
+            String descripcio,
+            Intensitat intensitat,
+            boolean completat,
+            int tipusEsportId) {
 
-        String sql = "UPDATE entrenament SET data = ?, duradaMinuts = ?, descripcio = ?, intensitat = ?, completat = ?, usuari_id = ?, tipus_esport_id = ? WHERE id = ?";
+        String sql = " UPDATE entrenament\n"
+                + "        SET data = ?,\n"
+                + "            duradaMinuts = ?,\n"
+                + "            distancia = ?,\n"
+                + "            descripcio = ?,\n"
+                + "            intensitat = ?,\n"
+                + "            completat = ?,\n"
+                + "            tipus_esport_id = ?\n"
+                + "        WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setInt(1, id);
-            ps.setDate(2, java.sql.Date.valueOf(data));
-            ps.setInt(3, duradaMinuts);
+            ps.setDate(1, java.sql.Date.valueOf(data));
+            ps.setInt(2, duradaMinuts);
+            ps.setInt(3, distancia);
             ps.setString(4, descripcio);
-            ps.setString(5, intensitat);
+            ps.setString(5, intensitat.name());
             ps.setBoolean(6, completat);
-            ps.setInt(7, usuari_id);
-            ps.setInt(8, tipus_esport_id);
+            ps.setInt(7, tipusEsportId);
+            ps.setInt(8, id);
 
             int files = ps.executeUpdate();
             System.out.println("Files actualitzades: " + files);
