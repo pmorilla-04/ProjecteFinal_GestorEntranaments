@@ -7,6 +7,7 @@ package VIEW;
 import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
 import MODEL.Entrenament;
+import MODEL.TipusEsport;
 import java.time.LocalDate;
 
 /**
@@ -22,6 +23,8 @@ public class frmEsportista extends javax.swing.JFrame {
      */
     public frmEsportista() {
         initComponents();
+
+        Querys.carregarTipusEsport(cbmTipus);
 
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
@@ -73,6 +76,12 @@ public class frmEsportista extends javax.swing.JFrame {
 
         jLabel1.setText("ESPORTISTA");
 
+        cbmIntensitat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmIntensitatActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("INTENSITAT");
 
         btnFiltrar.setText("FILTRAR");
@@ -96,6 +105,11 @@ public class frmEsportista extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("CANCELAR");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("ID");
 
@@ -108,6 +122,12 @@ public class frmEsportista extends javax.swing.JFrame {
         });
 
         jLabel8.setText("TIPUS ESPORT");
+
+        cbmTipus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmTipusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -259,44 +279,69 @@ public void omplirTaulaEntrenaments() {
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         // TODO add your handling code here:
-        Integer id = txtId.getText().isEmpty()
-                ? null
-                : Integer.parseInt(txtId.getText());
+        try {
+            Integer id = txtId.getText().isEmpty() ? null : Integer.parseInt(txtId.getText());
 
-        LocalDate data = txtData.getText().isEmpty()
-                ? null
-                : LocalDate.parse(txtData.getText());
+            LocalDate data = txtData.getText().isEmpty()
+                    ? null
+                    : LocalDate.parse(txtData.getText()); // FORMAT: yyyy-MM-dd
 
-        Integer durada = txtDurada.getText().isEmpty()
-                ? null
-                : Integer.parseInt(txtDurada.getText());
+            Integer durada = txtDurada.getText().isEmpty()
+                    ? null
+                    : Integer.parseInt(txtDurada.getText());
 
-        Integer distancia = txtDistancia.getText().isEmpty()
-                ? null
-                : Integer.parseInt(txtDistancia.getText());
+            Integer distancia = txtDistancia.getText().isEmpty()
+                    ? null
+                    : Integer.parseInt(txtDistancia.getText());
 
-        Entrenament.Intensitat intensitat
-                = cbmIntensitat.getSelectedItem() == null
-                || cbmIntensitat.getSelectedItem().equals("Totes")
-                ? null
-                : Entrenament.Intensitat.valueOf(
-                        cbmIntensitat.getSelectedItem().toString().toUpperCase()
-                );
+            Entrenament.Intensitat intensitat
+                    = cbmIntensitat.getSelectedItem() == null
+                    || cbmIntensitat.getSelectedItem().equals("Totes")
+                    ? null
+                    : Entrenament.Intensitat.valueOf(
+                            cbmIntensitat.getSelectedItem().toString().toUpperCase()
+                    );
 
-        Boolean completat = null;
-        if (chkCompletat.isSelected()) {
-            completat = true;
+            Boolean completat = chkCompletat.isSelected() ? true : null;
+
+            Integer tipus = null;
+            if (cbmTipus.getSelectedItem() != null && !cbmTipus.getSelectedItem().equals("Tots")) {
+                tipus = Integer.parseInt(cbmTipus.getSelectedItem().toString());
+            }
+
+            Querys.filtrarEntrenament(id, data, durada, distancia, intensitat, completat, tipus);
+
+            omplirTaulaEntrenaments();
+
+        } catch (Exception e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error en els filtres!");
         }
-
-        Integer tipus =cbmTipus.getSelectedItem() == null
-                || cbmTipus.getSelectedItem().equals("Tots")
-                ? null
-                : (Integer) cbmTipus.getSelectedItem();
-
-        Querys.filtrarEntrenament(id, data, durada, distancia, intensitat, completat, tipus);
-
-        omplirTaulaEntrenaments();
     }//GEN-LAST:event_btnFiltrarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        txtId.setText("");
+        txtData.setText("");
+        txtDurada.setText("");
+        txtDistancia.setText("");
+        cbmIntensitat.setSelectedIndex(0);
+        cbmTipus.setSelectedIndex(0);
+
+        chkCompletat.setSelected(false);
+
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void cbmIntensitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmIntensitatActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cbmIntensitatActionPerformed
+
+    private void cbmTipusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTipusActionPerformed
+        // TODO add your handling code here:
+        TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
+
+        Integer tipusId = (t == null || t.getId() == 0) ? null : t.getId();
+    }//GEN-LAST:event_cbmTipusActionPerformed
 
     /**
      * @param args the command line arguments

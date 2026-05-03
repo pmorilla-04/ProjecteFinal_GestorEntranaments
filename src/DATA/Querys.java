@@ -10,12 +10,14 @@ import static DATA.Conexion.password;
 import static DATA.Conexion.url;
 import static DATA.Conexion.user;
 import MODEL.Entrenament;
+import MODEL.TipusEsport;
 import MODEL.Usuari;
 import MODEL.Usuari.Rol;
 
 import java.sql.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,21 +36,21 @@ public class Querys {
 
             while (rs.next()) {
 
-                int id = rs.getInt("id");
-                LocalDate data = rs.getDate("data").toLocalDate();
-                int duradaMinuts = rs.getInt("duradaMinuts");
-                int distancia = rs.getInt("distancia");
-                String descripcio = rs.getString("descripcio");
+                int id = rs.getInt("id"); //ID
+                LocalDate data = rs.getDate("data").toLocalDate(); //DATA (LOCAALDATE)
+                int duradaMinuts = rs.getInt("duradaMinuts"); //DURADA
+                int distancia = rs.getInt("distancia"); //DISTANCIA
+                String descripcio = rs.getString("descripcio"); //DESCRIPCIO
 
-                //  ENUM conversió 
+                //  ENUM INTENSITAT conversió 
                 Entrenament.Intensitat intensitat
                         = Entrenament.Intensitat.valueOf(
                                 rs.getString("intensitat")
                         );
 
-                boolean completat = rs.getBoolean("completat");
-                int usuariId = rs.getInt("usuari_id");
-                int tipusEsportId = rs.getInt("tipus_esport_id");
+                boolean completat = rs.getBoolean("completat"); //COMPLETAT
+                int usuariId = rs.getInt("usuari_id"); //ID USUARI
+                int tipusEsportId = rs.getInt("tipus_esport_id"); //ID TIPUS ESPORT
 
                 entrenaments.add(
                         new Entrenament(
@@ -71,7 +73,7 @@ public class Querys {
     }
 
     //FILTRAR ENTRENAMENTS
-    public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
+    /* public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
             Integer distancia,
             Entrenament.Intensitat intensitat,
             Boolean completat,
@@ -145,13 +147,93 @@ public class Querys {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }*/
+    public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
+            Integer distancia,
+            Entrenament.Intensitat intensitat,
+            Boolean completat,
+            Integer tipusEsportId) {
+
+        StringBuilder sql = new StringBuilder("SELECT * FROM entrenament WHERE 1=1");
+        ArrayList<Object> params = new ArrayList<>();
+
+        if (CONTROLLER.Principal.usuariId != null) {
+            sql.append(" AND usuari_id = ?");
+            params.add(CONTROLLER.Principal.usuariId);
+        }
+
+        if (id != null) {
+            sql.append(" AND id = ?");
+            params.add(id);
+        }
+
+        if (data != null) {
+            sql.append(" AND data = ?");
+            params.add(java.sql.Date.valueOf(data));
+        }
+
+        if (duradaMinuts != null) {
+            sql.append(" AND duradaMinuts >= ?");
+            params.add(duradaMinuts);
+        }
+
+        if (distancia != null) {
+            sql.append(" AND distancia >= ?");
+            params.add(distancia);
+        }
+
+        if (intensitat != null) {
+            sql.append(" AND LOWER(intensitat) = ?");
+            params.add(intensitat.name().toLowerCase());
+        }
+
+        if (completat != null) {
+            sql.append(" AND completat = ?");
+            params.add(completat);
+        }
+
+        if (tipusEsportId != null) {
+            sql.append(" AND tipus_esport_id = ?");
+            params.add(tipusEsportId);
+        }
+
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+            for (int i = 0; i < params.size(); i++) {
+                ps.setObject(i + 1, params.get(i));
+            }
+
+            entrenaments.clear();
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Entrenament.Intensitat intens
+                        = Entrenament.Intensitat.valueOf(
+                                rs.getString("intensitat").toUpperCase()
+                        );
+
+                entrenaments.add(
+                        new Entrenament(
+                                rs.getInt("id"),
+                                rs.getDate("data").toLocalDate(),
+                                rs.getInt("duradaMinuts"),
+                                rs.getInt("distancia"),
+                                rs.getString("descripcio"),
+                                rs.getBoolean("completat"),
+                                intens,
+                                rs.getInt("usuari_id"),
+                                rs.getInt("tipus_esport_id")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    
-    
-    
-    
-    
-    
 
     //AFEGIR ENTRENAMENT
     public static void afegirEntrenament(LocalDate data, int duradaMinuts, String descripcio, String intensitat, boolean completat, int usuari_id, int tipus_esport_id) {
@@ -236,6 +318,34 @@ public class Querys {
                 usuaris.add(
                         new Usuari(id, nom, contrassenya, rol) {
                 }
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void carregarTipusEsport(javax.swing.JComboBox cbmTipus) {
+
+        String sql = "SELECT id, nom FROM tipus_esport";
+
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+
+            cbmTipus.removeAllItems();
+
+            // opcional: "Tots"
+            cbmTipus.addItem(new TipusEsport(0, "Tots"));
+
+            cbmTipus.addItem(new TipusEsport(0, "Tots"));
+
+            while (rs.next()) {
+                cbmTipus.addItem(
+                        new TipusEsport(
+                                rs.getInt("id"),
+                                rs.getString("nom")
+                        )
                 );
             }
 
