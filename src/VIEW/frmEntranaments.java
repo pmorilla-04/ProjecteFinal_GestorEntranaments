@@ -6,6 +6,7 @@ package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
+import MODEL.Entrenament.Intensitat;
 import java.time.LocalDate;
 
 /**
@@ -54,6 +55,8 @@ public class frmEntranaments extends javax.swing.JFrame {
         txtDurada = new javax.swing.JTextField();
         cbmIntensitat = new javax.swing.JComboBox<>();
         cbmTipus = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        txtDescripcio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +110,8 @@ public class frmEntranaments extends javax.swing.JFrame {
 
         jLabel9.setText("DURADA");
 
+        jLabel2.setText("DESCRIPCIO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,25 +134,35 @@ public class frmEntranaments extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(25, 25, 25))
+                                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8))
+                                        .addGap(25, 25, 25))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(txtDurada, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4))
+                                        .addGap(18, 18, 18))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(txtDurada, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(18, 18, 18)))
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtDescripcio, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(202, 202, 202)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
@@ -197,7 +212,11 @@ public class frmEntranaments extends javax.swing.JFrame {
                             .addComponent(chkCompletat)
                             .addComponent(cbmIntensitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(171, 171, 171)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(26, 26, 26)
+                        .addComponent(txtDescripcio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNou)
                             .addComponent(btnModificar))
@@ -214,7 +233,9 @@ public class frmEntranaments extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        Querys.eliminarEntrenament(Integer.parseInt(txtId.getText()));
+        int id = Integer.parseInt(txtId.getText());
+        Querys.eliminarEntrenament(id);
+
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenament eliminat");
         txtId.setText("");
         GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
@@ -227,28 +248,104 @@ public class frmEntranaments extends javax.swing.JFrame {
 
     private void btnNouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNouActionPerformed
         // TODO add your handling code here:
-        //Querys.afegirEntrenament(txtData.get);
-        // Querys.afegirEntrenament(LocalDate.MAX, FRAMEBITS, descripcio, intensitat, rootPaneCheckingEnabled, ICONIFIED, PROPERTIES);
+
+        LocalDate data = LocalDate.parse(txtData.getText()); // format: yyyy-MM-dd
+
+        int durada = Integer.parseInt(txtDurada.getText());
+        int distancia = Integer.parseInt(txtDistancia.getText());
+        String descripcio = txtDescripcio.getText();
+
+        Intensitat intensitat = Intensitat.valueOf(
+                cbmIntensitat.getSelectedItem().toString()
+        );
+
+        boolean completat = chkCompletat.isSelected();
+
+        int usuariId = 1; // o el que tinguis seleccionat
+        int tipusId = Integer.parseInt(
+                cbmTipus.getSelectedItem().toString()
+        );
+
+        Querys.afegirEntrenament(
+                data,
+                durada,
+                distancia,
+                descripcio,
+                intensitat,
+                completat,
+                usuariId,
+                tipusId
+        );
+
+        GestiorFitxersTXT.escripturaAFitxerLog("Entrenament afegit");
+
         txtData.setText("");
-        txtDistancia.setText("");
         txtDurada.setText("");
         txtDistancia.setText("");
+        txtDescripcio.setText("");
 
         cbmIntensitat.setSelectedIndex(0);
         cbmTipus.setSelectedIndex(0);
-
         chkCompletat.setSelected(false);
+
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
 
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
-        GestiorFitxersTXT.escripturaAFitxerLog("Nou entrenament afegit");
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
 
     }//GEN-LAST:event_btnNouActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+
+        int id = Integer.parseInt(txtId.getText());
+
+        LocalDate data = LocalDate.parse(txtData.getText());
+
+        int durada = Integer.parseInt(txtDurada.getText());
+        int distancia = Integer.parseInt(txtDistancia.getText());
+        String descripcio = txtDescripcio.getText();
+
+        Intensitat intensitat = Intensitat.valueOf(
+                cbmIntensitat.getSelectedItem().toString()
+        );
+
+        boolean completat = chkCompletat.isSelected();
+
+        int tipusId = Integer.parseInt(
+                cbmTipus.getSelectedItem().toString()
+        );
+
+        Querys.actualitzarEntrenament(
+                id,
+                data,
+                durada,
+                distancia,
+                descripcio,
+                intensitat,
+                completat,
+                tipusId
+        );
+
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenament modificat");
+        
+         txtData.setText("");
+        txtDurada.setText("");
+        txtDistancia.setText("");
+        txtDescripcio.setText("");
+
+        cbmIntensitat.setSelectedIndex(0);
+        cbmTipus.setSelectedIndex(0);
+        chkCompletat.setSelected(false);
+
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
+
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
     }//GEN-LAST:event_btnModificarActionPerformed
+    
     public void omplirTaulaEntrenaments() {
 
         String[] columnes = {
@@ -315,6 +412,7 @@ public class frmEntranaments extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbmTipus;
     private javax.swing.JCheckBox chkCompletat;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -324,6 +422,7 @@ public class frmEntranaments extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEntrenaments;
     private javax.swing.JTextField txtData;
+    private javax.swing.JTextField txtDescripcio;
     private javax.swing.JTextField txtDistancia;
     private javax.swing.JTextField txtDurada;
     private javax.swing.JTextField txtId;
