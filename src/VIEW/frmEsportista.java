@@ -8,6 +8,8 @@ import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
 import MODEL.Entrenament;
 import MODEL.TipusEsport;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -24,11 +26,10 @@ public class frmEsportista extends javax.swing.JFrame {
     public frmEsportista() {
         initComponents();
 
-        Querys.carregarTipusEsport(cbmTipus);
-        carregarIntensitats();
-
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
+        //  carregarTipusEsport();
+        carregarIntensitats();
     }
 
     /**
@@ -233,7 +234,58 @@ public class frmEsportista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void omplirTaulaEntrenaments() {
+
+    private void carregarIntensitats() {
+
+        cbmIntensitat.removeAllItems();
+
+        try {
+
+            ResultSet rs = Querys.getIntensitats();
+
+            if (rs.next()) {
+
+                String enumValue = rs.getString(2);
+
+                enumValue = enumValue
+                        .replace("enum(", "")
+                        .replace(")", "")
+                        .replace("'", "");
+
+                String[] values = enumValue.split(",");
+
+                for (String v : values) {
+                    cbmIntensitat.addItem(v.trim());
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*private void carregarTipusEsport() {
+
+        cbmTipus.removeAllItems();
+
+        try {
+
+            ResultSet rs = Querys.getTipusEsport();
+
+            while (rs.next()) {
+
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+
+                cbmTipus.addItem(new TipusEsport(id, nom));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }*/
+
+    public void omplirTaulaEntrenaments() {
 
         String[] columnes = {
             "ID", "DATA", "DURADA", "DISTANCIA",
@@ -333,17 +385,6 @@ public void omplirTaulaEntrenaments() {
         chkCompletat.setSelected(false);
 
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void carregarIntensitats() {
-
-        cbmIntensitat.removeAllItems();
-
-        cbmIntensitat.addItem("Totes");
-
-        for (Entrenament.Intensitat i : Entrenament.Intensitat.values()) {
-            cbmIntensitat.addItem(i.name());
-        }
-    }
 
 
     private void cbmIntensitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmIntensitatActionPerformed

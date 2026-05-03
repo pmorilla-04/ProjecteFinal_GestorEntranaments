@@ -262,7 +262,7 @@ public class Querys {
 }
     
     
-    
+    //
     
     
     
@@ -309,30 +309,5 @@ public class Querys {
         }
     }
 
-    public static void carregarTipusEsport(javax.swing.JComboBox cbmTipus) {
 
-        String sql = "SELECT id, nom FROM tipus_esport";
-
-        try (
-                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
-
-            cbmTipus.removeAllItems();
-
-            // opcional: "Tots"
-            cbmTipus.addItem(new TipusEsport(0, "Tots"));
-
-            cbmTipus.addItem(new TipusEsport(0, "Tots"));
-
-            while (rs.next()) {
-                cbmTipus.addItem(new TipusEsport(
-                                rs.getInt("id"),
-                                rs.getString("nom")
-                        )
-                );
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
