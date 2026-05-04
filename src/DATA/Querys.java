@@ -315,9 +315,26 @@ public class Querys {
             ps.setString(2, nom); //NOM
             ps.setString(3,  contrassenya); //CONTRASSENYA
             ps.setString(4, rol.name()); //ROL
+            
+            int files = ps.executeUpdate();
+            System.out.println("Files eliminades:  " + files);
+            
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
     //ELIMINAR USUARI
+    public static void eliminarUsuari (int id) {
+        String sql = "DELETE FROM usuari WHERE id = ?";
+        
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, id); //ID
+            
+            int files = ps.executeUpdate();
+            System.out.println("Files eliminades:  " + files);
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
