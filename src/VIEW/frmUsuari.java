@@ -160,15 +160,15 @@ public class frmUsuari extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String nom = txtNom.getText();
-        
-         String contrassenya = txtPassword.getPassword();
-        
+
+        String contrassenya = new String(txtPassword.getPassword());
+
         Rol rol = Rol.valueOf(
                 cbmTipus.getSelectedItem().toString()
-        ); 
-        
+        );
+
         Querys.afegirUsuari(nom, contrassenya, rol);
-        
+
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
