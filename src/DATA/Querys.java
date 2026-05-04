@@ -289,6 +289,15 @@ public class Querys {
             e.printStackTrace();
         }
     }
+    
+    public static void filtrarUsuari(int id, String nom, Rol rol){
+        String sql = "SELECT FROM usuari WHERE 1=1";
+        
+        try(){
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     //AFEGIR USUARI
     public static void afegirUsuari(String nom, String contrassenya, Rol rol) {
