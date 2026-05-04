@@ -25,7 +25,9 @@ import java.util.ArrayList;
  * @author Usuari
  */
 public class Querys {
-
+    
+    //ENTRENAMENTS
+    
     //MOSTRAR ENTRENAMENTS
     public static void mostrarEntrenaments() {
 
@@ -305,6 +307,17 @@ public class Querys {
         }
     }
     //MODIFICAR USUARI
-
+    public static void modificarUsuari(int id, String nom, String contrassenya, Rol rol){
+        String sql = "UPDATE usuari SET nom = ?, contrassenya = ?, rol = ? WHERE id =?";
+        
+        try(Connection conn = DriverManager.getConnection(url, user,password); PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, id); //ID
+            ps.setString(2, nom); //NOM
+            ps.setString(3,  contrassenya); //CONTRASSENYA
+            ps.setString(4, rol.name()); //ROL
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     //ELIMINAR USUARI
 }
