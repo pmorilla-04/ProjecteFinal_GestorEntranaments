@@ -15,6 +15,7 @@ public abstract class Usuari {
     private int id;
     private String nom;
     private String contrassenya;
+    private Rol rol;
 
     public enum Rol {
         ADMIN, ESPORTISTA, ENTRENADOR
@@ -24,6 +25,7 @@ public abstract class Usuari {
         this.id = id;
         this.nom = nom;
         this.contrassenya = contrassenya;
+        this.rol = rol;
     }
 
     public int getId() {
@@ -48,6 +50,14 @@ public abstract class Usuari {
 
     public void setContassenya(String contassenya) {
         this.contrassenya = contassenya;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
 }

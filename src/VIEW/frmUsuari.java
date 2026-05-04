@@ -39,8 +39,6 @@ public class frmUsuari extends javax.swing.JFrame {
         txtNom = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cbmTipus = new javax.swing.JComboBox<>();
         btnAfegir = new javax.swing.JButton();
@@ -68,8 +66,6 @@ public class frmUsuari extends javax.swing.JFrame {
 
         jLabel2.setText("CONTRASENYA");
 
-        jLabel3.setText("EMAIL");
-
         jLabel4.setText("TIPUS");
 
         cbmTipus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esportista", "Entrenador", "Administrador" }));
@@ -95,12 +91,10 @@ public class frmUsuari extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel5)
@@ -135,13 +129,9 @@ public class frmUsuari extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
+                            .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAfegir)
                             .addComponent(btnModificar)
@@ -170,7 +160,8 @@ public class frmUsuari extends javax.swing.JFrame {
             Object[] fila = {
                 u.getId(),
                 u.getNom(),
-                u.getContassenya()
+                u.getContassenya(),
+                u.getRol()
             };
             model.addRow(fila);
         }
@@ -208,12 +199,10 @@ public class frmUsuari extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbmTipus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblUsuaris;
-    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNom;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables

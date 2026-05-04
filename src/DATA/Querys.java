@@ -295,7 +295,7 @@ public class Querys {
 
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
-                String contrassenya = rs.getString("contrasenya");
+                String contrassenya = rs.getString("contrassenya");
                 Rol rol = Rol.valueOf(rs.getString("rol").toUpperCase());
 
                 usuaris.add(
