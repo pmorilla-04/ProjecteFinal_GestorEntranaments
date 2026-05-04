@@ -242,46 +242,25 @@ public class Querys {
         }
     }
 
-    
     public static ResultSet getIntensitats() throws SQLException {
-    Connection conn = Conexion.connectar();
+        Connection conn = Conexion.connectar();
 
-    String sql = "SHOW COLUMNS FROM entrenament LIKE 'intensitat'";
+        String sql = "SHOW COLUMNS FROM entrenament LIKE 'intensitat'";
 
-    PreparedStatement ps = conn.prepareStatement(sql);
-    return ps.executeQuery();
-}
-    
+        PreparedStatement ps = conn.prepareStatement(sql);
+        return ps.executeQuery();
+    }
+
     public static ResultSet getTipusEsport() throws SQLException {
-    Connection conn = Conexion.connectar();
+        Connection conn = Conexion.connectar();
 
-    String sql = "SELECT id, nom FROM tipus_esport";
+        String sql = "SELECT id, nom FROM tipus_esport";
 
-    PreparedStatement ps = conn.prepareStatement(sql);
-    return ps.executeQuery();
-}
-    
-    
+        PreparedStatement ps = conn.prepareStatement(sql);
+        return ps.executeQuery();
+    }
+
     //
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //USUARIS
     //MOSTRAR USUARIS
     public static void mostrarUsuaris() {
@@ -309,5 +288,23 @@ public class Querys {
         }
     }
 
+    //AFEGIR USUARI
+    public static void afegirUsuari(String nom, String contrassenya, Rol rol) {
+        String sql = "INSERT INTO usuari (nom, contrassenya, rol) VALUES (?, ?, ?)";
 
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, nom); //NOM
+            ps.setString(2, contrassenya); //CONTRASSENYA
+            ps.setString(3, rol.name()); //ROL
+
+            int files = ps.executeUpdate();
+            System.out.println("Files inserides: " + files);
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    //MODIFICAR USUARI
+
+    //ELIMINAR USUARI
 }

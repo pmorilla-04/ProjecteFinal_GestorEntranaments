@@ -5,6 +5,8 @@
 package VIEW;
 
 import DATA.Querys;
+import MODEL.Usuari;
+import MODEL.Usuari.Rol;
 
 /**
  *
@@ -19,9 +21,9 @@ public class frmUsuari extends javax.swing.JFrame {
      */
     public frmUsuari() {
         initComponents();
-        
+
         Querys.mostrarUsuaris();
-       omplirTaulaUsuaris();
+        omplirTaulaUsuaris();
     }
 
     /**
@@ -71,6 +73,11 @@ public class frmUsuari extends javax.swing.JFrame {
         cbmTipus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esportista", "Entrenador", "Administrador" }));
 
         btnAfegir.setText("AFEGIR");
+        btnAfegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfegirActionPerformed(evt);
+            }
+        });
 
         btnModificar.setText("MODIFICAR");
 
@@ -95,10 +102,12 @@ public class frmUsuari extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtPassword)
+                                .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnAfegir)
@@ -147,11 +156,29 @@ public class frmUsuari extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
+        // TODO add your handling code here:
+
+        String nom = txtNom.getText();
+        
+         String contrassenya = txtPassword.getPassword();
+        
+        Rol rol = Rol.valueOf(
+                cbmTipus.getSelectedItem().toString()
+        ); 
+        
+        Querys.afegirUsuari(nom, contrassenya, rol);
+        
+        txtNom.setText("");
+        txtPassword.setText("");
+        cbmTipus.setSelectedIndex(0);
+    }//GEN-LAST:event_btnAfegirActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public void omplirTaulaUsuaris() {
-        String[] columnes = {"ID", "NOM", "CONTRASSENYA","ROL"};
+        String[] columnes = {"ID", "NOM", "CONTRASSENYA", "ROL"};
 
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
         model.setColumnIdentifiers(columnes);
