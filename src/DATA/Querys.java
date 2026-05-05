@@ -73,11 +73,7 @@ public class Querys {
             e.printStackTrace();
         }
     }
-    public static void filtrarEntrenamentIdusuari (int usuari_id) {
-        entrenaments.clear();
-        String sql = "SELECT * FROM entrenament";
-    }
-    
+
     public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
             Integer distancia,
             Entrenament.Intensitat intensitat,
@@ -265,12 +261,20 @@ public class Querys {
         return ps.executeQuery();
     }
 
+    //MOTRAR COMENTARIS AMB ENTRENAMENTS
+    public static void mostrarComentarisiEntrenaments() {
+        String sql = "";
+    }
+
     //AFEGIR COMENTARIS
     public static void afegirComentari(int id, String text) {
         String sql = "INSERT INTO comentari (text) VALUES (?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
-            
+
+            ps.setInt(1, id); //ID USUARI
+            ps.setString(2, text); //TEXT
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
