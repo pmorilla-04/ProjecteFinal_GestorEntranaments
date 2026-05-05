@@ -25,9 +25,8 @@ import java.util.ArrayList;
  * @author Usuari
  */
 public class Querys {
-    
+
     //ENTRENAMENTS
-    
     //MOSTRAR ENTRENAMENTS
     public static void mostrarEntrenaments() {
 
@@ -74,7 +73,11 @@ public class Querys {
             e.printStackTrace();
         }
     }
-
+    public static void filtrarEntrenamentIdusuari (int usuari_id) {
+        entrenaments.clear();
+        String sql = "SELECT * FROM entrenament";
+    }
+    
     public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
             Integer distancia,
             Entrenament.Intensitat intensitat,
@@ -262,7 +265,17 @@ public class Querys {
         return ps.executeQuery();
     }
 
-    //
+    //AFEGIR COMENTARIS
+    public static void afegirComentari(int id, String text) {
+        String sql = "INSERT INTO comentari (text) VALUES (?)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     //USUARIS
     //MOSTRAR USUARIS
     public static void mostrarUsuaris() {
@@ -289,15 +302,6 @@ public class Querys {
             e.printStackTrace();
         }
     }
-    
-    public static void filtrarUsuari(int id, String nom, Rol rol){
-        String sql = "SELECT FROM usuari WHERE 1=1";
-        
-        try(){
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
 
     //AFEGIR USUARI
     public static void afegirUsuari(String nom, String contrassenya, Rol rol) {
@@ -310,39 +314,41 @@ public class Querys {
 
             int files = ps.executeUpdate();
             System.out.println("Files inserides: " + files);
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     //MODIFICAR USUARI
-    public static void modificarUsuari(int id, String nom, String contrassenya, Rol rol){
+    public static void modificarUsuari(int id, String nom, String contrassenya, Rol rol) {
         String sql = "UPDATE usuari SET nom = ?, contrassenya = ?, rol = ? WHERE id =?";
-        
-        try(Connection conn = DriverManager.getConnection(url, user,password); PreparedStatement ps = conn.prepareStatement(sql)){
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id); //ID
             ps.setString(2, nom); //NOM
-            ps.setString(3,  contrassenya); //CONTRASSENYA
+            ps.setString(3, contrassenya); //CONTRASSENYA
             ps.setString(4, rol.name()); //ROL
-            
+
             int files = ps.executeUpdate();
             System.out.println("Files eliminades:  " + files);
-            
-        } catch (SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     //ELIMINAR USUARI
-    public static void eliminarUsuari (int id) {
+    public static void eliminarUsuari(int id) {
         String sql = "DELETE FROM usuari WHERE id = ?";
-        
-        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)){
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id); //ID
-            
+
             int files = ps.executeUpdate();
             System.out.println("Files eliminades:  " + files);
-            
-        } catch (SQLException e){
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

@@ -4,12 +4,14 @@
  */
 package VIEW;
 
+import DATA.Querys;
+
 /**
  *
  * @author Usuari
  */
 public class frmEntranador extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEntranador.class.getName());
 
     /**
@@ -17,6 +19,9 @@ public class frmEntranador extends javax.swing.JFrame {
      */
     public frmEntranador() {
         initComponents();
+
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
     }
 
     /**
@@ -31,13 +36,13 @@ public class frmEntranador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEntranaments = new javax.swing.JTable();
-        cbmEsportista = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtComentari = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnAfegirComentari = new javax.swing.JButton();
         ckValidar = new javax.swing.JCheckBox();
+        txtIdEsportista = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +67,7 @@ public class frmEntranador extends javax.swing.JFrame {
 
         jLabel2.setText("Comentari");
 
-        jLabel3.setText("Esportista");
+        jLabel3.setText("Esportista ID");
 
         btnAfegirComentari.setText("AFEGIR COMENTARI");
 
@@ -73,38 +78,35 @@ public class frmEntranador extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbmEsportista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ckValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(116, 116, 116))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(btnAfegirComentari)
-                                    .addGap(75, 75, 75))))))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(331, 331, 331))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(111, 111, 111))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(33, 33, 33)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(43, 43, 43)
+                                    .addComponent(jLabel3)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(txtIdEsportista, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ckValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAfegirComentari))
+                            .addGap(72, 72, 72))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,17 +118,17 @@ public class frmEntranador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbmEsportista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(42, 42, 42)
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txtIdEsportista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(btnAfegirComentari)
-                        .addGap(35, 35, 35)
+                        .addGap(43, 43, 43)
                         .addComponent(ckValidar)))
                 .addGap(0, 39, Short.MAX_VALUE))
         );
@@ -137,6 +139,33 @@ public class frmEntranador extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public void omplirTaulaEntrenaments() {
+        String[] columnes = {"ID", "DATA", "DURADA", "DISTANCIA", "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "ID_USUARI", "ID_TIPUS"};
+
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+            Object[] fila = {
+                e.getId(),
+                e.getData(),
+                e.getDuradaMinuts(),
+                e.getDistancia(),
+                e.getDescripcio(),
+                e.getIntensitat(),
+                e.isCompletat(),
+                e.getUsuariId(),
+                e.getTipusEsportId()
+            };
+            model.addRow(fila);
+        }
+        tblEntranaments.setModel(model);
+
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -161,7 +190,6 @@ public class frmEntranador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAfegirComentari;
-    private javax.swing.JComboBox<String> cbmEsportista;
     private javax.swing.JCheckBox ckValidar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -170,5 +198,6 @@ public class frmEntranador extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblEntranaments;
     private javax.swing.JTextArea txtComentari;
+    private javax.swing.JTextField txtIdEsportista;
     // End of variables declaration//GEN-END:variables
 }
