@@ -262,6 +262,7 @@ private void carregarIntensitats() {
 
                 for (String v : values) {
                     cbmIntensitat.addItem(v.trim());
+                    GestiorFitxersTXT.escripturaAFitxerLog("carreguem les intensitats al combo box");
                 }
             }
 
@@ -284,6 +285,7 @@ private void carregarIntensitats() {
                 String nom = rs.getString("nom");
 
                 cbmTipus.addItem(new TipusEsport(id, nom));
+                GestiorFitxersTXT.escripturaAFitxerLog("Carraguem els id del tipus d'esport al combo box");
             }
 
         } catch (SQLException e) {
@@ -320,7 +322,7 @@ private void carregarIntensitats() {
 
         boolean completat = chkCompletat.isSelected();
 
-        int usuariId = 1; // o el que tinguis seleccionat
+        int usuariId = 1;
         int tipusId = Integer.parseInt(
                 cbmTipus.getSelectedItem().toString()
         );
@@ -409,6 +411,7 @@ private void carregarIntensitats() {
         // TODO add your handling code here:
         TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
         int id = t.getId();
+        GestiorFitxersTXT.escripturaAFitxerLog("Agafem el Id del tipus d'esport seleccionat");
     }//GEN-LAST:event_cbmTipusActionPerformed
 
     public void omplirTaulaEntrenaments() {
@@ -442,6 +445,7 @@ private void carregarIntensitats() {
         }
 
         tblEntrenaments.setModel(model);
+        GestiorFitxersTXT.escripturaAFitxerLog("Omplim la taula d'entrenaments");
     }
 
     /**
