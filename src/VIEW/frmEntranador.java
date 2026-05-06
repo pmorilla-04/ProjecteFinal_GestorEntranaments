@@ -5,6 +5,8 @@
 package VIEW;
 
 import DATA.Querys;
+import MODEL.Comentarientrenament;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,8 +22,8 @@ public class frmEntranador extends javax.swing.JFrame {
     public frmEntranador() {
         initComponents();
 
-        Querys.mostrarEntrenaments();
-        omplirTaulaEntrenaments();
+        Querys.mostrarComentarisAmbEntrenament();
+        omplirTaulaEntrenamentsComentaris();
     }
 
     /**
@@ -35,7 +37,7 @@ public class frmEntranador extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEntranaments = new javax.swing.JTable();
+        tblEntranamentsComentaris = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtComentari = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
@@ -48,7 +50,7 @@ public class frmEntranador extends javax.swing.JFrame {
 
         jLabel1.setText("ENTRANADOR");
 
-        tblEntranaments.setModel(new javax.swing.table.DefaultTableModel(
+        tblEntranamentsComentaris.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +61,7 @@ public class frmEntranador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblEntranaments);
+        jScrollPane1.setViewportView(tblEntranamentsComentaris);
 
         txtComentari.setColumns(20);
         txtComentari.setRows(5);
@@ -139,32 +141,42 @@ public class frmEntranador extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void omplirTaulaEntrenaments() {
-        String[] columnes = {"ID", "DATA", "DURADA", "DISTANCIA", "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
-            "ID_USUARI", "ID_TIPUS"};
+public void omplirTaulaEntrenamentsComentaris() {
 
-        javax.swing.table.DefaultTableModel model
-                = new javax.swing.table.DefaultTableModel();
+    String[] columnes = {
+        "ID Comentari", "Comentari", "Data Comentari",
+        "ID Entrenament", "Data Entrenament",
+        "Durada", "Dist?ncia", "Intensitat",
+        "Completat", "Descripció",
+        "Esportista", "Entrenador", "Tipus Esport"
+    };
 
-        model.setColumnIdentifiers(columnes);
+    DefaultTableModel model = new DefaultTableModel();
+    model.setColumnIdentifiers(columnes);
 
-        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
-            Object[] fila = {
-                e.getId(),
-                e.getData(),
-                e.getDuradaMinuts(),
-                e.getDistancia(),
-                e.getDescripcio(),
-                e.getIntensitat(),
-                e.isCompletat(),
-                e.getUsuariId(),
-                e.getTipusEsportId()
-            };
-            model.addRow(fila);
-        }
-        tblEntranaments.setModel(model);
+    for (Comentarientrenament c : CONTROLLER.Principal.comentarisEntrenaments) {
 
+        Object[] fila = {
+            c.getIdComentari(),
+            c.getComentari(),
+            c.getDataComentari(),
+            c.getIdEntrenament(),
+            c.getDataEntrenament(),
+            c.getDuradaMinuts(),
+            c.getDistancia(),
+            c.getIntensitat(),
+            c.isCompletat(),
+            c.getDescripcio(),
+            c.getNomEsportista(),
+            c.getNomEntrenador(),
+            c.getTipusEsport()
+        };
+
+        model.addRow(fila);
     }
+
+    tblEntranamentsComentaris.setModel(model);
+}
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -196,7 +208,7 @@ public class frmEntranador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblEntranaments;
+    private javax.swing.JTable tblEntranamentsComentaris;
     private javax.swing.JTextArea txtComentari;
     private javax.swing.JTextField txtIdEsportista;
     // End of variables declaration//GEN-END:variables

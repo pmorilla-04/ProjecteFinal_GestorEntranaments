@@ -4,6 +4,7 @@
  */
 package DATA;
 
+import static CONTROLLER.Principal.comentarisEntrenaments;
 import static CONTROLLER.Principal.entrenaments;
 import static CONTROLLER.Principal.usuaris;
 import static DATA.Conexion.password;
@@ -14,7 +15,7 @@ import MODEL.Entrenament.Intensitat;
 import MODEL.TipusEsport;
 import MODEL.Usuari;
 import MODEL.Usuari.Rol;
-
+import MODEL.Comentarientrenament;
 import java.sql.*;
 
 import java.time.LocalDate;
@@ -262,8 +263,48 @@ public class Querys {
     }
 
     //MOTRAR COMENTARIS AMB ENTRENAMENTS
-    public static void mostrarComentarisiEntrenaments() {
-        String sql = "";
+    public static void mostrarComentarisAmbEntrenament() {
+        comentarisEntrenaments.clear();
+
+        String sql
+                = "SELECT c.id AS id_comentari, c.text AS comentari, c.data AS data_comentari, "
+                + "ent.id AS id_entrenament, ent.data AS data_entrenament, ent.duradaMinuts, ent.distancia, "
+                + "ent.descripcio, ent.intensitat, ent.completat, "
+                + "esp.nom AS nom_esportista, entrena.nom AS nom_entrenador, te.nom AS tipus_esport "
+                + "FROM comentari c "
+                + "JOIN usuari entrena ON c.entranador_id = entrena.id "
+                + "JOIN entrenament ent ON c.entranament_id = ent.id "
+                + "JOIN usuari esp ON ent.usuari_id = esp.id "
+                + "JOIN tipus_esport te ON ent.tipus_esport_id = te.id "
+                + "ORDER BY c.data DESC";
+
+        try (Connection conn = DriverManager.getConnection(
+                url, user, password); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+
+                Comentarientrenament c = new Comentarientrenament(
+                        rs.getInt("id_comentari"),
+                        rs.getString("comentari"),
+                        rs.getDate("data_comentari").toLocalDate(),
+                        rs.getInt("id_entrenament"),
+                        rs.getDate("data_entrenament").toLocalDate(),
+                        rs.getInt("duradaMinuts"),
+                        rs.getInt("distancia"),
+                        rs.getString("intensitat"),
+                        rs.getBoolean("completat"),
+                        rs.getString("descripcio"),
+                        rs.getString("nom_esportista"),
+                        rs.getString("nom_entrenador"),
+                        rs.getString("tipus_esport")
+                );
+
+                comentarisEntrenaments.add(c);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     //AFEGIR COMENTARIS
