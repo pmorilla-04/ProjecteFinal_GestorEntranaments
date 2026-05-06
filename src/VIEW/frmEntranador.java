@@ -44,7 +44,7 @@ public class frmEntranador extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnAfegirComentari = new javax.swing.JButton();
         ckValidar = new javax.swing.JCheckBox();
-        txtIdEsportista = new javax.swing.JTextField();
+        txtNom = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,7 +69,7 @@ public class frmEntranador extends javax.swing.JFrame {
 
         jLabel2.setText("Comentari");
 
-        jLabel3.setText("Esportista ID");
+        jLabel3.setText("NOM ESPORTISTA");
 
         btnAfegirComentari.setText("AFEGIR COMENTARI");
 
@@ -99,7 +99,7 @@ public class frmEntranador extends javax.swing.JFrame {
                                     .addGap(43, 43, 43)
                                     .addComponent(jLabel3)
                                     .addGap(38, 38, 38)
-                                    .addComponent(txtIdEsportista, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
@@ -123,7 +123,7 @@ public class frmEntranador extends javax.swing.JFrame {
                         .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(txtIdEsportista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
@@ -146,7 +146,7 @@ public void omplirTaulaEntrenamentsComentaris() {
     String[] columnes = {
         "ID Comentari", "Comentari", "Data Comentari",
         "ID Entrenament", "Data Entrenament",
-        "Durada", "Dist?ncia", "Intensitat",
+        "Durada", "Distncia", "Intensitat",
         "Completat", "Descripció",
         "Esportista", "Entrenador", "Tipus Esport"
     };
@@ -160,6 +160,7 @@ public void omplirTaulaEntrenamentsComentaris() {
             c.getIdComentari(),
             c.getComentari(),
             c.getDataComentari(),
+            
             c.getIdEntrenament(),
             c.getDataEntrenament(),
             c.getDuradaMinuts(),
@@ -167,6 +168,7 @@ public void omplirTaulaEntrenamentsComentaris() {
             c.getIntensitat(),
             c.isCompletat(),
             c.getDescripcio(),
+            
             c.getNomEsportista(),
             c.getNomEntrenador(),
             c.getTipusEsport()
@@ -210,6 +212,6 @@ public void omplirTaulaEntrenamentsComentaris() {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblEntranamentsComentaris;
     private javax.swing.JTextArea txtComentari;
-    private javax.swing.JTextField txtIdEsportista;
+    private javax.swing.JTextField txtNom;
     // End of variables declaration//GEN-END:variables
 }

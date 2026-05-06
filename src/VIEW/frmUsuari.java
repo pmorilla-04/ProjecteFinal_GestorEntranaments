@@ -25,6 +25,14 @@ public class frmUsuari extends javax.swing.JFrame {
 
         Querys.mostrarUsuaris();
         omplirTaulaUsuaris();
+        
+        txtNom.setEnabled(false);
+        txtPassword.setEnabled(false);
+        cbmTipus.setEnabled(false);
+        
+        btnAfegir.setEnabled(false);
+        btnModificar.setEnabled(false);
+        btnEliminar.setEnabled(false);
     }
 
     /**
@@ -193,6 +201,7 @@ public class frmUsuari extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
+        
         int fila = tblUsuaris.getSelectedRow();
 
         if (fila == -1) {
@@ -268,7 +277,7 @@ public class frmUsuari extends javax.swing.JFrame {
         }
 
         tblUsuaris.setModel(model);
-        
+        GestiorFitxersTXT.escripturaAFitxerLog("Ompim taula Usuaris");
     }
 
     public static void main(String args[]) {

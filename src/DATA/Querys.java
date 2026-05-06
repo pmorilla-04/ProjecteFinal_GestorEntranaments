@@ -6,6 +6,7 @@ package DATA;
 
 import static CONTROLLER.Principal.comentarisEntrenaments;
 import static CONTROLLER.Principal.entrenaments;
+import static CONTROLLER.Principal.rol;
 import static CONTROLLER.Principal.usuaris;
 import static DATA.Conexion.password;
 import static DATA.Conexion.url;
@@ -262,10 +263,6 @@ public class Querys {
         return ps.executeQuery();
     }
 
-    
-    
-    
-    
     //2. COMENTARIS
     //MOTRAR COMENTARIS AMB ENTRENAMENTS
     public static void mostrarComentarisAmbEntrenament() {
@@ -292,6 +289,7 @@ public class Querys {
                         rs.getInt("id_comentari"),
                         rs.getString("comentari"),
                         rs.getDate("data_comentari").toLocalDate(),
+                        
                         rs.getInt("id_entrenament"),
                         rs.getDate("data_entrenament").toLocalDate(),
                         rs.getInt("duradaMinuts"),
@@ -299,6 +297,7 @@ public class Querys {
                         rs.getString("intensitat"),
                         rs.getBoolean("completat"),
                         rs.getString("descripcio"),
+                        
                         rs.getString("nom_esportista"),
                         rs.getString("nom_entrenador"),
                         rs.getString("tipus_esport")
@@ -353,6 +352,8 @@ public class Querys {
         }
     }
 
+   
+
     //AFEGIR USUARI
     public static void afegirUsuari(String nom, String contrassenya, Rol rol) {
         String sql = "INSERT INTO usuari (nom, contrassenya, rol) VALUES (?, ?, ?)";
@@ -375,13 +376,13 @@ public class Querys {
         String sql = "UPDATE usuari SET nom = ?, contrassenya = ?, rol = ? WHERE id =?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
-           
+
             ps.setString(1, nom); //NOM
             ps.setString(2, contrassenya); //CONTRASSENYA
             ps.setString(3, rol.name()); //ROL
-             ps.setInt(4, id); //ID
+            ps.setInt(4, id); //ID
             int files = ps.executeUpdate();
-           System.out.println("Files modificades: " + files);
+            System.out.println("Files modificades: " + files);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -397,6 +398,17 @@ public class Querys {
 
             int files = ps.executeUpdate();
             System.out.println("Files eliminades:  " + files);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //4. ESTADISTIQUES
+    public static void mostrarEstadistiques() {
+        String sql = "";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
         } catch (SQLException e) {
             e.printStackTrace();

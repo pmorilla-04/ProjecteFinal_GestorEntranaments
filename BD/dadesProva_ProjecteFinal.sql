@@ -43,5 +43,3 @@ INSERT INTO comentari (text, `data`, entranador_id, entranament_id) VALUES
 ('Perfecte per començar la setmana', '2026-04-05', 4, 5),
 ('Treballa més la resistència', '2026-04-06', 5, 6);
 
-
-
