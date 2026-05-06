@@ -188,6 +188,7 @@ public class frmUsuari extends javax.swing.JFrame {
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
     }//GEN-LAST:event_btnAfegirActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -218,6 +219,8 @@ public class frmUsuari extends javax.swing.JFrame {
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
+
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -230,7 +233,7 @@ public class frmUsuari extends javax.swing.JFrame {
         }
 
         int id = (int) tblUsuaris.getValueAt(fila, 0);
-        
+
         Querys.eliminarUsuari(id);
         GestiorFitxersTXT.escripturaAFitxerLog("Usuari modificat");
 
@@ -241,6 +244,8 @@ public class frmUsuari extends javax.swing.JFrame {
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
@@ -263,6 +268,7 @@ public class frmUsuari extends javax.swing.JFrame {
         }
 
         tblUsuaris.setModel(model);
+        
     }
 
     public static void main(String args[]) {

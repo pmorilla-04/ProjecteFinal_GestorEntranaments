@@ -34,14 +34,16 @@ public class Principal {
 
     public static void main(String[] args) {
         // TODO code application logic here
+        GestiorFitxersTXT.creacioLog();
+        GestiorFitxersTXT.escripturaAFitxerLog("Programa iniciat");
+
         Conexion ccc = new Conexion();
         ccc.connectar();
+        GestiorFitxersTXT.escripturaAFitxerLog("Conexio base de dades");
 
         frmValidacio f = new frmValidacio();
         f.setVisible(true);
-
-        GestiorFitxersTXT.creacioLog();
-        GestiorFitxersTXT.escripturaAFitxerLog("Programa iniciat");
+        GestiorFitxersTXT.escripturaAFitxerLog("Obrint formulari Validacio");
 
     }
 

@@ -27,7 +27,7 @@ import java.util.ArrayList;
  */
 public class Querys {
 
-    //ENTRENAMENTS
+    //1. ENTRENAMENTS
     //MOSTRAR ENTRENAMENTS
     public static void mostrarEntrenaments() {
 
@@ -262,6 +262,11 @@ public class Querys {
         return ps.executeQuery();
     }
 
+    
+    
+    
+    
+    //2. COMENTARIS
     //MOTRAR COMENTARIS AMB ENTRENAMENTS
     public static void mostrarComentarisAmbEntrenament() {
         comentarisEntrenaments.clear();
@@ -321,7 +326,7 @@ public class Querys {
         }
     }
 
-    //USUARIS
+    //3. USUARIS
     //MOSTRAR USUARIS
     public static void mostrarUsuaris() {
         usuaris.clear();

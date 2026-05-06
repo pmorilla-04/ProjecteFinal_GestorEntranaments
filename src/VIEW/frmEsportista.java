@@ -381,7 +381,7 @@ public class frmEsportista extends javax.swing.JFrame {
         cbmTipus.setSelectedIndex(0);
 
         chkCompletat.setSelected(false);
-
+        GestiorFitxersTXT.escripturaAFitxerLog("filtratge cancelat");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 
