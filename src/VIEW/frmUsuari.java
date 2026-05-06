@@ -4,6 +4,7 @@
  */
 package VIEW;
 
+import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
 import MODEL.Usuari;
 import MODEL.Usuari.Rol;
@@ -80,8 +81,18 @@ public class frmUsuari extends javax.swing.JFrame {
         });
 
         btnModificar.setText("MODIFICAR");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("GUARDAR");
 
@@ -168,13 +179,69 @@ public class frmUsuari extends javax.swing.JFrame {
         );
 
         Querys.afegirUsuari(nom, contrassenya, rol);
-        
-        Querys.mostrarUsuaris();   
+        GestiorFitxersTXT.escripturaAFitxerLog("Usuari nou afegit");
+
+        Querys.mostrarUsuaris();
         omplirTaulaUsuaris();
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
     }//GEN-LAST:event_btnAfegirActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        int fila = tblUsuaris.getSelectedRow();
+
+        if (fila == -1) {
+            System.out.println("Selecciona un usuari");
+            return;
+        }
+
+        int id = (int) tblUsuaris.getValueAt(fila, 0);
+
+        String nom = txtNom.getText();
+        String contrassenya = new String(txtPassword.getPassword());
+
+        Rol rol = Rol.valueOf(
+                cbmTipus.getSelectedItem().toString().trim().toUpperCase()
+        );
+
+        Querys.modificarUsuari(id, nom, contrassenya, rol);
+        GestiorFitxersTXT.escripturaAFitxerLog("Usuari modificat");
+
+        Querys.mostrarUsuaris();
+        omplirTaulaUsuaris();
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+
+        txtNom.setText("");
+        txtPassword.setText("");
+        cbmTipus.setSelectedIndex(0);
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int fila = tblUsuaris.getSelectedRow();
+
+        if (fila == -1) {
+            System.out.println("Selecciona un usuari");
+            return;
+        }
+
+        int id = (int) tblUsuaris.getValueAt(fila, 0);
+        
+        Querys.eliminarUsuari(id);
+        GestiorFitxersTXT.escripturaAFitxerLog("Usuari modificat");
+
+        Querys.mostrarUsuaris();
+        omplirTaulaUsuaris();
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+
+        txtNom.setText("");
+        txtPassword.setText("");
+        cbmTipus.setSelectedIndex(0);
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -376,7 +376,7 @@ public class Querys {
             ps.setString(3, rol.name()); //ROL
              ps.setInt(4, id); //ID
             int files = ps.executeUpdate();
-            System.out.println("Files eliminades:  " + files);
+           System.out.println("Files modificades: " + files);
 
         } catch (SQLException e) {
             e.printStackTrace();
