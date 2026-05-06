@@ -9,6 +9,7 @@ package MODEL;
  * @author Usuari
  */
 public class TipusEsport {
+
     private int id;
     private String nom;
 
@@ -35,8 +36,7 @@ public class TipusEsport {
 
     @Override
     public String toString() {
-        return nom ;
+        return String.valueOf(id);
     }
-    
-    
+
 }

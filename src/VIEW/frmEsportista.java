@@ -28,7 +28,7 @@ public class frmEsportista extends javax.swing.JFrame {
 
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
-        //  carregarTipusEsport();
+        carregarTipusEsport();
         carregarIntensitats();
     }
 
@@ -264,16 +264,14 @@ public class frmEsportista extends javax.swing.JFrame {
         }
     }
 
-    /*private void carregarTipusEsport() {
+    private void carregarTipusEsport() {
 
         cbmTipus.removeAllItems();
 
         try {
-
             ResultSet rs = Querys.getTipusEsport();
 
             while (rs.next()) {
-
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
 
@@ -283,7 +281,7 @@ public class frmEsportista extends javax.swing.JFrame {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     public void omplirTaulaEntrenaments() {
 
@@ -395,8 +393,8 @@ public class frmEsportista extends javax.swing.JFrame {
     private void cbmTipusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTipusActionPerformed
         // TODO add your handling code here:
         TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
+        int idSeleccionat = t.getId();
 
-        Integer tipus = (t == null || t.getId() == 0) ? null : t.getId();
     }//GEN-LAST:event_cbmTipusActionPerformed
 
     /**
@@ -429,7 +427,7 @@ public class frmEsportista extends javax.swing.JFrame {
     private javax.swing.JButton btnEntrenament;
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JComboBox<String> cbmIntensitat;
-    private javax.swing.JComboBox<String> cbmTipus;
+    private javax.swing.JComboBox<TipusEsport> cbmTipus;
     private javax.swing.JCheckBox chkCompletat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
