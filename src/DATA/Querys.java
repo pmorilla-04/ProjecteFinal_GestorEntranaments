@@ -370,11 +370,11 @@ public class Querys {
         String sql = "UPDATE usuari SET nom = ?, contrassenya = ?, rol = ? WHERE id =?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id); //ID
-            ps.setString(2, nom); //NOM
-            ps.setString(3, contrassenya); //CONTRASSENYA
-            ps.setString(4, rol.name()); //ROL
-
+           
+            ps.setString(1, nom); //NOM
+            ps.setString(2, contrassenya); //CONTRASSENYA
+            ps.setString(3, rol.name()); //ROL
+             ps.setInt(4, id); //ID
             int files = ps.executeUpdate();
             System.out.println("Files eliminades:  " + files);
 

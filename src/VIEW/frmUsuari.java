@@ -164,11 +164,13 @@ public class frmUsuari extends javax.swing.JFrame {
         String contrassenya = new String(txtPassword.getPassword());
 
         Rol rol = Rol.valueOf(
-                cbmTipus.getSelectedItem().toString()
+                cbmTipus.getSelectedItem().toString().trim().toUpperCase()
         );
 
         Querys.afegirUsuari(nom, contrassenya, rol);
-
+        
+        Querys.mostrarUsuaris();   
+        omplirTaulaUsuaris();
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
