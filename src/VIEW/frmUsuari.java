@@ -177,7 +177,6 @@ public class frmUsuari extends javax.swing.JFrame {
 
     private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
         // TODO add your handling code here:
-
         String nom = txtNom.getText();
 
         String contrassenya = new String(txtPassword.getPassword());
