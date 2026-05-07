@@ -238,7 +238,7 @@ public class frmEsportista extends javax.swing.JFrame {
     private void carregarIntensitats() {
 
         cbmIntensitat.removeAllItems();
-
+        cbmIntensitat.addItem(null);
         try {
 
             ResultSet rs = Querys.getIntensitats();
@@ -259,6 +259,7 @@ public class frmEsportista extends javax.swing.JFrame {
                     GestiorFitxersTXT.escripturaAFitxerLog("Carraguem Intensitats");
                 }
             }
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -268,6 +269,7 @@ public class frmEsportista extends javax.swing.JFrame {
     private void carregarTipusEsport() {
 
         cbmTipus.removeAllItems();
+         cbmTipus.addItem(null);
 
         try {
             ResultSet rs = Querys.getTipusEsport();
@@ -279,6 +281,8 @@ public class frmEsportista extends javax.swing.JFrame {
                 cbmTipus.addItem(new TipusEsport(id, nom));
                 GestiorFitxersTXT.escripturaAFitxerLog("Carreguem id tipus esport");
             }
+          
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -385,6 +389,9 @@ public class frmEsportista extends javax.swing.JFrame {
         cbmTipus.setSelectedIndex(0);
 
         chkCompletat.setSelected(false);
+        
+            Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("filtratge cancelat");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -396,9 +403,7 @@ public class frmEsportista extends javax.swing.JFrame {
 
     private void cbmTipusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTipusActionPerformed
         // TODO add your handling code here:
-        TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
-        int idSeleccionat = t.getId();
-        GestiorFitxersTXT.escripturaAFitxerLog("Agafem el ID del tipus d'esport selccionat");
+
     }//GEN-LAST:event_cbmTipusActionPerformed
 
     /**

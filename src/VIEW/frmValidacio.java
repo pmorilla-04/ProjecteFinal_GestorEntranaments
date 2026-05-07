@@ -46,7 +46,7 @@ public class frmValidacio extends javax.swing.JFrame {
 
         jLabel1.setText("NOM");
 
-        btnValidar.setText("VALDAR");
+        btnValidar.setText("VALIDAR");
         btnValidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnValidarActionPerformed(evt);
@@ -88,7 +88,7 @@ public class frmValidacio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(163, 163, 163)
                         .addComponent(jLabel3)))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,6 +115,7 @@ public class frmValidacio extends javax.swing.JFrame {
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         // TODO add your handling code here:
+        
         boolean valid = GestioFitxersXML.validaUsuari(
                 "src/FITXERS/Usuaris.xml",
                 txtNom.getText(),

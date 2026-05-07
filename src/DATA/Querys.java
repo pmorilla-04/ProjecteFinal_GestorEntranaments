@@ -81,10 +81,19 @@ public class Querys {
             Entrenament.Intensitat intensitat,
             Boolean completat,
             Integer tipusEsportId) {
+        System.out.println(
+                "id=" + id
+                + ", data=" + data
+                + ", duradaMinuts=" + duradaMinuts
+                + ", distancia=" + distancia
+                + ", intensitat=" + intensitat
+                + ", completat=" + completat
+                + ", tipusEsportId=" + tipusEsportId
+        );
 
         StringBuilder sql = new StringBuilder("SELECT * FROM entrenament WHERE 1=1");
         ArrayList<Object> params = new ArrayList<>();
-
+        //TODO: En Principal.java mai posem un valor per usuariId aixi que sempre es null i seria intressant despress filtrar que cada usuari veigi lo seu PENSAR HO DESPRES
         if (CONTROLLER.Principal.usuariId != null) {
             sql.append(" AND usuari_id = ?");
             params.add(CONTROLLER.Principal.usuariId);
@@ -197,17 +206,19 @@ public class Querys {
             String descripcio,
             Intensitat intensitat,
             boolean completat,
-            int tipusEsportId) {
+            int tipusEsportId,
+            int userId) {
 
-        String sql = " UPDATE entrenament\n"
-                + "        SET data = ?,\n"
-                + "            duradaMinuts = ?,\n"
-                + "            distancia = ?,\n"
-                + "            descripcio = ?,\n"
-                + "            intensitat = ?,\n"
-                + "            completat = ?,\n"
-                + "            tipus_esport_id = ?\n"
-                + "        WHERE id = ?";
+       String sql = "UPDATE entrenament "
+               + "SET data = ?, "
+               + "    duradaMinuts = ?, "
+               + "    distancia = ?, "
+               + "    descripcio = ?, "
+               + "    intensitat = ?, "
+               + "    completat = ?, "
+               + "    tipus_esport_id = ?, "
+               + "    usuari_id = ? "
+               + "WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -218,7 +229,9 @@ public class Querys {
             ps.setString(5, intensitat.name());
             ps.setBoolean(6, completat);
             ps.setInt(7, tipusEsportId);
-            ps.setInt(8, id);
+             ps.setInt(8, userId);
+            ps.setInt(9, id);
+           
 
             int files = ps.executeUpdate();
             System.out.println("Files actualitzades: " + files);
@@ -289,7 +302,6 @@ public class Querys {
                         rs.getInt("id_comentari"),
                         rs.getString("comentari"),
                         rs.getDate("data_comentari").toLocalDate(),
-                        
                         rs.getInt("id_entrenament"),
                         rs.getDate("data_entrenament").toLocalDate(),
                         rs.getInt("duradaMinuts"),
@@ -297,7 +309,6 @@ public class Querys {
                         rs.getString("intensitat"),
                         rs.getBoolean("completat"),
                         rs.getString("descripcio"),
-                        
                         rs.getString("nom_esportista"),
                         rs.getString("nom_entrenador"),
                         rs.getString("tipus_esport")
@@ -351,8 +362,6 @@ public class Querys {
             e.printStackTrace();
         }
     }
-
-   
 
     //AFEGIR USUARI
     public static void afegirUsuari(String nom, String contrassenya, Rol rol) {

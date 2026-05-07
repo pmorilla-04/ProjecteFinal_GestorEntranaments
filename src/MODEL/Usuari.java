@@ -17,7 +17,7 @@ public abstract class Usuari {
     private String contrassenya;
     private Rol rol;
 
-    public enum Rol {
+    public static enum Rol {
         ADMIN, ESPORTISTA, ENTRENADOR
     }
 

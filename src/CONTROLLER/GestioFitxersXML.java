@@ -70,45 +70,5 @@ public class GestioFitxersXML {
         return usuariTrobat;
     }
 
-    //LLEGIR FITXER XML
-    public static void lecturaDeFitxerXML(String rutaNomFitxer) {
-        try {
-            File fXmlFile = new File(rutaNomFitxer);
 
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-            doc.getDocumentElement().normalize();
-
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
-            NodeList nList = doc.getElementsByTagName("usuari");
-            System.out.println("----------------------------");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                    Element eElement = (Element) nNode;
-                    System.out.println("nif : "
-                            + eElement.getAttribute("nif"));
-                    System.out.println("Nom : "
-                            + eElement.getElementsByTagName("nom")
-                                    .item(0).getTextContent());
-                    System.out.println("pass : "
-                            + eElement.getElementsByTagName("pass")
-                                    .item(0).getTextContent());
-                    System.out.println("rol: "
-                            + eElement.getElementsByTagName("rol")
-                                    .item(0).getTextContent());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    
 }
