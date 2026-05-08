@@ -5,10 +5,8 @@
         <group>
             <file>file:/C:/Users/Usuari/Documents/NetBeansProjects/ProjecteFinal_GestorEntranaments/src/DATA/Querys.java</file>
             <file>file:/C:/Users/Usuari/Documents/NetBeansProjects/ProjecteFinal_GestorEntranaments/src/VIEW/frmEsportista.java</file>
-            <file>file:/C:/Users/Usuari/Documents/NetBeansProjects/ProjecteFinal_GestorEntranaments/src/MODEL/Esportista.java</file>
-            <file>file:/C:/Users/Usuari/Documents/NetBeansProjects/ProjecteFinal_GestorEntranaments/src/MODEL/Entrenament.java</file>
-            <file>file:/C:/Users/Usuari/Documents/NetBeansProjects/ProjecteFinal_GestorEntranaments/src/CONTROLLER/Principal.java</file>
             <file>file:/C:/Users/Usuari/Documents/NetBeansProjects/ProjecteFinal_GestorEntranaments/src/VIEW/frmEntranaments.java</file>
+            <file>file:/C:/Users/Usuari/Documents/NetBeansProjects/ProjecteFinal_GestorEntranaments/src/VIEW/frmEntranador.java</file>
         </group>
     </open-files>
 </project-private>

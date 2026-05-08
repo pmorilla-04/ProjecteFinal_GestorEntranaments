@@ -244,7 +244,7 @@ public class Querys {
             params.add(userId);
         }
 
-        // Elimina l'última coma i espai
+       
         sql.setLength(sql.length() - 2);
 
         sql.append(" WHERE id = ?");
@@ -256,7 +256,7 @@ public class Querys {
             for (int i = 0; i < params.size(); i++) {
                 ps.setObject(i + 1, params.get(i));
             }
-
+            
             int files = ps.executeUpdate();
             System.out.println("Files actualitzades: " + files);
 
