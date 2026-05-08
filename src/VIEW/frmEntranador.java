@@ -4,8 +4,16 @@
  */
 package VIEW;
 
+import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
+import static DATA.Querys.afegirComentari;
+import MODEL.Comentari;
 import MODEL.Comentarientrenament;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,8 +30,10 @@ public class frmEntranador extends javax.swing.JFrame {
     public frmEntranador() {
         initComponents();
 
-        Querys.mostrarComentarisAmbEntrenament();
-        omplirTaulaEntrenamentsComentaris();
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
+
+        afegirListennerTaulaEntrenament();
     }
 
     /**
@@ -37,18 +47,22 @@ public class frmEntranador extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEntranamentsComentaris = new javax.swing.JTable();
+        tblEntranaments = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtComentari = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         btnAfegirComentari = new javax.swing.JButton();
         ckValidar = new javax.swing.JCheckBox();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblComentaris = new javax.swing.JTable();
+        txtIdEntrenador = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("ENTRANADOR");
 
-        tblEntranamentsComentaris.setModel(new javax.swing.table.DefaultTableModel(
+        tblEntranaments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +73,7 @@ public class frmEntranador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblEntranamentsComentaris);
+        jScrollPane1.setViewportView(tblEntranaments);
 
         txtComentari.setColumns(20);
         txtComentari.setRows(5);
@@ -68,18 +82,38 @@ public class frmEntranador extends javax.swing.JFrame {
         jLabel2.setText("Comentari");
 
         btnAfegirComentari.setText("AFEGIR COMENTARI");
+        btnAfegirComentari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfegirComentariActionPerformed(evt);
+            }
+        });
 
         ckValidar.setText("VALIDAR");
+
+        tblComentaris.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tblComentaris);
+
+        jLabel3.setText("ID ENTRENADOR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 816, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(331, 331, 331))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -88,16 +122,22 @@ public class frmEntranador extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(33, 33, 33)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(ckValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnAfegirComentari))
-                            .addGap(72, 72, 72))))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
-                .addContainerGap())
+                                .addComponent(btnAfegirComentari)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(txtIdEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(40, 40, 40))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(289, 289, 289))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,61 +149,155 @@ public class frmEntranador extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
+                        .addGap(70, 70, 70)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(txtIdEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
                         .addComponent(btnAfegirComentari)
                         .addGap(43, 43, 43)
                         .addComponent(ckValidar)))
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAfegirComentariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirComentariActionPerformed
+        // TODO add your handling code here:
+        int fila = tblEntranaments.getSelectedRow();
+
+        if (fila != -1) {
+            Integer idEntranament = (Integer) tblEntranaments.getModel().getValueAt(fila, 0);
+            Integer idEntrenador = Integer.parseInt(txtIdEntrenador.getText());
+            String text = txtComentari.getText();
+            LocalDate data = LocalDate.now();
+            afegirComentari( text
+            , data,  idEntrenador,   idEntranament );     
+                              int filaSeleccionada = tblEntranaments.getSelectedRow();
+
+                    if (filaSeleccionada != -1) {
+
+                        // Agafem el ID de l'entrenament (columna 0)
+                        int idEntrenament = Integer.parseInt(
+                                tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
+                        );
+
+                        // Carrega comentaris
+                        Querys.mostrarComentari(idEntrenament);
+
+                        // Omple la taula comentaris
+                        omplirTaulaComentaris();
+            
+        } else{
+            JOptionPane.showMessageDialog(this, "Selcciona una fila");
+        }
+    }//GEN-LAST:event_btnAfegirComentariActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
-public void omplirTaulaEntrenamentsComentaris() {
+    public void omplirTaulaEntrenaments() {
 
-    String[] columnes = {
-        "ID Comentari", "Comentari", "Data Comentari",
-        "ID Entrenament", "Data Entrenament",
-        "Durada", "Distncia", "Intensitat",
-        "Completat", "Descripció",
-        "Esportista", "Entrenador", "Tipus Esport"
-    };
-
-    DefaultTableModel model = new DefaultTableModel();
-    model.setColumnIdentifiers(columnes);
-
-    for (Comentarientrenament c : CONTROLLER.Principal.comentarisEntrenaments) {
-
-        Object[] fila = {
-            c.getIdComentari(),
-            c.getComentari(),
-            c.getDataComentari(),
-            
-            c.getIdEntrenament(),
-            c.getDataEntrenament(),
-            c.getDuradaMinuts(),
-            c.getDistancia(),
-            c.getIntensitat(),
-            c.isCompletat(),
-            c.getDescripcio(),
-            
-            c.getNomEsportista(),
-            c.getNomEntrenador(),
-            c.getTipusEsport()
+        String[] columnes = {
+            "ID", "DATA", "DURADA", "DISTANCIA",
+            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "ID_USUARI", "ID_TIPUS"
         };
 
-        model.addRow(fila);
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+
+            Object[] fila = {
+                e.getId(),
+                e.getData(),
+                e.getDuradaMinuts(),
+                e.getDistancia(),
+                e.getDescripcio(),
+                e.getIntensitat(),
+                e.isCompletat(),
+                e.getUsuariId(),
+                e.getTipusEsportId()
+            };
+
+            model.addRow(fila);
+        }
+
+        tblEntranaments.setModel(model);
+        GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
     }
 
-    tblEntranamentsComentaris.setModel(model);
-}
+    public void omplirTaulaComentaris() {
+
+        String[] columnes = {
+            "ID",
+            "TEXT",
+            "DATA",
+            "ENTRENAMENT_ID",
+            "ENTRENADOR_ID"
+        };
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (Comentari c : CONTROLLER.Principal.comentaris) {
+
+            Object[] fila = {
+                c.getId(),
+                c.getText(),
+                c.getData(),
+                c.getEntrenamentId(),
+                c.getEntrenadorId()
+            };
+
+            model.addRow(fila);
+        }
+
+        tblComentaris.setModel(model);
+    }
+
+    private void afegirListennerTaulaEntrenament() {
+
+        tblEntranaments.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                // Evita que es dispari dues vegades
+                if (!e.getValueIsAdjusting()) {
+
+                    int filaSeleccionada = tblEntranaments.getSelectedRow();
+
+                    if (filaSeleccionada != -1) {
+
+                        // Agafem el ID de l'entrenament (columna 0)
+                        int idEntrenament = Integer.parseInt(
+                                tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
+                        );
+
+                        // Carrega comentaris
+                        Querys.mostrarComentari(idEntrenament);
+
+                        // Omple la taula comentaris
+                        omplirTaulaComentaris();
+                    }
+                }
+            }
+        });
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -192,9 +326,14 @@ public void omplirTaulaEntrenamentsComentaris() {
     private javax.swing.JCheckBox ckValidar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblEntranamentsComentaris;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tblComentaris;
+    private javax.swing.JTable tblEntranaments;
     private javax.swing.JTextArea txtComentari;
+    private javax.swing.JTextField txtIdEntrenador;
     // End of variables declaration//GEN-END:variables
+
 }

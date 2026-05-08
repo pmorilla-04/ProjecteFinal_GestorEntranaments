@@ -4,6 +4,7 @@
  */
 package DATA;
 
+import static CONTROLLER.Principal.comentaris;
 import static CONTROLLER.Principal.comentarisEntrenaments;
 import static CONTROLLER.Principal.entrenaments;
 import static CONTROLLER.Principal.rol;
@@ -11,6 +12,7 @@ import static CONTROLLER.Principal.usuaris;
 import static DATA.Conexion.password;
 import static DATA.Conexion.url;
 import static DATA.Conexion.user;
+import MODEL.Comentari;
 import MODEL.Entrenament;
 import MODEL.Entrenament.Intensitat;
 import MODEL.TipusEsport;
@@ -244,7 +246,6 @@ public class Querys {
             params.add(userId);
         }
 
-       
         sql.setLength(sql.length() - 2);
 
         sql.append(" WHERE id = ?");
@@ -256,7 +257,7 @@ public class Querys {
             for (int i = 0; i < params.size(); i++) {
                 ps.setObject(i + 1, params.get(i));
             }
-            
+
             int files = ps.executeUpdate();
             System.out.println("Files actualitzades: " + files);
 
@@ -300,7 +301,96 @@ public class Querys {
         return ps.executeQuery();
     }
 
-    //2. COMENTARIS
+public static Entrenament getEntrenament(int id) {
+    String sql = "SELECT * FROM entrenament WHERE id = ?";
+
+    try (
+            Connection conn = DriverManager.getConnection(url, user, password);
+            PreparedStatement ps = conn.prepareStatement(sql)
+    ) {
+
+        ps.setInt(1, id);
+
+        try (ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+
+                int entrenamentId = rs.getInt("id");
+                LocalDate data = rs.getDate("data").toLocalDate();
+                int duradaMinuts = rs.getInt("duradaMinuts");
+                int distancia = rs.getInt("distancia");
+                String descripcio = rs.getString("descripcio");
+
+                // Conversió ENUM intensitat
+                Entrenament.Intensitat intensitat =
+                        Entrenament.Intensitat.valueOf(
+                                rs.getString("intensitat")
+                        );
+
+                boolean completat = rs.getBoolean("completat");
+                int usuariId = rs.getInt("usuari_id");
+                int tipusEsportId = rs.getInt("tipus_esport_id");
+
+                return new Entrenament(
+                        entrenamentId,
+                        data,
+                        duradaMinuts,
+                        distancia,
+                        descripcio,
+                        completat,
+                        intensitat,
+                        usuariId,
+                        tipusEsportId
+                );
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return null;
+}
+
+
+// 2. COMENTARIS
+public static void mostrarComentari(int idEntrenament) {
+
+    comentaris.clear();
+
+    String sql = "SELECT * FROM comentari WHERE entranament_id = ?";
+
+    try (
+            Connection conn = DriverManager.getConnection(url, user, password);
+            PreparedStatement ps = conn.prepareStatement(sql)
+    ) {
+
+        ps.setInt(1, idEntrenament);
+
+        try (ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+
+                int entrenamentId = rs.getInt("entranament_id");
+                int entrenadorId = rs.getInt("entranador_id");
+
+                comentaris.add(
+                        new Comentari(
+                                rs.getInt("id"),
+                                rs.getString("text"),
+                                rs.getDate("data").toLocalDate(),
+                                entrenamentId,
+                                entrenadorId
+                        )
+                );
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
     //MOTRAR COMENTARIS AMB ENTRENAMENTS
     public static void mostrarComentarisAmbEntrenament() {
         comentarisEntrenaments.clear();
@@ -347,14 +437,18 @@ public class Querys {
     }
 
     //AFEGIR COMENTARIS
-    public static void afegirComentari(int id, String text) {
-        String sql = "INSERT INTO comentari (text) VALUES (?)";
+    public static void afegirComentari(String text, LocalDate data, int entranador_id, int entranament_id) {
+         String sql = " INSERT INTO comentari (text, `data`, entranador_id, entranament_id) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ps.setInt(1, id); //ID USUARI
-            ps.setString(2, text); //TEXT
-
+            ps.setString(1, text); //TEXT
+            ps.setDate(2, java.sql.Date.valueOf(data)); //DATA
+            ps.setInt(3, entranador_id); //ID ENTRANADOR
+            ps.setInt(4,  entranament_id); //ID ENTRENAMENT
+            
+            int files = ps.executeUpdate();
+            System.out.println("Files inserides: " + files);
         } catch (SQLException e) {
             e.printStackTrace();
         }

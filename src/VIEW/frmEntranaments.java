@@ -358,7 +358,7 @@ private void carregarIntensitats() {
 
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
-        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzatda");
 
     }//GEN-LAST:event_btnNouActionPerformed
 
@@ -366,24 +366,61 @@ private void carregarIntensitats() {
         // TODO add your handling code here:
 
         int id = Integer.parseInt(txtId.getText());
+        LocalDate data;
+        try {
+            data = LocalDate.parse(txtData.getText());
 
-        
-        LocalDate data = LocalDate.parse(txtData.getText());
+        } catch (Exception e) {
+            data = null;
+        }
 
-        int durada = Integer.parseInt(txtDurada.getText());
-        int distancia = Integer.parseInt(txtDistancia.getText());
+        Integer durada;
+        try {
+            durada = Integer.parseInt(txtDurada.getText());
+        } catch (Exception e) {
+            durada = null;
+        }
+
+        Integer distancia;
+        try {
+            distancia = Integer.parseInt(txtDistancia.getText());
+        } catch (Exception e) {
+            distancia = null;
+        }
+
         String descripcio = txtDescripcio.getText();
+        System.out.println("PROVA: ' "  +  descripcio+"'");
+        if (descripcio.isBlank()){
+            descripcio = null;
+        }
 
-        Intensitat intensitat = Intensitat.valueOf(
-                cbmIntensitat.getSelectedItem().toString()
-        );
+        Intensitat intensitat;
+        try {
+            intensitat = Intensitat.valueOf(
+                    cbmIntensitat.getSelectedItem().toString()
+            );
+        } catch (Exception e) {
+            intensitat = null;
+        }
 
         boolean completat = chkCompletat.isSelected();
-        int usuariId = Integer.parseInt(txtUsuari.getText());
 
-        int tipusId = Integer.parseInt(
-                cbmTipus.getSelectedItem().toString()
-        );
+        Integer usuariId;
+
+        try {
+            usuariId = Integer.parseInt(txtUsuari.getText());
+        } catch (Exception e) {
+            usuariId = null;
+        }
+
+        Integer tipusid;
+        try {
+            tipusid = Integer.parseInt(
+                    cbmTipus.getSelectedItem().toString()
+            );
+        } catch (Exception e) {
+            tipusid = null;
+        }
 
         Querys.actualitzarEntrenament(
                 id,
@@ -393,7 +430,7 @@ private void carregarIntensitats() {
                 descripcio,
                 intensitat,
                 completat,
-                tipusId, 
+                tipusid,
                 usuariId
         );
 
@@ -417,8 +454,9 @@ private void carregarIntensitats() {
 
     private void cbmTipusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTipusActionPerformed
         // TODO add your handling code here:
+        
+        
         TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
-        int id = t.getId();
         GestiorFitxersTXT.escripturaAFitxerLog("Agafem el Id del tipus d'esport seleccionat");
     }//GEN-LAST:event_cbmTipusActionPerformed
 

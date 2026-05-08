@@ -17,14 +17,36 @@ public class Comentari {
     private LocalDate data;
     private Entrenador entrenador;
     private Entrenament entrenament;
+    
+    private int entrenamentId;
+    private int entrenadorId;
 
-    public Comentari(int id, String text, LocalDate data, Entrenador entrenador, Entrenament entrenament) {
+    public Comentari(int id, String text, LocalDate data,  int entrenamentId, int entrenadorId) {
         this.id = id;
         this.text = text;
         this.data = data;
-        this.entrenador = entrenador;
-        this.entrenament = entrenament;
+     
+        this.entrenamentId = entrenamentId;
+        this.entrenadorId = entrenadorId;
     }
+
+    public int getEntrenamentId() {
+        return entrenamentId;
+    }
+
+    public void setEntrenamentId(int entrenamentId) {
+        this.entrenamentId = entrenamentId;
+    }
+
+    public int getEntrenadorId() {
+        return entrenadorId;
+    }
+
+    public void setEntrenadorId(int entrenadorId) {
+        this.entrenadorId = entrenadorId;
+    }
+
+   
 
     public int getId() {
         return id;
