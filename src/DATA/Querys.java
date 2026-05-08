@@ -81,15 +81,6 @@ public class Querys {
             Entrenament.Intensitat intensitat,
             Boolean completat,
             Integer tipusEsportId) {
-        System.out.println(
-                "id=" + id
-                + ", data=" + data
-                + ", duradaMinuts=" + duradaMinuts
-                + ", distancia=" + distancia
-                + ", intensitat=" + intensitat
-                + ", completat=" + completat
-                + ", tipusEsportId=" + tipusEsportId
-        );
 
         StringBuilder sql = new StringBuilder("SELECT * FROM entrenament WHERE 1=1");
         ArrayList<Object> params = new ArrayList<>();
@@ -198,40 +189,73 @@ public class Querys {
         }
     }
 
-    //MODIFICAR ENTRENAMENT
-    public static void actualitzarEntrenament(int id,
+    // MODIFICAR ENTRENAMENT
+    public static void actualitzarEntrenament(
+            Integer id,
             LocalDate data,
-            int duradaMinuts,
-            int distancia,
+            Integer duradaMinuts,
+            Integer distancia,
             String descripcio,
             Intensitat intensitat,
-            boolean completat,
-            int tipusEsportId,
-            int userId) {
+            Boolean completat,
+            Integer tipusEsportId,
+            Integer userId) {
 
-       String sql = "UPDATE entrenament "
-               + "SET data = ?, "
-               + "    duradaMinuts = ?, "
-               + "    distancia = ?, "
-               + "    descripcio = ?, "
-               + "    intensitat = ?, "
-               + "    completat = ?, "
-               + "    tipus_esport_id = ?, "
-               + "    usuari_id = ? "
-               + "WHERE id = ?";
+        StringBuilder sql = new StringBuilder("UPDATE entrenament SET ");
+        ArrayList<Object> params = new ArrayList<>();
 
-        try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
+        if (data != null) {
+            sql.append("data = ?, ");
+            params.add(java.sql.Date.valueOf(data));
+        }
 
-            ps.setDate(1, java.sql.Date.valueOf(data));
-            ps.setInt(2, duradaMinuts);
-            ps.setInt(3, distancia);
-            ps.setString(4, descripcio);
-            ps.setString(5, intensitat.name());
-            ps.setBoolean(6, completat);
-            ps.setInt(7, tipusEsportId);
-             ps.setInt(8, userId);
-            ps.setInt(9, id);
-           
+        if (duradaMinuts != null) {
+            sql.append("duradaMinuts = ?, ");
+            params.add(duradaMinuts);
+        }
+
+        if (distancia != null) {
+            sql.append("distancia = ?, ");
+            params.add(distancia);
+        }
+
+        if (descripcio != null) {
+            sql.append("descripcio = ?, ");
+            params.add(descripcio);
+        }
+
+        if (intensitat != null) {
+            sql.append("intensitat = ?, ");
+            params.add(intensitat.name());
+        }
+
+        if (completat != null) {
+            sql.append("completat = ?, ");
+            params.add(completat);
+        }
+
+        if (tipusEsportId != null) {
+            sql.append("tipus_esport_id = ?, ");
+            params.add(tipusEsportId);
+        }
+
+        if (userId != null) {
+            sql.append("usuari_id = ?, ");
+            params.add(userId);
+        }
+
+        // Elimina l'última coma i espai
+        sql.setLength(sql.length() - 2);
+
+        sql.append(" WHERE id = ?");
+        params.add(id);
+
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+
+            for (int i = 0; i < params.size(); i++) {
+                ps.setObject(i + 1, params.get(i));
+            }
 
             int files = ps.executeUpdate();
             System.out.println("Files actualitzades: " + files);

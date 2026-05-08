@@ -259,7 +259,6 @@ public class frmEsportista extends javax.swing.JFrame {
                     GestiorFitxersTXT.escripturaAFitxerLog("Carraguem Intensitats");
                 }
             }
-            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -269,7 +268,7 @@ public class frmEsportista extends javax.swing.JFrame {
     private void carregarTipusEsport() {
 
         cbmTipus.removeAllItems();
-         cbmTipus.addItem(null);
+        cbmTipus.addItem(null);
 
         try {
             ResultSet rs = Querys.getTipusEsport();
@@ -281,8 +280,6 @@ public class frmEsportista extends javax.swing.JFrame {
                 cbmTipus.addItem(new TipusEsport(id, nom));
                 GestiorFitxersTXT.escripturaAFitxerLog("Carreguem id tipus esport");
             }
-          
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -389,8 +386,8 @@ public class frmEsportista extends javax.swing.JFrame {
         cbmTipus.setSelectedIndex(0);
 
         chkCompletat.setSelected(false);
-        
-            Querys.mostrarEntrenaments();
+
+        Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("filtratge cancelat");
     }//GEN-LAST:event_btnCancelarActionPerformed

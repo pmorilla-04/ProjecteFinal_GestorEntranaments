@@ -249,7 +249,7 @@ public class frmEntranaments extends javax.swing.JFrame {
 private void carregarIntensitats() {
 
         cbmIntensitat.removeAllItems();
-
+        cbmIntensitat.addItem(null);
         try {
 
             ResultSet rs = Querys.getIntensitats();
@@ -279,7 +279,7 @@ private void carregarIntensitats() {
     private void carregarTipusEsport() {
 
         cbmTipus.removeAllItems();
-
+        cbmTipus.addItem(null);
         try {
 
             ResultSet rs = Querys.getTipusEsport();
