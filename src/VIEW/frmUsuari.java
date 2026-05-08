@@ -22,17 +22,29 @@ public class frmUsuari extends javax.swing.JFrame {
      */
     public frmUsuari() {
         initComponents();
-
+        desactivarCamps();
+        GestiorFitxersTXT.escripturaAFitxerLog("Formulari d'usuaris iniciat amb camps desactivats");
+        
         Querys.mostrarUsuaris();
         omplirTaulaUsuaris();
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula d'usuaris carregada");
         
-        txtNom.setEnabled(false);
-        txtPassword.setEnabled(false);
-        cbmTipus.setEnabled(false);
-        
-        btnAfegir.setEnabled(false);
-        btnModificar.setEnabled(false);
-        btnEliminar.setEnabled(false);
+        tblUsuaris.getSelectionModel().addListSelectionListener(e -> {
+
+            if (!e.getValueIsAdjusting()) {
+
+                int fila = tblUsuaris.getSelectedRow();
+
+                if (fila != -1) {
+                    GestiorFitxersTXT.escripturaAFitxerLog("Usuari seleccionat de la taula");
+                    activarCamps();
+                    GestiorFitxersTXT.escripturaAFitxerLog("Camps i botons activats");
+                    txtNom.setText(tblUsuaris.getValueAt(fila, 1).toString());
+                    txtPassword.setText(tblUsuaris.getValueAt(fila, 2).toString());
+                    cbmTipus.setSelectedItem(tblUsuaris.getValueAt(fila, 3).toString());
+                }
+            }
+        });
     }
 
     /**
@@ -55,7 +67,6 @@ public class frmUsuari extends javax.swing.JFrame {
         btnAfegir = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,8 +113,6 @@ public class frmUsuari extends javax.swing.JFrame {
             }
         });
 
-        btnGuardar.setText("GUARDAR");
-
         jLabel5.setText("USUARIS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,9 +140,7 @@ public class frmUsuari extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnAfegir)
                         .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGuardar)
-                            .addComponent(btnModificar))
+                        .addComponent(btnModificar)
                         .addGap(43, 43, 43)
                         .addComponent(btnEliminar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
@@ -163,9 +170,7 @@ public class frmUsuari extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAfegir)
                             .addComponent(btnModificar)
-                            .addComponent(btnEliminar))
-                        .addGap(36, 36, 36)
-                        .addComponent(btnGuardar))
+                            .addComponent(btnEliminar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -174,7 +179,25 @@ public class frmUsuari extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void activarCamps() {
+        txtNom.setEnabled(true);
+        txtPassword.setEnabled(true);
+        cbmTipus.setEnabled(true);
 
+        btnAfegir.setEnabled(true);
+        btnModificar.setEnabled(true);
+        btnEliminar.setEnabled(true);
+    }
+
+    public void desactivarCamps() {
+        txtNom.setEnabled(false);
+        txtPassword.setEnabled(false);
+        cbmTipus.setEnabled(false);
+
+        btnAfegir.setEnabled(false);
+        btnModificar.setEnabled(false);
+        btnEliminar.setEnabled(false);
+    }
     private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
         // TODO add your handling code here:
         String nom = txtNom.getText();
@@ -186,25 +209,31 @@ public class frmUsuari extends javax.swing.JFrame {
         );
 
         Querys.afegirUsuari(nom, contrassenya, rol);
-        GestiorFitxersTXT.escripturaAFitxerLog("Usuari nou afegit");
+       GestiorFitxersTXT.escripturaAFitxerLog("Usuari afegit: " + nom);
 
         Querys.mostrarUsuaris();
         omplirTaulaUsuaris();
-        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada despres d'afegir usuari");
 
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
-        GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps del formulari buidats");
+
+        tblUsuaris.clearSelection();
+
+        desactivarCamps();
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps i botons desactivats");
     }//GEN-LAST:event_btnAfegirActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        
+
         int fila = tblUsuaris.getSelectedRow();
 
         if (fila == -1) {
             System.out.println("Selecciona un usuari");
+            GestiorFitxersTXT.escripturaAFitxerLog("Error: intent de modificar sense seleccionar usuari");
             return;
         }
 
@@ -218,17 +247,21 @@ public class frmUsuari extends javax.swing.JFrame {
         );
 
         Querys.modificarUsuari(id, nom, contrassenya, rol);
-        GestiorFitxersTXT.escripturaAFitxerLog("Usuari modificat");
+       GestiorFitxersTXT.escripturaAFitxerLog("Usuari modificat amb ID: " + id);
 
         Querys.mostrarUsuaris();
         omplirTaulaUsuaris();
-        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada després de modificar usuari");
 
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
         GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
 
+        tblUsuaris.clearSelection();
+
+        desactivarCamps();
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps i botons desactivats");
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -237,23 +270,28 @@ public class frmUsuari extends javax.swing.JFrame {
 
         if (fila == -1) {
             System.out.println("Selecciona un usuari");
+            GestiorFitxersTXT.escripturaAFitxerLog("Error: intent d'eliminar sense seleccionar usuari");
             return;
         }
 
         int id = (int) tblUsuaris.getValueAt(fila, 0);
 
         Querys.eliminarUsuari(id);
-        GestiorFitxersTXT.escripturaAFitxerLog("Usuari modificat");
+        GestiorFitxersTXT.escripturaAFitxerLog("Usuari eliminat amb ID: " + id);
 
         Querys.mostrarUsuaris();
         omplirTaulaUsuaris();
-        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada després d'eliminar usuari");
 
         txtNom.setText("");
         txtPassword.setText("");
         cbmTipus.setSelectedIndex(0);
         GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
 
+        tblUsuaris.clearSelection();
+
+        desactivarCamps();
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps i botons desactivats");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
@@ -276,7 +314,7 @@ public class frmUsuari extends javax.swing.JFrame {
         }
 
         tblUsuaris.setModel(model);
-        GestiorFitxersTXT.escripturaAFitxerLog("Ompim taula Usuaris");
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula d'usuaris omplerta correctament");
     }
 
     public static void main(String args[]) {
@@ -304,7 +342,6 @@ public class frmUsuari extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAfegir;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<String> cbmTipus;
     private javax.swing.JLabel jLabel1;
