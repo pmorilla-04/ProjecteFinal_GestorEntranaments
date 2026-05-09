@@ -28,12 +28,15 @@ public class frmEntranador extends javax.swing.JFrame {
      * Creates new form frmEntranador
      */
     public frmEntranador() {
+        GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador iniciat");
         initComponents();
 
         Querys.mostrarEntrenaments();
+        GestiorFitxersTXT.escripturaAFitxerLog("Entrenaments carregats des de la base de dades");
         omplirTaulaEntrenaments();
-
+        GestiorFitxersTXT.escripturaAFitxerLog("Taula d'entrenaments omplerta");
         afegirListennerTaulaEntrenament();
+        GestiorFitxersTXT.escripturaAFitxerLog("Listener de selecció d'entrenaments activat");
     }
 
     /**
@@ -202,28 +205,38 @@ public class frmEntranador extends javax.swing.JFrame {
             Integer idEntrenador = Integer.parseInt(txtIdEntrenador.getText());
             String text = txtComentari.getText();
             LocalDate data = LocalDate.now();
-            afegirComentari( text
-            , data,  idEntrenador,   idEntranament );     
-                              int filaSeleccionada = tblEntranaments.getSelectedRow();
+            afegirComentari(text,
+                    data, idEntrenador, idEntranament);
+            int filaSeleccionada = tblEntranaments.getSelectedRow();
+            GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Comentari afegit correctament a l'entrenament ID: " + idEntranament
+            );
+            if (filaSeleccionada != -1) {
 
-                    if (filaSeleccionada != -1) {
+                // Agafem el ID de l'entrenament (columna 0)
+                int idEntrenament = Integer.parseInt(
+                        tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
+                );
 
-                        // Agafem el ID de l'entrenament (columna 0)
-                        int idEntrenament = Integer.parseInt(
-                                tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
-                        );
-
-                        // Carrega comentaris
-                        Querys.mostrarComentari(idEntrenament);
-
-                        // Omple la taula comentaris
-                        omplirTaulaComentaris();
-            
-        } else{
-            JOptionPane.showMessageDialog(this, "Selcciona una fila");
-        }
+                // Carrega comentaris
+                Querys.mostrarComentari(idEntrenament);
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Comentaris carregats de l'entrenament ID: " + idEntrenament
+                );
+                // Omple la taula comentaris
+                omplirTaulaComentaris();
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Taula de comentaris actualitzada"
+                );
+            } else {
+                JOptionPane.showMessageDialog(this, "Selcciona una fila");
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Error: intent d'afegir comentari sense seleccionar entrenament"
+                );
+            }
     }//GEN-LAST:event_btnAfegirComentariActionPerformed
     }
+
     /**
      * @param args the command line arguments
      */
@@ -258,7 +271,9 @@ public class frmEntranador extends javax.swing.JFrame {
         }
 
         tblEntranaments.setModel(model);
-        GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Taula d'entrenaments omplerta correctament"
+        );
     }
 
     public void omplirTaulaComentaris() {
@@ -289,6 +304,9 @@ public class frmEntranador extends javax.swing.JFrame {
         }
 
         tblComentaris.setModel(model);
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Taula de comentaris omplerta correctament"
+        );
     }
 
     private void afegirListennerTaulaEntrenament() {
@@ -309,12 +327,19 @@ public class frmEntranador extends javax.swing.JFrame {
                         int idEntrenament = Integer.parseInt(
                                 tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
                         );
-
+                        GestiorFitxersTXT.escripturaAFitxerLog(
+                                "Entrenament seleccionat amb ID: " + idEntrenament
+                        );
                         // Carrega comentaris
                         Querys.mostrarComentari(idEntrenament);
-
+                        GestiorFitxersTXT.escripturaAFitxerLog(
+                                "Comentaris carregats per l'entrenament ID: " + idEntrenament
+                        );
                         // Omple la taula comentaris
                         omplirTaulaComentaris();
+                        GestiorFitxersTXT.escripturaAFitxerLog(
+                                "Taula de comentaris actualitzada"
+                        );
                     }
                 }
             }
