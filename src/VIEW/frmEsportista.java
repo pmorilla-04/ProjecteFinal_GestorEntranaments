@@ -6,11 +6,15 @@ package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
+import MODEL.Comentari;
 import MODEL.Entrenament;
 import MODEL.TipusEsport;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +34,8 @@ public class frmEsportista extends javax.swing.JFrame {
         omplirTaulaEntrenaments();
         carregarTipusEsport();
         carregarIntensitats();
+        
+        afegirListennerTaulaEntrenament() ;
     }
 
     /**
@@ -42,7 +48,7 @@ public class frmEsportista extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEntrenaments = new javax.swing.JTable();
+        tblEntranaments = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         cbmIntensitat = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -60,10 +66,12 @@ public class frmEsportista extends javax.swing.JFrame {
         txtDurada = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cbmTipus = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblComentaris = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblEntrenaments.setModel(new javax.swing.table.DefaultTableModel(
+        tblEntranaments.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -74,7 +82,7 @@ public class frmEsportista extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblEntrenaments);
+        jScrollPane1.setViewportView(tblEntranaments);
 
         jLabel1.setText("ESPORTISTA");
 
@@ -131,24 +139,32 @@ public class frmEsportista extends javax.swing.JFrame {
             }
         });
 
+        tblComentaris.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblComentaris);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(btnFiltrar)
-                        .addGap(67, 67, 67)
-                        .addComponent(btnCancelar))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(38, 38, 38)
@@ -183,10 +199,19 @@ public class frmEsportista extends javax.swing.JFrame {
                                             .addComponent(txtDurada, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel7)))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(btnEntrenament)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnFiltrar)
+                                .addGap(67, 67, 67)
+                                .addComponent(btnCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(btnEntrenament)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
                 .addGap(250, 250, 250))
         );
         layout.setVerticalGroup(
@@ -200,13 +225,10 @@ public class frmEsportista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDurada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(111, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -225,13 +247,16 @@ public class frmEsportista extends javax.swing.JFrame {
                             .addComponent(cbmIntensitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(chkCompletat)
                             .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(199, 199, 199)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnFiltrar)
                             .addComponent(btnCancelar))
                         .addGap(53, 53, 53)
-                        .addComponent(btnEntrenament)
-                        .addGap(129, 129, 129))))
+                        .addComponent(btnEntrenament))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
 
         pack();
@@ -318,9 +343,40 @@ public class frmEsportista extends javax.swing.JFrame {
             model.addRow(fila);
         }
 
-        tblEntrenaments.setModel(model);
+        tblEntranaments.setModel(model);
         GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
     }
+    
+       public void omplirTaulaComentaris() {
+
+        String[] columnes = {
+            "ID",
+            "TEXT",
+            "DATA",
+            "ENTRENAMENT_ID",
+            "ENTRENADOR_ID"
+        };
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (Comentari c : CONTROLLER.Principal.comentaris) {
+
+            Object[] fila = {
+                c.getId(),
+                c.getText(),
+                c.getData(),
+                c.getEntrenamentId(),
+                c.getEntrenadorId()
+            };
+
+            model.addRow(fila);
+        }
+
+        tblComentaris.setModel(model);
+    }
+
 
     private void btnEntrenamentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrenamentActionPerformed
         // TODO add your handling code here:
@@ -394,7 +450,35 @@ public class frmEsportista extends javax.swing.JFrame {
         GestiorFitxersTXT.escripturaAFitxerLog("filtratge cancelat");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void afegirListennerTaulaEntrenament() {
 
+        tblEntranaments.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                // Evita que es dispari dues vegades
+                if (!e.getValueIsAdjusting()) {
+
+                    int filaSeleccionada = tblEntranaments.getSelectedRow();
+
+                    if (filaSeleccionada != -1) {
+
+                        // Agafem el ID de l'entrenament (columna 0)
+                        int idEntrenament = Integer.parseInt(
+                                tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
+                        );
+
+                        // Carrega comentaris
+                        Querys.mostrarComentari(idEntrenament);
+
+                        // Omple la taula comentaris
+                        omplirTaulaComentaris();
+                    }
+                }
+            }
+        });
+    }
     private void cbmIntensitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmIntensitatActionPerformed
         // TODO add your handling code here:
 
@@ -445,7 +529,9 @@ public class frmEsportista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblEntrenaments;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblComentaris;
+    private javax.swing.JTable tblEntranaments;
     private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtDistancia;
     private javax.swing.JTextField txtDurada;
