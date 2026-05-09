@@ -22,7 +22,9 @@ public class frmValidacio extends javax.swing.JFrame {
      */
     public frmValidacio() {
         initComponents();
-
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Formulari de validació iniciat"
+        );
     }
 
     /**
@@ -115,48 +117,70 @@ public class frmValidacio extends javax.swing.JFrame {
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         // TODO add your handling code here:
-        
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Intent de validació de l'usuari: " + txtNom.getText()
+        );
         boolean valid = GestioFitxersXML.validaUsuari(
                 "src/FITXERS/Usuaris.xml",
                 txtNom.getText(),
                 new String(txtPassword.getPassword())
         );
-        
+
         if (!valid) {
-    JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrectes");
-    GestiorFitxersTXT.escripturaAFitxerLog("Validacio no completada usuari o contrasenya incorrectes ");
-    return;
-}
+            JOptionPane.showMessageDialog(null, "Usuari o contrasenya incorrectes");
+            GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Error de validació: usuari o contrasenya incorrectes"
+            );
+            return;
+        }
 
         switch (rol) {
             case "admin":
                 JOptionPane.showMessageDialog(null, "Ets administrador");
-                GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari adimin");
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Validació correcta amb rol administrador"
+                );
 
                 //OBRIM FORMULARI ROL ADMIN
                 frmAdmin f = new frmAdmin();
                 f.setVisible(true);
-                GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari rol admin");
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Formulari esportista obert"
+                );
+
+                dispose(); //Serveix per tancar el frmValidacio
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Tancant formulari de validació"
+                );
                 break;
 
             case "esportista":
                 JOptionPane.showMessageDialog(null, "Ets esportista");
-                GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari esportista");
+                GestiorFitxersTXT.escripturaAFitxerLog("Validació correcta amb rol esportista");
 
                 //OBRIM FORMULARI ROL ESPORTISTA
                 frmEsportista e = new frmEsportista();
                 e.setVisible(true);
                 GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari rol esportista");
+
+                dispose(); //Serveix per tancar el frmValidacio
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Tancant formulari de validació"
+                );
                 break;
 
             case "entrenador":
                 JOptionPane.showMessageDialog(null, "Ets entrenador");
-                GestiorFitxersTXT.escripturaAFitxerLog("Validacio usuari entrenador");
+                GestiorFitxersTXT.escripturaAFitxerLog("Validació correcta amb rol entrenador");
 
                 //OBRIM FORMULARI ROL ENTRANADOR
-                frmEntranador E = new frmEntranador();
+                frmEntrenador E = new frmEntrenador();
                 E.setVisible(true);
-                GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari rol entrenador");
+                GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador obert");
+                dispose(); //Serveix per tancar el frmValidacio
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Tancant formulari de validació"
+                );
                 break;
         }
     }//GEN-LAST:event_btnValidarActionPerformed
@@ -165,7 +189,7 @@ public class frmValidacio extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtNom.setText("");
         txtPassword.setText("");
-        GestiorFitxersTXT.escripturaAFitxerLog("Validacio cancelada");
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps de validació reiniciats");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

@@ -20,14 +20,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuari
  */
-public class frmEntranador extends javax.swing.JFrame {
+public class frmEntrenador extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEntranador.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEntrenador.class.getName());
 
     /**
      * Creates new form frmEntranador
      */
-    public frmEntranador() {
+    public frmEntrenador() {
         GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador iniciat");
         initComponents();
 
@@ -365,7 +365,7 @@ public class frmEntranador extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new frmEntranador().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frmEntrenador().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
