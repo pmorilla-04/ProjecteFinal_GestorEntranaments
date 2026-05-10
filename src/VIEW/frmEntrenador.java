@@ -28,8 +28,9 @@ public class frmEntrenador extends javax.swing.JFrame {
      * Creates new form frmEntranador
      */
     public frmEntrenador() {
-        GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador iniciat");
         initComponents();
+        desactivarCamps();
+        GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador iniciat amb camps desactivats");
 
         Querys.mostrarEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenaments carregats des de la base de dades");
@@ -37,6 +38,34 @@ public class frmEntrenador extends javax.swing.JFrame {
         GestiorFitxersTXT.escripturaAFitxerLog("Taula d'entrenaments omplerta");
         afegirListennerTaulaEntrenament();
         GestiorFitxersTXT.escripturaAFitxerLog("Listener de selecció d'entrenaments activat");
+
+        txtComentari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+        });
+
+        txtIdEntrenador.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+        });
     }
 
     /**
@@ -94,6 +123,11 @@ public class frmEntrenador extends javax.swing.JFrame {
         });
 
         ckValidar.setText("VALIDAR");
+        ckValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckValidarActionPerformed(evt);
+            }
+        });
 
         tblComentaris.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,6 +229,34 @@ public class frmEntrenador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void activarCamps() {
+        txtComentari.setEnabled(true);
+        txtIdEntrenador.setEnabled(true);
+        btnAfegirComentari.setEnabled(false);
+
+        ckValidar.setEnabled(true);
+    }
+
+    public void desactivarCamps() {
+        txtComentari.setEnabled(false);
+        txtIdEntrenador.setEnabled(false);
+        btnAfegirComentari.setEnabled(false);
+
+        ckValidar.setEnabled(false);
+    }
+
+    public void validarBoto() {
+
+        int fila = tblEntranaments.getSelectedRow();
+
+        boolean entrenamentSeleccionat = (fila != -1);
+        boolean comentariOk = !txtComentari.getText().trim().isEmpty();
+        boolean idOk = !txtIdEntrenador.getText().trim().isEmpty();
+
+        btnAfegirComentari.setEnabled(
+                entrenamentSeleccionat && comentariOk && idOk
+        );
+    }
 
     private void btnAfegirComentariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirComentariActionPerformed
         // TODO add your handling code here:
@@ -208,9 +270,13 @@ public class frmEntrenador extends javax.swing.JFrame {
             afegirComentari(text,
                     data, idEntrenador, idEntranament);
             int filaSeleccionada = tblEntranaments.getSelectedRow();
+
+            desactivarCamps();
+
             GestiorFitxersTXT.escripturaAFitxerLog(
-                    "Comentari afegit correctament a l'entrenament ID: " + idEntranament
+                    "Comentari afegit ? formulari reiniciat i desactivat"
             );
+
             if (filaSeleccionada != -1) {
 
                 // Agafem el ID de l'entrenament (columna 0)
@@ -236,6 +302,14 @@ public class frmEntrenador extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btnAfegirComentariActionPerformed
     }
+    private void ckValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckValidarActionPerformed
+        // TODO add your handling code here:
+        desactivarCamps();
+
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Entrenament validat ? formulari bloquejat"
+        );
+    }//GEN-LAST:event_ckValidarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,9 +401,12 @@ public class frmEntrenador extends javax.swing.JFrame {
                         int idEntrenament = Integer.parseInt(
                                 tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
                         );
+                        activarCamps();
+
                         GestiorFitxersTXT.escripturaAFitxerLog(
-                                "Entrenament seleccionat amb ID: " + idEntrenament
+                                "Entrenament seleccionat ? camps activats"
                         );
+
                         // Carrega comentaris
                         Querys.mostrarComentari(idEntrenament);
                         GestiorFitxersTXT.escripturaAFitxerLog(

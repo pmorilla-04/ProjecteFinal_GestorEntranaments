@@ -89,3 +89,91 @@
 	10:40:05	Omplim la taula de logs
 	10:40:24	Omplim la taula de logs
 	10:40:35	Omplim la taula d'estadistiques
+	11:17:08	Programa iniciat
+	11:17:09	Conexio base de dades
+	11:17:09	Formulari de validació iniciat
+	11:17:09	Obrint formulari Validacio
+	11:17:17	Intent de validació de l'usuari: Pep
+	11:17:19	Validació correcta amb rol entrenador
+	11:17:19	Formulari entrenador iniciat amb camps desactivats
+	11:17:19	Entrenaments carregats des de la base de dades
+	11:17:19	Taula d'entrenaments omplerta correctament
+	11:17:19	Taula d'entrenaments omplerta
+	11:17:19	Listener de selecció d'entrenaments activat
+	11:17:19	Formulari entrenador obert
+	11:17:19	Tancant formulari de validació
+	11:17:27	Entrenament seleccionat amb ID: 5
+	11:17:28	Comentaris carregats per l'entrenament ID: 5
+	11:17:28	Taula de comentaris omplerta correctament
+	11:17:28	Taula de comentaris actualitzada
+	11:21:41	Programa iniciat
+	11:21:42	Conexio base de dades
+	11:21:42	Formulari de validació iniciat
+	11:21:42	Obrint formulari Validacio
+	11:21:49	Intent de validació de l'usuari: Pep
+	11:21:52	Validació correcta amb rol entrenador
+	11:21:52	Formulari entrenador iniciat amb camps desactivats
+	11:21:52	Entrenaments carregats des de la base de dades
+	11:21:52	Taula d'entrenaments omplerta correctament
+	11:21:52	Taula d'entrenaments omplerta
+	11:21:52	Listener de selecció d'entrenaments activat
+	11:21:52	Formulari entrenador obert
+	11:21:52	Tancant formulari de validació
+	11:21:53	Entrenament seleccionat ? camps activats
+	11:21:53	Comentaris carregats per l'entrenament ID: 4
+	11:21:53	Taula de comentaris omplerta correctament
+	11:21:53	Taula de comentaris actualitzada
+	11:26:55	Programa iniciat
+	11:26:55	Conexio base de dades
+	11:26:55	Formulari de validació iniciat
+	11:26:55	Obrint formulari Validacio
+	11:27:03	Intent de validació de l'usuari: Pep
+	11:27:05	Validació correcta amb rol entrenador
+	11:27:05	Formulari entrenador iniciat amb camps desactivats
+	11:27:05	Entrenaments carregats des de la base de dades
+	11:27:05	Taula d'entrenaments omplerta correctament
+	11:27:05	Taula d'entrenaments omplerta
+	11:27:05	Listener de selecció d'entrenaments activat
+	11:27:05	Formulari entrenador obert
+	11:27:05	Tancant formulari de validació
+	11:27:07	Entrenament seleccionat ? camps activats
+	11:27:07	Comentaris carregats per l'entrenament ID: 2
+	11:27:07	Taula de comentaris omplerta correctament
+	11:27:07	Taula de comentaris actualitzada
+	11:27:13	Entrenament seleccionat ? camps activats
+	11:27:13	Comentaris carregats per l'entrenament ID: 6
+	11:27:13	Taula de comentaris omplerta correctament
+	11:27:13	Taula de comentaris actualitzada
+	11:27:15	Entrenament seleccionat ? camps activats
+	11:27:15	Comentaris carregats per l'entrenament ID: 5
+	11:27:15	Taula de comentaris omplerta correctament
+	11:27:15	Taula de comentaris actualitzada
+	11:27:17	Entrenament seleccionat ? camps activats
+	11:27:17	Comentaris carregats per l'entrenament ID: 4
+	11:27:17	Taula de comentaris omplerta correctament
+	11:27:17	Taula de comentaris actualitzada
+	11:27:19	Entrenament seleccionat ? camps activats
+	11:27:19	Comentaris carregats per l'entrenament ID: 3
+	11:27:19	Taula de comentaris omplerta correctament
+	11:27:19	Taula de comentaris actualitzada
+	11:27:19	Entrenament seleccionat ? camps activats
+	11:27:19	Comentaris carregats per l'entrenament ID: 2
+	11:27:19	Taula de comentaris omplerta correctament
+	11:27:19	Taula de comentaris actualitzada
+	11:27:20	Entrenament seleccionat ? camps activats
+	11:27:20	Comentaris carregats per l'entrenament ID: 1
+	11:27:20	Taula de comentaris omplerta correctament
+	11:27:20	Taula de comentaris actualitzada
+	11:27:42	Comentari afegit ? formulari reiniciat i desactivat
+	11:27:42	Comentaris carregats de l'entrenament ID: 1
+	11:27:42	Taula de comentaris omplerta correctament
+	11:27:42	Taula de comentaris actualitzada
+	11:27:47	Entrenament seleccionat ? camps activats
+	11:27:47	Comentaris carregats per l'entrenament ID: 4
+	11:27:47	Taula de comentaris omplerta correctament
+	11:27:47	Taula de comentaris actualitzada
+	11:27:48	Entrenament seleccionat ? camps activats
+	11:27:48	Comentaris carregats per l'entrenament ID: 1
+	11:27:48	Taula de comentaris omplerta correctament
+	11:27:48	Taula de comentaris actualitzada
+	11:27:51	Entrenament validat ? formulari bloquejat
