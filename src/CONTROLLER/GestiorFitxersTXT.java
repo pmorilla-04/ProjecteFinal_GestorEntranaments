@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 /**
  *
@@ -58,4 +59,42 @@ public class GestiorFitxersTXT {
             e.printStackTrace();
         }
     }
+    
+    public static void mostrarLogsPerData(String data) {
+
+    Principal.logs.clear();
+
+    String ruta = "src/Log/" + data + ".log";
+
+    try {
+
+        File fitxer = new File(ruta);
+
+        Scanner lector = new Scanner(fitxer);
+
+        while (lector.hasNextLine()) {
+
+            String linia = lector.nextLine();
+
+            String[] parts = linia.trim().split("\\t");
+
+            if (parts.length >= 2) {
+
+                String hora = parts[0];
+                String missatge = parts[1];
+
+                MODEL.Log log = new MODEL.Log(hora, missatge);
+
+                Principal.logs.add(log);
+            }
+        }
+
+        lector.close();
+
+    } catch (Exception e) {
+
+        System.out.println("Error llegint log");
+        e.printStackTrace();
+    }
+}
 }

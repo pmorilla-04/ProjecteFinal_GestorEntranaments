@@ -19,8 +19,22 @@ public class frmAdmin extends javax.swing.JFrame {
      * Creates new form frmAdmin
      */
     public frmAdmin() {
+        GestiorFitxersTXT.escripturaAFitxerLog("Formulari d'administrador iniciat");
         initComponents();
+
         txtData.setEnabled(false);
+
+        txtData.addActionListener(e -> {
+
+            String data = txtData.getText();
+            GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Busquem logs de la data: " + data
+            );
+
+            GestiorFitxersTXT.mostrarLogsPerData(data);
+
+            OmplirRegistres();
+        });
     }
 
     /**
@@ -156,6 +170,10 @@ public class frmAdmin extends javax.swing.JFrame {
 
         String opcio = (String) cbmInfo.getSelectedItem();
 
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Canviem a la seccio: " + opcio
+        );
+        
         switch (opcio) {
 
             case "Estadístiques":
@@ -166,7 +184,9 @@ public class frmAdmin extends javax.swing.JFrame {
 
             case "Registres":
                 txtData.setEnabled(true);
-                OmplirRegistres();
+                 GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Activem cerca de registres"
+            );
                 break;
 
             case "Entrenaments":
@@ -212,7 +232,31 @@ public class frmAdmin extends javax.swing.JFrame {
     }
 
     private void OmplirRegistres() {
+        String[] columnes = {
+            "HORA",
+            "MISSATGE"
+        };
 
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Log l : CONTROLLER.Principal.logs) {
+
+            Object[] fila = {
+                l.getHora(),
+                l.getMissatge()
+            };
+
+            model.addRow(fila);
+        }
+
+        tblInfo.setModel(model);
+
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Omplim la taula de logs"
+        );
     }
 
     private void OmpirEstadistiques() {

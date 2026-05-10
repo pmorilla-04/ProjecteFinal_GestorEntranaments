@@ -42,3 +42,50 @@
 	10:04:06	Formulari esportista obert
 	10:04:06	Tancant formulari de validació
 	10:04:10	Omplim la taula d'estadistiques
+	10:12:35	Programa iniciat
+	10:12:36	Conexio base de dades
+	10:12:36	Formulari de validació iniciat
+	10:12:36	Obrint formulari Validacio
+	10:12:45	Intent de validació de l'usuari: Carles
+	10:12:47	Validació correcta amb rol administrador
+	10:12:47	Formulari esportista obert
+	10:12:47	Tancant formulari de validació
+	10:12:51	Omplim la taula de logs
+	10:15:08	Programa iniciat
+	10:15:09	Conexio base de dades
+	10:15:09	Formulari de validació iniciat
+	10:15:09	Obrint formulari Validacio
+	10:15:17	Intent de validació de l'usuari: Carles
+	10:15:18	Validació correcta amb rol administrador
+	10:15:18	Formulari esportista obert
+	10:15:18	Tancant formulari de validació
+	10:15:21	Omplim la taula de logs
+	10:29:59	Programa iniciat
+	10:30:00	Conexio base de dades
+	10:30:00	Formulari de validació iniciat
+	10:30:00	Obrint formulari Validacio
+	10:30:11	Intent de validació de l'usuari: Carles 
+	10:30:13	Error de validació: usuari o contrasenya incorrectes
+	10:30:30	Omplim la taula d'entrenaments
+	10:30:46	Intent de validació de l'usuari: Carles 
+	10:30:52	Error de validació: usuari o contrasenya incorrectes
+	10:31:14	Intent de validació de l'usuari: Carles 
+	10:31:21	Error de validació: usuari o contrasenya incorrectes
+	10:31:42	Intent de validació de l'usuari: Carles
+	10:31:44	Validació correcta amb rol administrador
+	10:31:44	Formulari esportista obert
+	10:31:44	Tancant formulari de validació
+	10:31:47	Omplim la taula d'entrenaments
+	10:31:51	Omplim la taula d'estadistiques
+	10:31:54	Omplim la taula de logs
+	10:39:36	Programa iniciat
+	10:39:37	Conexio base de dades
+	10:39:37	Formulari de validació iniciat
+	10:39:37	Obrint formulari Validacio
+	10:39:45	Intent de validació de l'usuari: Carles
+	10:39:48	Validació correcta amb rol administrador
+	10:39:48	Formulari esportista obert
+	10:39:48	Tancant formulari de validació
+	10:40:05	Omplim la taula de logs
+	10:40:24	Omplim la taula de logs
+	10:40:35	Omplim la taula d'estadistiques

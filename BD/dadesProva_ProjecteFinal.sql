@@ -46,15 +46,3 @@ INSERT INTO comentari (text, `data`, entranador_id, entranament_id) VALUES
 ('Treballa més la resistència', '2026-04-06', 5, 6);
 
 
-SELECT 
-    te.nom AS esport,
-    COUNT(e.id) AS total_entrenaments,
-    COUNT(DISTINCT e.usuari_id) AS usuaris_actius,
-    SUM(e.duradaMinuts) AS minuts_totals,
-    SUM(e.distancia) AS km_totals,
-    AVG(e.duradaMinuts) AS mitjana_durada,
-    SUM(CASE WHEN e.completat = 1 THEN 1 ELSE 0 END) AS completats
-FROM tipus_esport te
-LEFT JOIN entrenament e ON e.tipus_esport_id = te.id
-GROUP BY te.nom
-ORDER BY total_entrenaments DESC;

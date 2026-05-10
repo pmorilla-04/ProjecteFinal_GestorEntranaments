@@ -10,6 +10,7 @@ import MODEL.Comentarientrenament;
 import MODEL.Entrenament;
 import MODEL.Esportista;
 import MODEL.Estadistica;
+import MODEL.Log;
 import MODEL.Usuari;
 import VIEW.frmValidacio;
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class Principal {
     public static String usuariLoginat;
     public static String rutaIFitxerLogActual;
     public static Integer usuariId;
-
+    
+public static ArrayList<Log> logs = new ArrayList<>();
     public static ArrayList<Usuari> usuaris = new ArrayList<>();
     public static ArrayList<Esportista> esportistes = new ArrayList<>();
     public static ArrayList<Comentari> comentaris = new ArrayList<>();

@@ -59,7 +59,7 @@ public class Querys {
                 boolean completat = rs.getBoolean("completat"); //COMPLETAT
                 int usuariId = rs.getInt("usuari_id"); //ID USUARI
                 int tipusEsportId = rs.getInt("tipus_esport_id"); //ID TIPUS ESPORT
-                boolean validat = rs.getBoolean("validat");
+
                 entrenaments.add(
                         new Entrenament(
                                 id,
@@ -70,8 +70,7 @@ public class Querys {
                                 completat,
                                 intensitat,
                                 usuariId,
-                                tipusEsportId,
-                                validat
+                                tipusEsportId
                         )
                 );
             }

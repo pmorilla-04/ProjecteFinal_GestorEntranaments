@@ -22,19 +22,17 @@ public class Entrenament {
     private boolean completat;
 
     private Intensitat intensitat;
-    private boolean validat;
+   
     private int usuariId;
     private int tipusEsportId;
 
-    public Entrenament(int id, LocalDate data, int duradaMinuts, int distancia, String descripcio, boolean completat, Intensitat intensitat, int usuariId, int tipusEsportId, boolean validat) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
     public enum Intensitat {
         BAIXA, MITJA, ALTA
     }
 
-    public Entrenament(int id, LocalDate data, int duradaMinuts, int distancia, String descripcio, boolean completat, Intensitat intensitat, boolean validat, int usuariId, int tipusEsportId) {
+    public Entrenament(int id, LocalDate data, int duradaMinuts, int distancia, String descripcio, boolean completat, Intensitat intensitat,  int usuariId, int tipusEsportId) {
         this.id = id;
         this.data = data;
         this.duradaMinuts = duradaMinuts;
@@ -42,18 +40,12 @@ public class Entrenament {
         this.descripcio = descripcio;
         this.completat = completat;
         this.intensitat = intensitat;
-        this.validat = validat;
+       
         this.usuariId = usuariId;
         this.tipusEsportId = tipusEsportId;
     }
 
-    public boolean isValidat() {
-        return validat;
-    }
-
-    public void setValidat(boolean validat) {
-        this.validat = validat;
-    }
+  
 
 
 

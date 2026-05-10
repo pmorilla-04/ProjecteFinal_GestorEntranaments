@@ -264,8 +264,7 @@ public class frmEntrenador extends javax.swing.JFrame {
                 e.getIntensitat(),
                 e.isCompletat(),
                 e.getUsuariId(),
-                e.getTipusEsportId(),
-                e.isValidat()
+                e.getTipusEsportId()
             };
 
             model.addRow(fila);
