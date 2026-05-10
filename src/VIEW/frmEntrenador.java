@@ -34,6 +34,7 @@ public class frmEntrenador extends javax.swing.JFrame {
 
         Querys.mostrarEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenaments carregats des de la base de dades");
+
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula d'entrenaments omplerta");
         afegirListennerTaulaEntrenament();
@@ -235,6 +236,8 @@ public void activarCamps() {
         btnAfegirComentari.setEnabled(false);
 
         ckValidar.setEnabled(true);
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps activats després de seleccionar entrenament");
+
     }
 
     public void desactivarCamps() {
@@ -243,6 +246,8 @@ public void activarCamps() {
         btnAfegirComentari.setEnabled(false);
 
         ckValidar.setEnabled(false);
+        GestiorFitxersTXT.escripturaAFitxerLog("Camps desactivats (formulari bloquejat o reset)");
+
     }
 
     public void validarBoto() {
@@ -404,7 +409,7 @@ public void activarCamps() {
                         activarCamps();
 
                         GestiorFitxersTXT.escripturaAFitxerLog(
-                                "Entrenament seleccionat ? camps activats"
+                                "Entrenament seleccionat ? ID: " + idEntrenament
                         );
 
                         // Carrega comentaris
