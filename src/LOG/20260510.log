@@ -1,0 +1,44 @@
+	09:20:13	Programa iniciat
+	09:20:13	Conexio base de dades
+	09:20:14	Formulari de validació iniciat
+	09:20:14	Obrint formulari Validacio
+	09:20:27	Intent de validació de l'usuari: <carles
+	09:20:28	Error de validació: usuari o contrasenya incorrectes
+	09:20:38	Intent de validació de l'usuari: Carles
+	09:20:39	Validació correcta amb rol administrador
+	09:20:39	Formulari esportista obert
+	09:20:39	Tancant formulari de validació
+	09:22:31	Programa iniciat
+	09:22:32	Conexio base de dades
+	09:22:32	Formulari de validació iniciat
+	09:22:32	Obrint formulari Validacio
+	09:22:41	Intent de validació de l'usuari: Carles
+	09:22:44	Validació correcta amb rol administrador
+	09:22:44	Formulari esportista obert
+	09:22:44	Tancant formulari de validació
+	09:24:13	Programa iniciat
+	09:24:13	Conexio base de dades
+	09:24:14	Formulari de validació iniciat
+	09:24:14	Obrint formulari Validacio
+	09:24:22	Intent de validació de l'usuari: Carles
+	09:24:25	Validació correcta amb rol administrador
+	09:24:25	Formulari esportista obert
+	09:24:25	Tancant formulari de validació
+	09:30:33	Programa iniciat
+	09:30:34	Conexio base de dades
+	09:30:34	Formulari de validació iniciat
+	09:30:34	Obrint formulari Validacio
+	09:30:44	Intent de validació de l'usuari: Carles
+	09:30:46	Validació correcta amb rol administrador
+	09:30:46	Formulari esportista obert
+	09:30:46	Tancant formulari de validació
+	09:30:50	Omplim la taula d'entrenaments
+	10:03:48	Programa iniciat
+	10:03:48	Conexio base de dades
+	10:03:49	Formulari de validació iniciat
+	10:03:49	Obrint formulari Validacio
+	10:04:05	Intent de validació de l'usuari: Carles
+	10:04:06	Validació correcta amb rol administrador
+	10:04:06	Formulari esportista obert
+	10:04:06	Tancant formulari de validació
+	10:04:10	Omplim la taula d'estadistiques

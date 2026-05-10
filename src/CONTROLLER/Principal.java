@@ -9,6 +9,7 @@ import MODEL.Comentari;
 import MODEL.Comentarientrenament;
 import MODEL.Entrenament;
 import MODEL.Esportista;
+import MODEL.Estadistica;
 import MODEL.Usuari;
 import VIEW.frmValidacio;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Principal {
      * @param args the command line arguments
      */
     public static String rol;
+    public static String usuariLoginat;
     public static String rutaIFitxerLogActual;
     public static Integer usuariId;
 
@@ -30,6 +32,7 @@ public class Principal {
     public static ArrayList<Esportista> esportistes = new ArrayList<>();
     public static ArrayList<Comentari> comentaris = new ArrayList<>();
     public static ArrayList<Entrenament> entrenaments = new ArrayList<>();
+      public static ArrayList<Estadistica> estadistiques = new ArrayList<>();
     public static ArrayList<Comentarientrenament> comentarisEntrenaments = new ArrayList<>();
 
     public static void main(String[] args) {

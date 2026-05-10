@@ -7,6 +7,7 @@ package DATA;
 import static CONTROLLER.Principal.comentaris;
 import static CONTROLLER.Principal.comentarisEntrenaments;
 import static CONTROLLER.Principal.entrenaments;
+import static CONTROLLER.Principal.estadistiques;
 import static CONTROLLER.Principal.rol;
 import static CONTROLLER.Principal.usuaris;
 import static DATA.Conexion.password;
@@ -19,6 +20,7 @@ import MODEL.TipusEsport;
 import MODEL.Usuari;
 import MODEL.Usuari.Rol;
 import MODEL.Comentarientrenament;
+import MODEL.Estadistica;
 import java.sql.*;
 
 import java.time.LocalDate;
@@ -57,7 +59,7 @@ public class Querys {
                 boolean completat = rs.getBoolean("completat"); //COMPLETAT
                 int usuariId = rs.getInt("usuari_id"); //ID USUARI
                 int tipusEsportId = rs.getInt("tipus_esport_id"); //ID TIPUS ESPORT
-
+                boolean validat = rs.getBoolean("validat");
                 entrenaments.add(
                         new Entrenament(
                                 id,
@@ -68,7 +70,8 @@ public class Querys {
                                 completat,
                                 intensitat,
                                 usuariId,
-                                tipusEsportId
+                                tipusEsportId,
+                                validat
                         )
                 );
             }
@@ -301,95 +304,90 @@ public class Querys {
         return ps.executeQuery();
     }
 
-public static Entrenament getEntrenament(int id) {
-    String sql = "SELECT * FROM entrenament WHERE id = ?";
+    public static Entrenament getEntrenament(int id) {
+        String sql = "SELECT * FROM entrenament WHERE id = ?";
 
-    try (
-            Connection conn = DriverManager.getConnection(url, user, password);
-            PreparedStatement ps = conn.prepareStatement(sql)
-    ) {
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setInt(1, id);
+            ps.setInt(1, id);
 
-        try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = ps.executeQuery()) {
 
-            if (rs.next()) {
+                if (rs.next()) {
 
-                int entrenamentId = rs.getInt("id");
-                LocalDate data = rs.getDate("data").toLocalDate();
-                int duradaMinuts = rs.getInt("duradaMinuts");
-                int distancia = rs.getInt("distancia");
-                String descripcio = rs.getString("descripcio");
+                    int entrenamentId = rs.getInt("id");
+                    LocalDate data = rs.getDate("data").toLocalDate();
+                    int duradaMinuts = rs.getInt("duradaMinuts");
+                    int distancia = rs.getInt("distancia");
+                    String descripcio = rs.getString("descripcio");
 
-                // Conversió ENUM intensitat
-                Entrenament.Intensitat intensitat =
-                        Entrenament.Intensitat.valueOf(
-                                rs.getString("intensitat")
-                        );
+                    // Conversió ENUM intensitat
+                    Entrenament.Intensitat intensitat
+                            = Entrenament.Intensitat.valueOf(
+                                    rs.getString("intensitat")
+                            );
 
-                boolean completat = rs.getBoolean("completat");
-                int usuariId = rs.getInt("usuari_id");
-                int tipusEsportId = rs.getInt("tipus_esport_id");
+                    boolean completat = rs.getBoolean("completat");
+                    int usuariId = rs.getInt("usuari_id");
+                    int tipusEsportId = rs.getInt("tipus_esport_id");
 
-                return new Entrenament(
-                        entrenamentId,
-                        data,
-                        duradaMinuts,
-                        distancia,
-                        descripcio,
-                        completat,
-                        intensitat,
-                        usuariId,
-                        tipusEsportId
-                );
+                    return new Entrenament(
+                            entrenamentId,
+                            data,
+                            duradaMinuts,
+                            distancia,
+                            descripcio,
+                            completat,
+                            intensitat,
+                            usuariId,
+                            tipusEsportId
+                    );
+                }
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return null;
     }
-
-    return null;
-}
-
 
 // 2. COMENTARIS
-public static void mostrarComentari(int idEntrenament) {
+    public static void mostrarComentari(int idEntrenament) {
 
-    comentaris.clear();
+        comentaris.clear();
 
-    String sql = "SELECT * FROM comentari WHERE entranament_id = ?";
+        String sql = "SELECT * FROM comentari WHERE entranament_id = ?";
 
-    try (
-            Connection conn = DriverManager.getConnection(url, user, password);
-            PreparedStatement ps = conn.prepareStatement(sql)
-    ) {
+        try (
+                Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        ps.setInt(1, idEntrenament);
+            ps.setInt(1, idEntrenament);
 
-        try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) {
+                while (rs.next()) {
 
-                int entrenamentId = rs.getInt("entranament_id");
-                int entrenadorId = rs.getInt("entranador_id");
+                    int entrenamentId = rs.getInt("entranament_id");
+                    int entrenadorId = rs.getInt("entranador_id");
 
-                comentaris.add(
-                        new Comentari(
-                                rs.getInt("id"),
-                                rs.getString("text"),
-                                rs.getDate("data").toLocalDate(),
-                                entrenamentId,
-                                entrenadorId
-                        )
-                );
+                    comentaris.add(
+                            new Comentari(
+                                    rs.getInt("id"),
+                                    rs.getString("text"),
+                                    rs.getDate("data").toLocalDate(),
+                                    entrenamentId,
+                                    entrenadorId
+                            )
+                    );
+                }
             }
-        }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-}
 
     //MOTRAR COMENTARIS AMB ENTRENAMENTS
     public static void mostrarComentarisAmbEntrenament() {
@@ -438,15 +436,15 @@ public static void mostrarComentari(int idEntrenament) {
 
     //AFEGIR COMENTARIS
     public static void afegirComentari(String text, LocalDate data, int entranador_id, int entranament_id) {
-         String sql = " INSERT INTO comentari (text, `data`, entranador_id, entranament_id) VALUES (?, ?, ?, ?)";
+        String sql = " INSERT INTO comentari (text, `data`, entranador_id, entranament_id) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, text); //TEXT
             ps.setDate(2, java.sql.Date.valueOf(data)); //DATA
             ps.setInt(3, entranador_id); //ID ENTRANADOR
-            ps.setInt(4,  entranament_id); //ID ENTRENAMENT
-            
+            ps.setInt(4, entranament_id); //ID ENTRENAMENT
+
             int files = ps.executeUpdate();
             System.out.println("Files inserides: " + files);
         } catch (SQLException e) {
@@ -533,10 +531,31 @@ public static void mostrarComentari(int idEntrenament) {
 
     //4. ESTADISTIQUES
     public static void mostrarEstadistiques() {
-        String sql = "";
+        String sql = "SELECT \n"
+                + "    te.nom AS esport,\n"
+                + "    COUNT(e.id) AS total_entrenaments,\n"
+                + "    COUNT(DISTINCT e.usuari_id) AS usuaris_actius,\n"
+                + "    SUM(e.duradaMinuts) AS minuts_totals,\n"
+                + "    SUM(e.distancia) AS km_totals,\n"
+                + "    AVG(e.duradaMinuts) AS mitjana_durada,\n"
+                + "    SUM(CASE WHEN e.completat = 1 THEN 1 ELSE 0 END) AS completats\n"
+                + "FROM tipus_esport te\n"
+                + "LEFT JOIN entrenament e ON e.tipus_esport_id = te.id\n"
+                + "GROUP BY te.nom\n"
+                + "ORDER BY total_entrenaments DESC;";
 
         try (Connection conn = DriverManager.getConnection(url, user, password); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                String esport = rs.getString("esport");
+                int totalEntrenaments = rs.getInt("total_entrenaments");
+                int usuarisActius = rs.getInt("usuaris_actius");
+                int minutsTotals = rs.getInt("minuts_totals");
+                double kmTotals = rs.getDouble("km_totals");
+                double mitjanaDurada = rs.getDouble("mitjana_durada");
+                int completats = rs.getInt("completats");
 
+                estadistiques.add(new Estadistica(esport, totalEntrenaments, usuarisActius, minutsTotals, kmTotals, mitjanaDurada, completats));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

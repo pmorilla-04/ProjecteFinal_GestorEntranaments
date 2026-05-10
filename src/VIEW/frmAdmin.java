@@ -5,6 +5,7 @@
 package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
+import DATA.Querys;
 
 /**
  *
@@ -19,6 +20,7 @@ public class frmAdmin extends javax.swing.JFrame {
      */
     public frmAdmin() {
         initComponents();
+        txtData.setEnabled(false);
     }
 
     /**
@@ -31,18 +33,18 @@ public class frmAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblEntrenements = new javax.swing.JTable();
+        tblInfo = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnEntranaments = new javax.swing.JButton();
         btnUsuaris = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbmInfo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtData = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblEntrenements.setModel(new javax.swing.table.DefaultTableModel(
+        tblInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,7 +55,7 @@ public class frmAdmin extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tblEntrenements);
+        jScrollPane2.setViewportView(tblInfo);
 
         jLabel1.setText("ADMINISTRADOR");
 
@@ -68,6 +70,13 @@ public class frmAdmin extends javax.swing.JFrame {
         btnUsuaris.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuarisActionPerformed(evt);
+            }
+        });
+
+        cbmInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estadístiques", "Registres", "Entrenaments" }));
+        cbmInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmInfoActionPerformed(evt);
             }
         });
 
@@ -92,7 +101,7 @@ public class frmAdmin extends javax.swing.JFrame {
                                 .addGap(80, 80, 80)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(cbmInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
                         .addComponent(btnEntranaments)
@@ -114,7 +123,7 @@ public class frmAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbmInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
@@ -141,6 +150,103 @@ public class frmAdmin extends javax.swing.JFrame {
         f.setVisible(true);
         GestiorFitxersTXT.escripturaAFitxerLog("Obrin formulari usuaris");
     }//GEN-LAST:event_btnUsuarisActionPerformed
+
+    private void cbmInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmInfoActionPerformed
+        // TODO add your handling code here:
+
+        String opcio = (String) cbmInfo.getSelectedItem();
+
+        switch (opcio) {
+
+            case "Estadístiques":
+                txtData.setEnabled(false);
+                Querys.mostrarEstadistiques();
+                OmpirEstadistiques();
+                break;
+
+            case "Registres":
+                txtData.setEnabled(true);
+                OmplirRegistres();
+                break;
+
+            case "Entrenaments":
+                txtData.setEnabled(false);
+                Querys.mostrarEntrenaments();
+                OmplirEntrenaments();
+                break;
+        }
+
+    }//GEN-LAST:event_cbmInfoActionPerformed
+
+    private void OmplirEntrenaments() {
+        String[] columnes = {
+            "ID", "DATA", "DURADA", "DISTANCIA",
+            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "ID_USUARI", "ID_TIPUS"
+        };
+
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+
+            Object[] fila = {
+                e.getId(),
+                e.getData(),
+                e.getDuradaMinuts(),
+                e.getDistancia(),
+                e.getDescripcio(),
+                e.getIntensitat(),
+                e.isCompletat(),
+                e.getUsuariId(),
+                e.getTipusEsportId()
+            };
+
+            model.addRow(fila);
+        }
+
+        tblInfo.setModel(model);
+        GestiorFitxersTXT.escripturaAFitxerLog("Omplim la taula d'entrenaments");
+    }
+
+    private void OmplirRegistres() {
+
+    }
+
+    private void OmpirEstadistiques() {
+        String[] columnes = {
+            "ESPORT", "TOTAL ENTRENAMENTS", "USUARIS ACTIUS", "MINUTS ACTIUS",
+            "KM TOTALS", "MITJANA DURADA", "COMPLETATS"
+        };
+
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Estadistica e : CONTROLLER.Principal.estadistiques) {
+
+            Object[] fila = {
+                e.getEsport(),
+                e.getTotalEntrenaments(),
+                e.getUsuarisActius(),
+                e.getMinutsTotals(),
+                e.getKmTotals(),
+                e.getMitjanaDurada(),
+                e.getCompletats()
+            };
+
+            model.addRow(fila);
+        }
+
+        tblInfo.setModel(model);
+
+        GestiorFitxersTXT.escripturaAFitxerLog(
+                "Omplim la taula d'estadistiques"
+        );
+    }
 
     /**
      * @param args the command line arguments
@@ -170,12 +276,13 @@ public class frmAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntranaments;
     private javax.swing.JButton btnUsuaris;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbmInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tblEntrenements;
+    private javax.swing.JTable tblInfo;
     private javax.swing.JTextField txtData;
     // End of variables declaration//GEN-END:variables
+
 }

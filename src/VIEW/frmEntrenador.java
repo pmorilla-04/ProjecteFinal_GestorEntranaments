@@ -244,7 +244,7 @@ public class frmEntrenador extends javax.swing.JFrame {
 
         String[] columnes = {
             "ID", "DATA", "DURADA", "DISTANCIA",
-            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "DESCRIPCIO", "INTENSITAT", "COMPLETAT", "VALIDAT",
             "ID_USUARI", "ID_TIPUS"
         };
 
@@ -264,7 +264,8 @@ public class frmEntrenador extends javax.swing.JFrame {
                 e.getIntensitat(),
                 e.isCompletat(),
                 e.getUsuariId(),
-                e.getTipusEsportId()
+                e.getTipusEsportId(),
+                e.isValidat()
             };
 
             model.addRow(fila);

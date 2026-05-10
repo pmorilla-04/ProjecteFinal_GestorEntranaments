@@ -51,7 +51,12 @@ public class GestioFitxersXML {
                     ppass = eElement.getElementsByTagName("contrassenya").item(0).getTextContent();
 
                     if (pnom.equals(nom) && ppass.equals(pass)) {
-                        CONTROLLER.Principal.rol = eElement.getElementsByTagName("rol").item(0).getTextContent();
+
+                        CONTROLLER.Principal.rol
+                                = eElement.getElementsByTagName("rol").item(0).getTextContent();
+
+                        CONTROLLER.Principal.usuariLoginat = pnom;
+
                         return true;
                     }
 
@@ -65,10 +70,8 @@ public class GestioFitxersXML {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            //GestiorFitxersTXT.escripturaAFitxerLog("Error en la validacio de l'usuari");
         }
         return usuariTrobat;
     }
-
 
 }
