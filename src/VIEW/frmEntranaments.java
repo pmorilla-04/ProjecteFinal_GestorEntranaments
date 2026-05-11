@@ -30,6 +30,58 @@ public class frmEntranaments extends javax.swing.JFrame {
         omplirTaulaEntrenaments();
         carregarTipusEsport();
         carregarIntensitats();
+
+       tblEntrenaments.getSelectionModel().addListSelectionListener(e -> {
+
+    if (!e.getValueIsAdjusting()) {
+
+        int fila = tblEntrenaments.getSelectedRow();
+
+        if (fila != -1) {
+
+            int idEntrenament = Integer.parseInt(
+                    tblEntrenaments.getValueAt(fila, 0).toString()
+            );
+
+            GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Entrenament seleccionat de la taula ? ID: " + idEntrenament
+            );
+
+            activarCamps();
+
+            GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Camps i botons activats"
+            );
+
+            // OMPLIR CAMPS
+            txtId.setText(tblEntrenaments.getValueAt(fila, 0).toString());
+            txtData.setText(tblEntrenaments.getValueAt(fila, 1).toString());
+            txtDurada.setText(tblEntrenaments.getValueAt(fila, 2).toString());
+            txtDistancia.setText(tblEntrenaments.getValueAt(fila, 3).toString());
+            txtDescripcio.setText(tblEntrenaments.getValueAt(fila, 4).toString());
+
+            cbmIntensitat.setSelectedItem(
+                    tblEntrenaments.getValueAt(fila, 5).toString()
+            );
+
+            chkCompletat.setSelected(
+                    Boolean.parseBoolean(
+                            tblEntrenaments.getValueAt(fila, 6).toString()
+                    )
+            );
+
+            txtUsuari.setText(tblEntrenaments.getValueAt(fila, 7).toString());
+
+            cbmTipus.setSelectedItem(
+                    tblEntrenaments.getValueAt(fila, 8).toString()
+            );
+
+            GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Dades de l'entrenament carregades als camps"
+            );
+        }
+    }
+});
     }
 
     /**
@@ -45,11 +97,11 @@ public class frmEntranaments extends javax.swing.JFrame {
         txtDistancia.setEnabled(true);
         txtUsuari.setEnabled(true);
         txtDescripcio.setEnabled(true);
-        
+
         cbmIntensitat.setEnabled(true);
         cbmTipus.setEnabled(true);
         chkCompletat.setEnabled(true);
-        
+
         btnNou.setEnabled(true);
         btnModificar.setEnabled(true);
         btnEliminar.setEnabled(true);
@@ -61,6 +113,7 @@ public class frmEntranaments extends javax.swing.JFrame {
         txtDurada.setEnabled(false);
         txtDistancia.setEnabled(false);
         txtDescripcio.setEnabled(false);
+        txtUsuari.setEnabled(false);
         
         chkCompletat.setEnabled(false);
         cbmIntensitat.setEnabled(false);
@@ -337,11 +390,11 @@ private void carregarIntensitats() {
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenament eliminat");
         txtId.setText("");
         GestiorFitxersTXT.escripturaAFitxerLog("Camps buidats");
-
+        
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
-
+        desactivarCamps();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNouActionPerformed
@@ -391,7 +444,7 @@ private void carregarIntensitats() {
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzatda");
-
+        desactivarCamps();
     }//GEN-LAST:event_btnNouActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -482,6 +535,7 @@ private void carregarIntensitats() {
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+        desactivarCamps();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void cbmTipusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmTipusActionPerformed

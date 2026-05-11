@@ -1,0 +1,116 @@
+	09:15:49	Programa iniciat
+	09:15:50	Conexio base de dades
+	09:15:50	Formulari de validació iniciat
+	09:15:50	Obrint formulari Validacio
+	09:16:00	Intent de validació de l'usuari: Pau
+	09:16:01	Validació correcta amb rol esportista
+	09:16:02	Omplint taula entrenaments
+	09:16:02	Carreguem id tipus esport
+	09:16:02	Carreguem id tipus esport
+	09:16:02	Carreguem id tipus esport
+	09:16:02	Carreguem id tipus esport
+	09:16:02	Carreguem id tipus esport
+	09:16:02	Carraguem Intensitats
+	09:16:02	Carraguem Intensitats
+	09:16:02	Carraguem Intensitats
+	09:16:02	Obrin formulari rol esportista
+	09:16:02	Tancant formulari de validació
+	09:16:04	Omplim la taula d'entrenaments
+	09:16:04	Carraguem els id del tipus d'esport al combo box
+	09:16:04	Carraguem els id del tipus d'esport al combo box
+	09:16:04	Carraguem els id del tipus d'esport al combo box
+	09:16:04	Carraguem els id del tipus d'esport al combo box
+	09:16:04	Carraguem els id del tipus d'esport al combo box
+	09:16:04	carreguem les intensitats al combo box
+	09:16:04	carreguem les intensitats al combo box
+	09:16:04	carreguem les intensitats al combo box
+	09:16:04	Obrin formulari entrenaments
+	09:16:08	Entrenament seleccionat de la taula ? ID: 1
+	09:16:08	Camps i botons activats
+	09:16:08	Dades de l'entrenament carregades als camps
+	09:16:09	Entrenament seleccionat de la taula ? ID: 6
+	09:16:09	Camps i botons activats
+	09:16:09	Dades de l'entrenament carregades als camps
+	09:16:11	Entrenament eliminat
+	09:16:11	Camps buidats
+	09:16:11	Omplim la taula d'entrenaments
+	09:16:11	Taula actualitzada
+	09:18:09	Programa iniciat
+	09:18:10	Conexio base de dades
+	09:18:10	Formulari de validació iniciat
+	09:18:10	Obrint formulari Validacio
+	09:18:17	Intent de validació de l'usuari: Pau
+	09:18:18	Validació correcta amb rol esportista
+	09:18:18	Omplint taula entrenaments
+	09:18:19	Carreguem id tipus esport
+	09:18:19	Carreguem id tipus esport
+	09:18:19	Carreguem id tipus esport
+	09:18:19	Carreguem id tipus esport
+	09:18:19	Carreguem id tipus esport
+	09:18:19	Carraguem Intensitats
+	09:18:19	Carraguem Intensitats
+	09:18:19	Carraguem Intensitats
+	09:18:19	Obrin formulari rol esportista
+	09:18:19	Tancant formulari de validació
+	09:18:24	Omplim la taula d'entrenaments
+	09:18:24	Carraguem els id del tipus d'esport al combo box
+	09:18:24	Carraguem els id del tipus d'esport al combo box
+	09:18:24	Carraguem els id del tipus d'esport al combo box
+	09:18:24	Carraguem els id del tipus d'esport al combo box
+	09:18:24	Carraguem els id del tipus d'esport al combo box
+	09:18:24	carreguem les intensitats al combo box
+	09:18:24	carreguem les intensitats al combo box
+	09:18:24	carreguem les intensitats al combo box
+	09:18:24	Obrin formulari entrenaments
+	09:18:33	Entrenament seleccionat de la taula ? ID: 5
+	09:18:33	Camps i botons activats
+	09:18:33	Dades de l'entrenament carregades als camps
+	09:18:39	Entrenament eliminat
+	09:18:39	Camps buidats
+	09:18:39	Omplim la taula d'entrenaments
+	09:18:39	Taula actualitzada
+	09:19:45	Programa iniciat
+	09:19:46	Conexio base de dades
+	09:19:46	Formulari de validació iniciat
+	09:19:46	Obrint formulari Validacio
+	09:19:53	Intent de validació de l'usuari: Pau
+	09:19:54	Validació correcta amb rol esportista
+	09:19:54	Omplint taula entrenaments
+	09:19:55	Carreguem id tipus esport
+	09:19:55	Carreguem id tipus esport
+	09:19:55	Carreguem id tipus esport
+	09:19:55	Carreguem id tipus esport
+	09:19:55	Carreguem id tipus esport
+	09:19:55	Carraguem Intensitats
+	09:19:55	Carraguem Intensitats
+	09:19:55	Carraguem Intensitats
+	09:19:55	Obrin formulari rol esportista
+	09:19:55	Tancant formulari de validació
+	09:19:56	Omplim la taula d'entrenaments
+	09:19:56	Carraguem els id del tipus d'esport al combo box
+	09:19:56	Carraguem els id del tipus d'esport al combo box
+	09:19:56	Carraguem els id del tipus d'esport al combo box
+	09:19:56	Carraguem els id del tipus d'esport al combo box
+	09:19:56	Carraguem els id del tipus d'esport al combo box
+	09:19:56	carreguem les intensitats al combo box
+	09:19:56	carreguem les intensitats al combo box
+	09:19:56	carreguem les intensitats al combo box
+	09:19:56	Obrin formulari entrenaments
+	09:20:02	Entrenament seleccionat de la taula ? ID: 4
+	09:20:02	Camps i botons activats
+	09:20:02	Dades de l'entrenament carregades als camps
+	09:20:23	Agafem el Id del tipus d'esport seleccionat
+	09:20:24	Entrenament modificat
+	09:20:24	Agafem el Id del tipus d'esport seleccionat
+	09:20:24	Camps buidats
+	09:20:24	Omplim la taula d'entrenaments
+	09:20:24	Taula actualitzada
+	09:20:29	Entrenament seleccionat de la taula ? ID: 4
+	09:20:29	Camps i botons activats
+	09:20:29	Dades de l'entrenament carregades als camps
+	09:20:39	Agafem el Id del tipus d'esport seleccionat
+	09:20:44	Entrenament afegit
+	09:20:44	Agafem el Id del tipus d'esport seleccionat
+	09:20:44	Camps buidats
+	09:20:44	Omplim la taula d'entrenaments
+	09:20:44	Taula actualitzatda
