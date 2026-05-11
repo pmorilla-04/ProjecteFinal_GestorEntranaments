@@ -114,3 +114,72 @@
 	09:20:44	Camps buidats
 	09:20:44	Omplim la taula d'entrenaments
 	09:20:44	Taula actualitzatda
+	09:53:50	Programa iniciat
+	09:53:51	Conexio base de dades
+	09:53:51	Formulari de validació iniciat
+	09:53:51	Obrint formulari Validacio
+	09:53:59	Intent de validació de l'usuari: Pau
+	09:54:01	Validació correcta amb rol esportista
+	09:54:01	Omplint taula entrenaments
+	09:54:01	Carreguem id tipus esport
+	09:54:01	Carreguem id tipus esport
+	09:54:01	Carreguem id tipus esport
+	09:54:01	Carreguem id tipus esport
+	09:54:01	Carreguem id tipus esport
+	09:54:01	Carraguem Intensitats
+	09:54:01	Carraguem Intensitats
+	09:54:01	Carraguem Intensitats
+	09:54:01	Obrin formulari rol esportista
+	09:54:01	Tancant formulari de validació
+	09:54:04	Omplim la taula d'entrenaments
+	09:54:04	Carraguem els id del tipus d'esport al combo box
+	09:54:04	Carraguem els id del tipus d'esport al combo box
+	09:54:04	Carraguem els id del tipus d'esport al combo box
+	09:54:04	Carraguem els id del tipus d'esport al combo box
+	09:54:04	Carraguem els id del tipus d'esport al combo box
+	09:54:04	carreguem les intensitats al combo box
+	09:54:04	carreguem les intensitats al combo box
+	09:54:04	carreguem les intensitats al combo box
+	09:54:04	Obrin formulari entrenaments
+	09:54:10	Programa iniciat
+	09:54:10	Conexio base de dades
+	09:54:11	Formulari de validació iniciat
+	09:54:11	Obrint formulari Validacio
+	09:54:19	Intent de validació de l'usuari: Carles
+	09:54:21	Validació correcta amb rol administrador
+	09:54:21	Formulari d'administrador iniciat
+	09:54:21	Formulari esportista obert
+	09:54:21	Tancant formulari de validació
+	09:54:25	Canviem a la seccio: Estadístiques
+	09:54:25	Omplim la taula d'estadistiques
+	09:54:39	Canviem a la seccio: Registres
+	09:54:39	Activem cerca de registres
+	09:54:42	Canviem a la seccio: Registres
+	09:54:42	Activem cerca de registres
+	09:54:55	Busquem logs de la data: 20260511
+	09:54:55	Omplim la taula de logs
+	09:55:18	Busquem logs de la data: 
+	09:55:18	Omplim la taula de logs
+	09:55:22	Canviem a la seccio: Entrenaments
+	09:55:22	Omplim la taula d'entrenaments
+	09:55:29	Canviem a la seccio: Estadístiques
+	09:55:29	Omplim la taula d'estadistiques
+	09:55:33	Canviem a la seccio: Entrenaments
+	09:55:33	Omplim la taula d'entrenaments
+	09:56:27	Programa iniciat
+	09:56:28	Conexio base de dades
+	09:56:28	Formulari de validació iniciat
+	09:56:28	Obrint formulari Validacio
+	09:56:37	Intent de validació de l'usuari: Carles
+	09:56:39	Validació correcta amb rol administrador
+	09:56:39	Formulari d'administrador iniciat
+	09:56:39	Formulari esportista obert
+	09:56:39	Tancant formulari de validació
+	09:56:43	Canviem a la seccio: Estadístiques
+	09:56:43	Omplim la taula d'estadistiques
+	09:56:47	Canviem a la seccio: Entrenaments
+	09:56:47	Omplim la taula d'entrenaments
+	09:57:01	Canviem a la seccio: Registres
+	09:57:01	Activem cerca de registres
+	09:57:09	Busquem logs de la data: 20260510
+	09:57:09	Omplim la taula de logs

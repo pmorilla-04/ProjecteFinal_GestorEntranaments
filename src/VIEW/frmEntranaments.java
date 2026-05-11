@@ -537,6 +537,7 @@ private void carregarIntensitats() {
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
+        
         desactivarCamps();
         GestiorFitxersTXT.escripturaAFitxerLog("Camps desactivats");
     }//GEN-LAST:event_btnModificarActionPerformed
