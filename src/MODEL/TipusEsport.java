@@ -36,7 +36,9 @@ public class TipusEsport {
 
     @Override
     public String toString() {
-        return String.valueOf(id);
+        return nom;
     }
+
+   
 
 }
