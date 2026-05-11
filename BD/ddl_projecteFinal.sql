@@ -26,7 +26,6 @@ create table entrenament (
     descripcio varchar (200),
     intensitat ENUM ("BAIXA", "MITJA", "ALTA"),
     completat boolean,
-    -- validar boolean,
     usuari_id int unsigned not null,
     tipus_esport_id int unsigned not null,
     
