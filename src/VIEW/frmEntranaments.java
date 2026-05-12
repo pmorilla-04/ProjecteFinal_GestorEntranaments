@@ -363,8 +363,6 @@ private void carregarIntensitats() {
         }
     }
 
-  
-    
     private void carregarTipusEsport() {
 
         cbmTipus.removeAllItems();
@@ -424,7 +422,7 @@ private void carregarIntensitats() {
             model.addRow(fila);
         }
 
-       tblEntrenaments.setModel(model);
+        tblEntrenaments.setModel(model);
         GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
     }
 
@@ -473,9 +471,8 @@ private void carregarIntensitats() {
         boolean completat = chkCompletat.isSelected();
 
         int usuariId = Integer.parseInt(txtUsuari.getText());
-        int tipusId = Integer.parseInt(
-                cbmTipus.getSelectedItem().toString()
-        );
+        TipusEsport tipus = (TipusEsport) cbmTipus.getSelectedItem();
+        int tipusId = tipus.getId();
 
         Querys.afegirEntrenament(
                 data,
@@ -504,7 +501,7 @@ private void carregarIntensitats() {
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzatda");
-        
+
         desactivarCamps();
         GestiorFitxersTXT.escripturaAFitxerLog("Camps desactivats");
     }//GEN-LAST:event_btnNouActionPerformed
@@ -561,11 +558,15 @@ private void carregarIntensitats() {
         }
 
         Integer tipusid;
+
         try {
-            tipusid = Integer.parseInt(
-                    cbmTipus.getSelectedItem().toString()
-            );
+
+            TipusEsport tipus = (TipusEsport) cbmTipus.getSelectedItem();
+
+            tipusid = tipus.getId();
+
         } catch (Exception e) {
+
             tipusid = null;
         }
 
@@ -597,7 +598,7 @@ private void carregarIntensitats() {
         Querys.mostrarEntrenaments();
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula actualitzada");
-        
+
         desactivarCamps();
         GestiorFitxersTXT.escripturaAFitxerLog("Camps desactivats");
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -608,8 +609,6 @@ private void carregarIntensitats() {
         TipusEsport t = (TipusEsport) cbmTipus.getSelectedItem();
         GestiorFitxersTXT.escripturaAFitxerLog("Agafem el Id del tipus d'esport seleccionat");
     }//GEN-LAST:event_cbmTipusActionPerformed
-
- 
 
     /**
      * @param args the command line arguments
