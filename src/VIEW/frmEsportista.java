@@ -72,6 +72,7 @@ public class frmEsportista extends javax.swing.JFrame {
         tblComentaris = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        ckhValidat = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -160,6 +161,8 @@ public class frmEsportista extends javax.swing.JFrame {
 
         jLabel9.setText("ENTRENAMENTS");
 
+        ckhValidat.setText("VALIDAT");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -196,13 +199,16 @@ public class frmEsportista extends javax.swing.JFrame {
                                                 .addGap(57, 57, 57)
                                                 .addComponent(jLabel5)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(ckhValidat, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(cbmIntensitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(chkCompletat))
-                                            .addGroup(layout.createSequentialGroup()
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jLabel3)
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
@@ -218,7 +224,7 @@ public class frmEsportista extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(cbmTipus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel8)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane2)
@@ -267,7 +273,9 @@ public class frmEsportista extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbmIntensitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(chkCompletat))))
-                        .addGap(141, 141, 141)
+                        .addGap(45, 45, 45)
+                        .addComponent(ckhValidat)
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnFiltrar)
                             .addComponent(btnCancelar))
@@ -384,7 +392,6 @@ public class frmEsportista extends javax.swing.JFrame {
     }
 
     private String obtenirNomTipusEsport(int idTipus) {
-        System.out.println("Buscant tipus: " + idTipus);
 
         for (TipusEsport t : Principal.tipusesports) {
 
@@ -466,13 +473,13 @@ public class frmEsportista extends javax.swing.JFrame {
                     );
 
             Boolean completat = chkCompletat.isSelected() ? true : null;
-
+            Boolean validat = chkCompletat.isSelected() ? true : null;
             Integer tipus = null;
             if (cbmTipus.getSelectedItem() != null && !cbmTipus.getSelectedItem().equals("Tots")) {
                 tipus = Integer.parseInt(cbmTipus.getSelectedItem().toString());
             }
 
-            Querys.filtrarEntrenament(id, data, durada, distancia, intensitat, completat, tipus);
+            Querys.filtrarEntrenament(id, data, durada, distancia, intensitat, completat, validat,tipus);
 
             omplirTaulaEntrenaments();
 
@@ -570,6 +577,7 @@ public class frmEsportista extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbmIntensitat;
     private javax.swing.JComboBox<TipusEsport> cbmTipus;
     private javax.swing.JCheckBox chkCompletat;
+    private javax.swing.JCheckBox ckhValidat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

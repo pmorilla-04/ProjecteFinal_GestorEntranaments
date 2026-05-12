@@ -5,9 +5,13 @@
 package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
+import CONTROLLER.Principal;
 import DATA.Querys;
 import static DATA.Querys.afegirComentari;
 import MODEL.Comentari;
+import MODEL.TipusEsport;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +34,10 @@ public class frmEntrenador extends javax.swing.JFrame {
         initComponents();
         desactivarCamps();
         GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador iniciat amb camps desactivats");
-
+        
+        carregarTipusEsport();
+        
+        
         Querys.mostrarEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenaments carregats des de la base de dades");
 
@@ -308,6 +315,15 @@ public void activarCamps() {
     }
     private void ckValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckValidarActionPerformed
         // TODO add your handling code here:
+        boolean validat = ckValidar.isSelected();
+        int fila = tblEntranaments.getSelectedRow();
+
+        if (fila == -1) {
+            return; // no hi ha res seleccionat
+        }
+
+        int id = (int) tblEntranaments.getValueAt(fila, 0);
+        Querys.validarEntrenament(id, validat);
         desactivarCamps();
 
         GestiorFitxersTXT.escripturaAFitxerLog(
@@ -318,12 +334,14 @@ public void activarCamps() {
     /**
      * @param args the command line arguments
      */
+    
+    
     public void omplirTaulaEntrenaments() {
 
         String[] columnes = {
             "ID", "DATA", "DURADA", "DISTANCIA",
             "DESCRIPCIO", "INTENSITAT", "COMPLETAT", "VALIDAT",
-            "ID_USUARI", "ID_TIPUS"
+            "ID_USUARI", "TIPUS ESPORT"
         };
 
         javax.swing.table.DefaultTableModel model
@@ -341,18 +359,57 @@ public void activarCamps() {
                 e.getDescripcio(),
                 e.getIntensitat(),
                 e.isCompletat(),
+                e.isValidat(),
                 e.getUsuariId(),
-                e.getTipusEsportId()
+                obtenirNomTipusEsport(e.getTipusEsportId())
             };
 
             model.addRow(fila);
         }
 
         tblEntranaments.setModel(model);
-        GestiorFitxersTXT.escripturaAFitxerLog(
-                "Taula d'entrenaments omplerta correctament"
-        );
+        GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
     }
+ private void carregarTipusEsport() {
+
+        
+
+        Principal.tipusesports.clear();
+
+        try {
+            ResultSet rs = Querys.getTipusEsport();
+
+            while (rs.next()) {
+
+                int id = rs.getInt("id");
+                String nom = rs.getString("nom");
+
+                TipusEsport tipus = new TipusEsport(id, nom);
+
+                
+
+                Principal.tipusesports.add(tipus);
+
+                GestiorFitxersTXT.escripturaAFitxerLog("Carreguem tipus esport");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private String obtenirNomTipusEsport(int idTipus) {
+
+    if (Principal.tipusesports != null) {
+
+        for (TipusEsport t : Principal.tipusesports) {
+            if (t.getId() == idTipus) {
+                return t.getNom();
+            }
+        }
+    }
+
+    return "Desconegut"; 
+}
 
     public void omplirTaulaComentaris() {
 
