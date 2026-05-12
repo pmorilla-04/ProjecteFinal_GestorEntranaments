@@ -352,7 +352,7 @@ public class frmEsportista extends javax.swing.JFrame {
 
         String[] columnes = {
             "ID", "DATA", "DURADA", "DISTANCIA",
-            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "DESCRIPCIO", "INTENSITAT", "COMPLETAT", "VALIDAT",
             "ID_USUARI", "TIPUS ESPORT"
         };
 
@@ -371,6 +371,7 @@ public class frmEsportista extends javax.swing.JFrame {
                 e.getDescripcio(),
                 e.getIntensitat(),
                 e.isCompletat(),
+                e.isValidat(),
                 e.getUsuariId(),
                 obtenirNomTipusEsport(e.getTipusEsportId())
             };

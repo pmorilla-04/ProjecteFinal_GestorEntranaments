@@ -42,30 +42,29 @@ public class Querys {
 
             while (rs.next()) {
 
-                int id = rs.getInt("id"); //ID
-                LocalDate data = rs.getDate("data").toLocalDate(); //DATA (LOCAALDATE)
-                int duradaMinuts = rs.getInt("duradaMinuts"); //DURADA
-                int distancia = rs.getInt("distancia"); //DISTANCIA
-                String descripcio = rs.getString("descripcio"); //DESCRIPCIO
+                int id = rs.getInt("id");
+                LocalDate data = rs.getDate("data").toLocalDate();
+                int duradaMinuts = rs.getInt("duradaMinuts");
+                int distancia = rs.getInt("distancia");
+                String descripcio = rs.getString("descripcio");
 
-                //  ENUM INTENSITAT conversió 
                 Entrenament.Intensitat intensitat
-                        = Entrenament.Intensitat.valueOf(
-                                rs.getString("intensitat")
-                        );
+                        = Entrenament.Intensitat.valueOf(rs.getString("intensitat"));
 
-                boolean completat = rs.getBoolean("completat"); //COMPLETAT
-                int usuariId = rs.getInt("usuari_id"); //ID USUARI
-                int tipusEsportId = rs.getInt("tipus_esport_id"); //ID TIPUS ESPORT
+                boolean completat = rs.getBoolean("completat");
+                boolean validat = rs.getBoolean("validat"); // ? NOU
+
+                int usuariId = rs.getInt("usuari_id");
+                int tipusEsportId = rs.getInt("tipus_esport_id");
 
                 entrenaments.add(
                         new Entrenament(
                                 id,
                                 data,
-                                duradaMinuts,
                                 distancia,
                                 descripcio,
                                 completat,
+                                validat,
                                 intensitat,
                                 usuariId,
                                 tipusEsportId
@@ -81,7 +80,7 @@ public class Querys {
     public static void filtrarEntrenament(Integer id, LocalDate data, Integer duradaMinuts,
             Integer distancia,
             Entrenament.Intensitat intensitat,
-            Boolean completat,
+            Boolean completat, Boolean validat,
             Integer tipusEsportId) {
 
         StringBuilder sql = new StringBuilder("SELECT * FROM entrenament WHERE 1=1");
@@ -122,6 +121,11 @@ public class Querys {
             params.add(completat);
         }
 
+        if (validat != null) {
+            sql.append(" AND validat = ?");
+            params.add(validat);
+        }
+
         if (tipusEsportId != null) {
             sql.append(" AND tipus_esport_id = ?");
             params.add(tipusEsportId);
@@ -149,10 +153,10 @@ public class Querys {
                         new Entrenament(
                                 rs.getInt("id"),
                                 rs.getDate("data").toLocalDate(),
-                                rs.getInt("duradaMinuts"),
                                 rs.getInt("distancia"),
                                 rs.getString("descripcio"),
                                 rs.getBoolean("completat"),
+                                rs.getBoolean("validat"),
                                 intens,
                                 rs.getInt("usuari_id"),
                                 rs.getInt("tipus_esport_id")
@@ -326,16 +330,17 @@ public class Querys {
                             );
 
                     boolean completat = rs.getBoolean("completat");
+                    boolean validat = rs.getBoolean("validat");
                     int usuariId = rs.getInt("usuari_id");
                     int tipusEsportId = rs.getInt("tipus_esport_id");
 
                     return new Entrenament(
                             entrenamentId,
                             data,
-                            duradaMinuts,
                             distancia,
                             descripcio,
                             completat,
+                            validat,
                             intensitat,
                             usuariId,
                             tipusEsportId
@@ -349,6 +354,25 @@ public class Querys {
 
         return null;
     }
+    
+    public static void validarEntrenament(int id, boolean validat) {
+
+    String sql = "UPDATE entrenament SET validat = ? WHERE id = ?";
+
+    try (
+        Connection conn = DriverManager.getConnection(url, user, password);
+        PreparedStatement ps = conn.prepareStatement(sql)
+    ) {
+
+        ps.setBoolean(1, validat);
+        ps.setInt(2, id);
+
+        ps.executeUpdate();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 
 // 2. COMENTARIS
     public static void mostrarComentari(int idEntrenament) {
@@ -385,8 +409,6 @@ public class Querys {
             e.printStackTrace();
         }
     }
-
-   
 
     //AFEGIR COMENTARIS
     public static void afegirComentari(String text, LocalDate data, int entranador_id, int entranament_id) {
