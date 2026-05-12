@@ -5,7 +5,6 @@
 package DATA;
 
 import static CONTROLLER.Principal.comentaris;
-import static CONTROLLER.Principal.comentarisEntrenaments;
 import static CONTROLLER.Principal.entrenaments;
 import static CONTROLLER.Principal.estadistiques;
 import static CONTROLLER.Principal.rol;
@@ -19,7 +18,6 @@ import MODEL.Entrenament.Intensitat;
 import MODEL.TipusEsport;
 import MODEL.Usuari;
 import MODEL.Usuari.Rol;
-import MODEL.Comentarientrenament;
 import MODEL.Estadistica;
 import java.sql.*;
 
