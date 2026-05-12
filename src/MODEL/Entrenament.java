@@ -20,7 +20,7 @@ public class Entrenament {
     private int distancia;
     private String descripcio;
     private boolean completat;
-
+    private boolean validat;
     private Intensitat intensitat;
    
     private int usuariId;
@@ -32,18 +32,27 @@ public class Entrenament {
         BAIXA, MITJA, ALTA
     }
 
-    public Entrenament(int id, LocalDate data, int duradaMinuts, int distancia, String descripcio, boolean completat, Intensitat intensitat,  int usuariId, int tipusEsportId) {
+    public Entrenament(int id, LocalDate data, int distancia, String descripcio, boolean completat, boolean validat, Intensitat intensitat, int usuariId, int tipusEsportId) {
         this.id = id;
         this.data = data;
-        this.duradaMinuts = duradaMinuts;
         this.distancia = distancia;
         this.descripcio = descripcio;
         this.completat = completat;
+        this.validat = validat;
         this.intensitat = intensitat;
-       
         this.usuariId = usuariId;
         this.tipusEsportId = tipusEsportId;
     }
+
+    public boolean isValidat() {
+        return validat;
+    }
+
+    public void setValidat(boolean validat) {
+        this.validat = validat;
+    }
+
+  
 
   
 

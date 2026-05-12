@@ -8,7 +8,6 @@ import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
 import static DATA.Querys.afegirComentari;
 import MODEL.Comentari;
-import MODEL.Comentarientrenament;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
