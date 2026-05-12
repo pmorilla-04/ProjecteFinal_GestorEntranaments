@@ -427,3 +427,33 @@
 	13:23:48	Obrint formulari Validacio
 	13:23:57	Intent de validació de l'usuari: Pau
 	13:23:59	Validació correcta amb rol esportista
+	13:31:30	Programa iniciat
+	13:31:31	Conexio base de dades
+	13:31:31	Formulari de validació iniciat
+	13:31:31	Obrint formulari Validacio
+	13:31:38	Intent de validació de l'usuari: Pau
+	13:31:40	Validació correcta amb rol esportista
+	13:31:40	Omplint taula entrenaments
+	13:31:40	Carreguem id tipus esport
+	13:31:40	Carreguem id tipus esport
+	13:31:40	Carreguem id tipus esport
+	13:31:40	Carreguem id tipus esport
+	13:31:40	Carreguem id tipus esport
+	13:31:40	Carraguem Intensitats
+	13:31:40	Carraguem Intensitats
+	13:31:40	Carraguem Intensitats
+	13:31:40	Obrin formulari rol esportista
+	13:31:40	Tancant formulari de validació
+	13:31:42	Omplim la taula d'entrenaments
+	13:31:42	Carraguem els id del tipus d'esport al combo box
+	13:31:42	Carraguem els id del tipus d'esport al combo box
+	13:31:42	Carraguem els id del tipus d'esport al combo box
+	13:31:42	Carraguem els id del tipus d'esport al combo box
+	13:31:42	Carraguem els id del tipus d'esport al combo box
+	13:31:42	carreguem les intensitats al combo box
+	13:31:42	carreguem les intensitats al combo box
+	13:31:42	carreguem les intensitats al combo box
+	13:31:42	Obrin formulari entrenaments
+	13:31:45	Entrenament seleccionat de la taula ? ID: 5
+	13:31:45	Camps i botons activats
+	13:31:45	Dades de l'entrenament carregades als camps

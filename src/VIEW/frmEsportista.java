@@ -5,6 +5,7 @@
 package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
+import CONTROLLER.Principal;
 import DATA.Querys;
 import MODEL.Comentari;
 import MODEL.Entrenament;
@@ -30,12 +31,13 @@ public class frmEsportista extends javax.swing.JFrame {
     public frmEsportista() {
         initComponents();
 
-        Querys.mostrarEntrenaments();
-        omplirTaulaEntrenaments();
         carregarTipusEsport();
         carregarIntensitats();
-        
-        afegirListennerTaulaEntrenament() ;
+
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
+
+        afegirListennerTaulaEntrenament();
     }
 
     /**
@@ -322,15 +324,23 @@ public class frmEsportista extends javax.swing.JFrame {
         cbmTipus.removeAllItems();
         cbmTipus.addItem(null);
 
+        Principal.tipusesports.clear();
+
         try {
             ResultSet rs = Querys.getTipusEsport();
 
             while (rs.next()) {
+
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
 
-                cbmTipus.addItem(new TipusEsport(id, nom));
-                GestiorFitxersTXT.escripturaAFitxerLog("Carreguem id tipus esport");
+                TipusEsport tipus = new TipusEsport(id, nom);
+
+                cbmTipus.addItem(tipus);
+
+                Principal.tipusesports.add(tipus);
+
+                GestiorFitxersTXT.escripturaAFitxerLog("Carreguem tipus esport");
             }
 
         } catch (SQLException e) {
@@ -343,7 +353,7 @@ public class frmEsportista extends javax.swing.JFrame {
         String[] columnes = {
             "ID", "DATA", "DURADA", "DISTANCIA",
             "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
-            "ID_USUARI", "ID_TIPUS"
+            "ID_USUARI", "TIPUS ESPORT"
         };
 
         javax.swing.table.DefaultTableModel model
@@ -362,7 +372,7 @@ public class frmEsportista extends javax.swing.JFrame {
                 e.getIntensitat(),
                 e.isCompletat(),
                 e.getUsuariId(),
-                e.getTipusEsportId()
+                obtenirNomTipusEsport(e.getTipusEsportId())
             };
 
             model.addRow(fila);
@@ -371,8 +381,21 @@ public class frmEsportista extends javax.swing.JFrame {
         tblEntranaments.setModel(model);
         GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
     }
-    
-       public void omplirTaulaComentaris() {
+
+    private String obtenirNomTipusEsport(int idTipus) {
+        System.out.println("Buscant tipus: " + idTipus);
+
+        for (TipusEsport t : Principal.tipusesports) {
+
+            if (t.getId() == idTipus) {
+                return t.getNom();
+            }
+        }
+
+        return "";
+    }
+
+    public void omplirTaulaComentaris() {
 
         String[] columnes = {
             "ID",

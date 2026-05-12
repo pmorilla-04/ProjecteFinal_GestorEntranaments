@@ -5,6 +5,7 @@
 package VIEW;
 
 import CONTROLLER.GestiorFitxersTXT;
+import CONTROLLER.Principal;
 import DATA.Querys;
 import MODEL.Entrenament.Intensitat;
 import MODEL.TipusEsport;
@@ -26,10 +27,11 @@ public class frmEntranaments extends javax.swing.JFrame {
     public frmEntranaments() {
         initComponents();
         desactivarCamps();
-        Querys.mostrarEntrenaments();
-        omplirTaulaEntrenaments();
         carregarTipusEsport();
         carregarIntensitats();
+
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
 
         tblEntrenaments.getSelectionModel().addListSelectionListener(e -> {
 
@@ -361,12 +363,16 @@ private void carregarIntensitats() {
         }
     }
 
+  
+    
     private void carregarTipusEsport() {
 
         cbmTipus.removeAllItems();
         cbmTipus.addItem(null);
-        try {
 
+        Principal.tipusesports.clear();
+
+        try {
             ResultSet rs = Querys.getTipusEsport();
 
             while (rs.next()) {
@@ -374,14 +380,67 @@ private void carregarIntensitats() {
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
 
-                cbmTipus.addItem(new TipusEsport(id, nom));
-                GestiorFitxersTXT.escripturaAFitxerLog("Carraguem els id del tipus d'esport al combo box");
+                TipusEsport tipus = new TipusEsport(id, nom);
+
+                cbmTipus.addItem(tipus);
+
+                Principal.tipusesports.add(tipus);
+
+                GestiorFitxersTXT.escripturaAFitxerLog("Carreguem tipus esport");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public void omplirTaulaEntrenaments() {
+
+        String[] columnes = {
+            "ID", "DATA", "DURADA", "DISTANCIA",
+            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
+            "ID_USUARI", "TIPUS ESPORT"
+        };
+
+        javax.swing.table.DefaultTableModel model
+                = new javax.swing.table.DefaultTableModel();
+
+        model.setColumnIdentifiers(columnes);
+
+        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
+
+            Object[] fila = {
+                e.getId(),
+                e.getData(),
+                e.getDuradaMinuts(),
+                e.getDistancia(),
+                e.getDescripcio(),
+                e.getIntensitat(),
+                e.isCompletat(),
+                e.getUsuariId(),
+                obtenirNomTipusEsport(e.getTipusEsportId())
+            };
+
+            model.addRow(fila);
+        }
+
+       tblEntrenaments.setModel(model);
+        GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
+    }
+
+    private String obtenirNomTipusEsport(int idTipus) {
+        System.out.println("Buscant tipus: " + idTipus);
+
+        for (TipusEsport t : Principal.tipusesports) {
+
+            if (t.getId() == idTipus) {
+                return t.getNom();
+            }
+        }
+
+        return "";
+    }
+
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int id = Integer.parseInt(txtId.getText());
@@ -550,39 +609,7 @@ private void carregarIntensitats() {
         GestiorFitxersTXT.escripturaAFitxerLog("Agafem el Id del tipus d'esport seleccionat");
     }//GEN-LAST:event_cbmTipusActionPerformed
 
-    public void omplirTaulaEntrenaments() {
-
-        String[] columnes = {
-            "ID", "DATA", "DURADA", "DISTANCIA",
-            "DESCRIPCIO", "INTENSITAT", "COMPLETAT",
-            "ID_USUARI", "ID_TIPUS"
-        };
-
-        javax.swing.table.DefaultTableModel model
-                = new javax.swing.table.DefaultTableModel();
-
-        model.setColumnIdentifiers(columnes);
-
-        for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
-
-            Object[] fila = {
-                e.getId(),
-                e.getData(),
-                e.getDuradaMinuts(),
-                e.getDistancia(),
-                e.getDescripcio(),
-                e.getIntensitat(),
-                e.isCompletat(),
-                e.getUsuariId(),
-                e.getTipusEsportId()
-            };
-
-            model.addRow(fila);
-        }
-
-        tblEntrenaments.setModel(model);
-        GestiorFitxersTXT.escripturaAFitxerLog("Omplim la taula d'entrenaments");
-    }
+ 
 
     /**
      * @param args the command line arguments
