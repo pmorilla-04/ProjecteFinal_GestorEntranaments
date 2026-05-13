@@ -13,27 +13,50 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- *
+ * Classe encarregada de gestionar fitxers XML.
+ * 
+ * Permet validar usuaris a partir
+ * d'un fitxer XML.
+ * 
  * @author Usuari
  */
 public class GestioFitxersXML {
 
-    //VALIDAR USUARI
-    public static Boolean validaUsuari(String rutaNomFitxer, String nom, String pass) {
+    /**
+     * Valida les credencials d'un usuari
+     * llegint la informació des d'un fitxer XML.
+     * 
+     * @param rutaNomFitxer ruta del fitxer XML
+     * @param nom nom de l'usuari
+     * @param pass contrasenya de l'usuari
+     * 
+     * @return true si l'usuari existeix
+     * i les dades són correctes
+     */
+    public static Boolean validaUsuari(String rutaNomFitxer,
+            String nom, String pass) {
 
         Boolean usuariTrobat = false;
+
         try {
+
             File fXmlFile = new File(rutaNomFitxer);
 
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory dbFactory
+                    = DocumentBuilderFactory.newInstance();
 
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            DocumentBuilder dBuilder
+                    = dbFactory.newDocumentBuilder();
+
             Document doc = dBuilder.parse(fXmlFile);
+
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            System.out.println("Root element :"
+                    + doc.getDocumentElement().getNodeName());
 
             NodeList nList = doc.getElementsByTagName("usuari");
+
             System.out.println("----------------------------");
 
             String pnom = "";
@@ -42,18 +65,22 @@ public class GestioFitxersXML {
             for (int temp = 0; temp < nList.getLength(); temp++) {
 
                 Node nNode = nList.item(temp);
-                //System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
 
-                    pnom = eElement.getElementsByTagName("nom").item(0).getTextContent();
-                    ppass = eElement.getElementsByTagName("contrassenya").item(0).getTextContent();
+                    pnom = eElement.getElementsByTagName("nom")
+                            .item(0).getTextContent();
+
+                    ppass = eElement.getElementsByTagName("contrassenya")
+                            .item(0).getTextContent();
 
                     if (pnom.equals(nom) && ppass.equals(pass)) {
 
                         CONTROLLER.Principal.rol
-                                = eElement.getElementsByTagName("rol").item(0).getTextContent();
+                                = eElement.getElementsByTagName("rol")
+                                        .item(0).getTextContent();
 
                         CONTROLLER.Principal.usuariLoginat = pnom;
 
@@ -61,17 +88,23 @@ public class GestioFitxersXML {
                     }
 
                     if (pnom.equals(nom) && (ppass.equals(pass))) {
+
                         usuariTrobat = true;
+
                         return usuariTrobat;
+
                     } else {
+
                         usuariTrobat = false;
                     }
                 }
             }
+
         } catch (Exception e) {
+
             e.printStackTrace();
         }
+
         return usuariTrobat;
     }
-
 }

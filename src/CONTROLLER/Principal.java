@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package CONTROLLER;
 
 import DATA.Conexion;
@@ -16,40 +12,89 @@ import VIEW.frmValidacio;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe principal de l'aplicació.
+ * 
+ * S'encarrega d'inicialitzar el sistema,
+ * connectar amb la base de dades i
+ * obrir el formulari de validació.
+ * 
  * @author Usuari
  */
 public class Principal {
 
     /**
-     * @param args the command line arguments
+     * Rol de l'usuari loguejat.
      */
     public static String rol;
+
+    /**
+     * Nom de l'usuari loguejat.
+     */
     public static String usuariLoginat;
+
+    /**
+     * Ruta del fitxer de log actual.
+     */
     public static String rutaIFitxerLogActual;
+
+    /**
+     * Identificador de l'usuari loguejat.
+     */
     public static Integer usuariId;
 
+    /**
+     * Llista de logs del sistema.
+     */
     public static ArrayList<Log> logs = new ArrayList<>();
+
+    /**
+     * Llista d'usuaris.
+     */
     public static ArrayList<Usuari> usuaris = new ArrayList<>();
+
+    /**
+     * Llista d'esportistes.
+     */
     public static ArrayList<Esportista> esportistes = new ArrayList<>();
+
+    /**
+     * Llista de comentaris.
+     */
     public static ArrayList<Comentari> comentaris = new ArrayList<>();
+
+    /**
+     * Llista d'entrenaments.
+     */
     public static ArrayList<Entrenament> entrenaments = new ArrayList<>();
+
+    /**
+     * Llista d'estadístiques.
+     */
     public static ArrayList<Estadistica> estadistiques = new ArrayList<>();
+
+    /**
+     * Llista de tipus d'esports.
+     */
     public static ArrayList<TipusEsport> tipusesports = new ArrayList<>();
 
+    /**
+     * M?tode principal que inicia l'aplicació.
+     * 
+     * @param args arguments de línia de comandes
+     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         GestiorFitxersTXT.creacioLog();
         GestiorFitxersTXT.escripturaAFitxerLog("Programa iniciat");
 
         Conexion ccc = new Conexion();
         ccc.connectar();
+
         GestiorFitxersTXT.escripturaAFitxerLog("Conexio base de dades");
 
         frmValidacio f = new frmValidacio();
         f.setVisible(true);
+
         GestiorFitxersTXT.escripturaAFitxerLog("Obrint formulari Validacio");
-
     }
-
 }
