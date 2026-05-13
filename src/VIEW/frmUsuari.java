@@ -29,22 +29,7 @@ public class frmUsuari extends javax.swing.JFrame {
         omplirTaulaUsuaris();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula d'usuaris carregada");
         
-        tblUsuaris.getSelectionModel().addListSelectionListener(e -> {
-
-            if (!e.getValueIsAdjusting()) {
-
-                int fila = tblUsuaris.getSelectedRow();
-
-                if (fila != -1) {
-                    GestiorFitxersTXT.escripturaAFitxerLog("Usuari seleccionat de la taula");
-                    activarCamps();
-                    GestiorFitxersTXT.escripturaAFitxerLog("Camps i botons activats");
-                    txtNom.setText(tblUsuaris.getValueAt(fila, 1).toString());
-                    txtPassword.setText(tblUsuaris.getValueAt(fila, 2).toString());
-                    cbmTipus.setSelectedItem(tblUsuaris.getValueAt(fila, 3).toString());
-                }
-            }
-        });
+        listennerUsuari();
     }
 
     /**
@@ -179,6 +164,25 @@ public class frmUsuari extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void listennerUsuari() {
+        tblUsuaris.getSelectionModel().addListSelectionListener(e -> {
+
+            if (!e.getValueIsAdjusting()) {
+
+                int fila = tblUsuaris.getSelectedRow();
+
+                if (fila != -1) {
+                    GestiorFitxersTXT.escripturaAFitxerLog("Usuari seleccionat de la taula");
+                    activarCamps();
+                    GestiorFitxersTXT.escripturaAFitxerLog("Camps i botons activats");
+                    txtNom.setText(tblUsuaris.getValueAt(fila, 1).toString());
+                    txtPassword.setText(tblUsuaris.getValueAt(fila, 2).toString());
+                    cbmTipus.setSelectedItem(tblUsuaris.getValueAt(fila, 3).toString());
+                }
+            }
+        });
+    }
+    
     public void activarCamps() {
         txtNom.setEnabled(true);
         txtPassword.setEnabled(true);

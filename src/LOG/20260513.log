@@ -1,0 +1,47 @@
+	08:49:19	Programa iniciat
+	08:49:19	Conexio base de dades
+	08:49:19	Formulari de validació iniciat
+	08:49:19	Obrint formulari Validacio
+	08:49:28	Intent de validació de l'usuari: Pep
+	08:49:30	Validació correcta amb rol entrenador
+	08:49:30	Camps desactivats (formulari bloquejat o reset)
+	08:49:30	Formulari entrenador iniciat amb camps desactivats
+	08:49:30	Carreguem tipus esport
+	08:49:30	Carreguem tipus esport
+	08:49:30	Carreguem tipus esport
+	08:49:30	Carreguem tipus esport
+	08:49:30	Carreguem tipus esport
+	08:49:30	Entrenaments carregats des de la base de dades
+	08:49:30	Omplint taula entrenaments
+	08:49:30	Taula d'entrenaments omplerta
+	08:49:30	Listener de selecció d'entrenaments activat
+	08:49:30	Formulari entrenador obert
+	08:49:30	Tancant formulari de validació
+	08:49:32	Camps activats després de seleccionar entrenament
+	08:49:32	Entrenament seleccionat ? ID: 2
+	08:49:32	Comentaris carregats per l'entrenament ID: 2
+	08:49:32	Taula de comentaris omplerta correctament
+	08:49:32	Taula de comentaris actualitzada
+	08:50:10	Entrenament validat ? formulari bloquejat
+	08:50:16	Camps desactivats (formulari bloquejat o reset)
+	08:50:16	Comentari afegit ? formulari reiniciat i desactivat
+	08:50:16	Comentaris carregats de l'entrenament ID: 2
+	08:50:16	Taula de comentaris omplerta correctament
+	08:50:16	Taula de comentaris actualitzada
+	08:54:04	Programa iniciat
+	08:54:05	Conexio base de dades
+	08:54:05	Formulari de validació iniciat
+	08:54:05	Obrint formulari Validacio
+	08:54:21	Intent de validació de l'usuari: Carles
+	08:54:22	Validació correcta amb rol administrador
+	08:54:22	Formulari d'administrador iniciat
+	08:54:23	Formulari esportista obert
+	08:54:23	Tancant formulari de validació
+	08:54:26	Canviem a la seccio: Entrenaments
+	08:54:26	Omplim la taula d'entrenaments
+	08:54:31	Canviem a la seccio: Registres
+	08:54:31	Activem cerca de registres
+	08:54:42	Busquem logs de la data: 20260511
+	08:54:42	Omplim la taula de logs
+	08:54:49	Canviem a la seccio: Estadístiques
+	08:54:50	Omplim la taula d'estadistiques

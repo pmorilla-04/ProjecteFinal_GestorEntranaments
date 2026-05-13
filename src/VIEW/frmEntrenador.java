@@ -34,45 +34,21 @@ public class frmEntrenador extends javax.swing.JFrame {
         initComponents();
         desactivarCamps();
         GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador iniciat amb camps desactivats");
-        
+
         carregarTipusEsport();
-        
-        
+
         Querys.mostrarEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenaments carregats des de la base de dades");
 
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula d'entrenaments omplerta");
+
         afegirListennerTaulaEntrenament();
         GestiorFitxersTXT.escripturaAFitxerLog("Listener de selecció d'entrenaments activat");
 
-        txtComentari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-            public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                validarBoto();
-            }
+        afegirDocumentListener(txtComentari);
+        afegirDocumentListener(txtIdEntrenador);
 
-            public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                validarBoto();
-            }
-
-            public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                validarBoto();
-            }
-        });
-
-        txtIdEntrenador.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-            public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                validarBoto();
-            }
-
-            public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                validarBoto();
-            }
-
-            public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                validarBoto();
-            }
-        });
     }
 
     /**
@@ -236,7 +212,26 @@ public class frmEntrenador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void activarCamps() {
+    private void afegirDocumentListener(javax.swing.text.JTextComponent camp) {
+        camp.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                validarBoto();
+            }
+        });
+    }
+
+    public void activarCamps() {
         txtComentari.setEnabled(true);
         txtIdEntrenador.setEnabled(true);
         btnAfegirComentari.setEnabled(false);
@@ -251,7 +246,7 @@ public void activarCamps() {
         txtIdEntrenador.setEnabled(false);
         btnAfegirComentari.setEnabled(false);
 
-        ckValidar.setEnabled(false);
+        //ckValidar.setEnabled(false);
         GestiorFitxersTXT.escripturaAFitxerLog("Camps desactivats (formulari bloquejat o reset)");
 
     }
@@ -324,7 +319,8 @@ public void activarCamps() {
 
         int id = (int) tblEntranaments.getValueAt(fila, 0);
         Querys.validarEntrenament(id, validat);
-        desactivarCamps();
+        ckValidar.setEnabled(false);
+// desactivarCamps();
 
         GestiorFitxersTXT.escripturaAFitxerLog(
                 "Entrenament validat ? formulari bloquejat"
@@ -334,8 +330,6 @@ public void activarCamps() {
     /**
      * @param args the command line arguments
      */
-    
-    
     public void omplirTaulaEntrenaments() {
 
         String[] columnes = {
@@ -370,9 +364,8 @@ public void activarCamps() {
         tblEntranaments.setModel(model);
         GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
     }
- private void carregarTipusEsport() {
 
-        
+    private void carregarTipusEsport() {
 
         Principal.tipusesports.clear();
 
@@ -386,8 +379,6 @@ public void activarCamps() {
 
                 TipusEsport tipus = new TipusEsport(id, nom);
 
-                
-
                 Principal.tipusesports.add(tipus);
 
                 GestiorFitxersTXT.escripturaAFitxerLog("Carreguem tipus esport");
@@ -397,19 +388,20 @@ public void activarCamps() {
             e.printStackTrace();
         }
     }
+
     private String obtenirNomTipusEsport(int idTipus) {
 
-    if (Principal.tipusesports != null) {
+        if (Principal.tipusesports != null) {
 
-        for (TipusEsport t : Principal.tipusesports) {
-            if (t.getId() == idTipus) {
-                return t.getNom();
+            for (TipusEsport t : Principal.tipusesports) {
+                if (t.getId() == idTipus) {
+                    return t.getNom();
+                }
             }
         }
-    }
 
-    return "Desconegut"; 
-}
+        return "Desconegut";
+    }
 
     public void omplirTaulaComentaris() {
 

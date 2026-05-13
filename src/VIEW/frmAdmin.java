@@ -24,17 +24,8 @@ public class frmAdmin extends javax.swing.JFrame {
 
         txtData.setEnabled(false);
 
-        txtData.addActionListener(e -> {
+        afegirActionListenerData(txtData);
 
-            String data = txtData.getText();
-            GestiorFitxersTXT.escripturaAFitxerLog(
-                    "Busquem logs de la data: " + data
-            );
-
-            GestiorFitxersTXT.mostrarLogsPerData(data);
-
-            OmplirRegistres();
-        });
     }
 
     /**
@@ -150,6 +141,19 @@ public class frmAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void afegirActionListenerData(javax.swing.JTextField campData) {
+        txtData.addActionListener(e -> {
+            String data = txtData.getText();
+
+            GestiorFitxersTXT.escripturaAFitxerLog(
+                    "Busquem logs de la data: " + data
+            );
+
+            GestiorFitxersTXT.mostrarLogsPerData(data);
+
+            OmplirRegistres();
+        });
+    }
 
     private void btnEntranamentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntranamentsActionPerformed
         // TODO add your handling code here:
@@ -173,7 +177,7 @@ public class frmAdmin extends javax.swing.JFrame {
         GestiorFitxersTXT.escripturaAFitxerLog(
                 "Canviem a la seccio: " + opcio
         );
-        
+
         switch (opcio) {
 
             case "Estadístiques":
@@ -184,9 +188,9 @@ public class frmAdmin extends javax.swing.JFrame {
 
             case "Registres":
                 txtData.setEnabled(true);
-                 GestiorFitxersTXT.escripturaAFitxerLog(
-                    "Activem cerca de registres"
-            );
+                GestiorFitxersTXT.escripturaAFitxerLog(
+                        "Activem cerca de registres"
+                );
                 break;
 
             case "Entrenaments":
