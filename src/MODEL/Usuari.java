@@ -81,7 +81,7 @@ public abstract class Usuari {
     /**
      * Retorna la contrasenya de l'usuari.
      * 
-     * @return contrasenya de l'usuari
+     * @return contasenya de l'usuari
      */
     public String getContassenya() {
         return contrassenya;

@@ -38,7 +38,8 @@ public class Entrenament {
      * 
      * @param id identificador de l'entrenament
      * @param data data de l'entrenament
-     * @param distancia dist?ncia recorreguda
+     * @param duradaMinuts durada de l'entrenament
+     * @param distancia distancia recorreguda
      * @param descripcio descripció de l'entrenament
      * @param completat indica si l'entrenament est? completat
      * @param validat indica si l'entrenament est? validat
@@ -46,13 +47,10 @@ public class Entrenament {
      * @param usuariId identificador de l'usuari
      * @param tipusEsportId identificador del tipus d'esport
      */
-    public Entrenament(int id, LocalDate data, int distancia,
-            String descripcio, boolean completat,
-            boolean validat, Intensitat intensitat,
-            int usuariId, int tipusEsportId) {
-
+    public Entrenament(int id, LocalDate data, int duradaMinuts, int distancia, String descripcio, boolean completat, boolean validat, Intensitat intensitat, int usuariId, int tipusEsportId) {   
         this.id = id;
         this.data = data;
+        this.duradaMinuts = duradaMinuts;
         this.distancia = distancia;
         this.descripcio = descripcio;
         this.completat = completat;
@@ -65,7 +63,7 @@ public class Entrenament {
     /**
      * Retorna si l'entrenament est? validat.
      * 
-     * @return true si est? validat
+     * @return true si es validat
      */
     public boolean isValidat() {
         return validat;

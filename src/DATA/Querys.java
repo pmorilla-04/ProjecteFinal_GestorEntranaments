@@ -61,6 +61,7 @@ public class Querys {
                         new Entrenament(
                                 id,
                                 data,
+                                duradaMinuts,
                                 distancia,
                                 descripcio,
                                 completat,
@@ -153,6 +154,7 @@ public class Querys {
                         new Entrenament(
                                 rs.getInt("id"),
                                 rs.getDate("data").toLocalDate(),
+                                rs.getInt("duradaMinuts"),
                                 rs.getInt("distancia"),
                                 rs.getString("descripcio"),
                                 rs.getBoolean("completat"),
@@ -337,6 +339,7 @@ public class Querys {
                     return new Entrenament(
                             entrenamentId,
                             data,
+                            duradaMinuts,
                             distancia,
                             descripcio,
                             completat,

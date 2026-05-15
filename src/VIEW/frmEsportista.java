@@ -7,6 +7,7 @@ package VIEW;
 import CONTROLLER.GestiorFitxersTXT;
 import CONTROLLER.Principal;
 import DATA.Querys;
+import DATA.Querys2;
 import MODEL.Comentari;
 import MODEL.Entrenament;
 import MODEL.TipusEsport;
@@ -370,7 +371,7 @@ public class frmEsportista extends javax.swing.JFrame {
         model.setColumnIdentifiers(columnes);
 
         for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
-
+            System.out.println(e.getDuradaMinuts());
             Object[] fila = {
                 e.getId(),
                 e.getData(),
@@ -473,10 +474,10 @@ public class frmEsportista extends javax.swing.JFrame {
                     );
 
             Boolean completat = chkCompletat.isSelected() ? true : null;
-            Boolean validat = chkCompletat.isSelected() ? true : null;
+            Boolean validat = ckhValidat.isSelected() ? true : null;
             Integer tipus = null;
             if (cbmTipus.getSelectedItem() != null && !cbmTipus.getSelectedItem().equals("Tots")) {
-                tipus = Integer.parseInt(cbmTipus.getSelectedItem().toString());
+                tipus = Querys2.tornarIdTipusEsportAmbNom(cbmTipus.getSelectedItem().toString());
             }
 
             Querys.filtrarEntrenament(id, data, durada, distancia, intensitat, completat, validat,tipus);

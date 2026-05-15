@@ -1,0 +1,34 @@
+	10:58:43	Programa iniciat
+	10:58:43	Conexio base de dades
+	10:58:44	Formulari de validació iniciat
+	10:58:44	Obrint formulari Validacio
+	10:58:51	Intent de validació de l'usuari: Carles
+	10:58:52	Validació correcta amb rol administrador
+	10:58:52	Formulari d'administrador iniciat
+	10:58:52	Formulari esportista obert
+	10:58:52	Tancant formulari de validació
+	10:58:53	Formulari d'usuaris iniciat amb camps desactivats
+	10:58:54	Taula d'usuaris omplerta correctament
+	10:58:54	Taula d'usuaris carregada
+	10:58:54	Obrin formulari usuaris
+	10:58:56	Usuari seleccionat de la taula
+	10:58:56	Camps i botons activats
+	10:58:58	Usuari eliminat amb ID: 7
+	10:58:59	Taula d'usuaris omplerta correctament
+	10:58:59	Taula actualitzada després d'eliminar usuari
+	10:58:59	Camps buidats
+	10:58:59	Camps i botons desactivats
+	10:59:03	Usuari seleccionat de la taula
+	10:59:03	Camps i botons activats
+	10:59:12	Usuari modificat amb ID: 6
+	10:59:12	Taula d'usuaris omplerta correctament
+	10:59:12	Taula actualitzada després de modificar usuari
+	10:59:12	Camps buidats
+	10:59:12	Camps i botons desactivats
+	10:59:17	Usuari seleccionat de la taula
+	10:59:17	Camps i botons activats
+	10:59:37	Usuari afegit: Josep
+	10:59:37	Taula d'usuaris omplerta correctament
+	10:59:37	Taula actualitzada despres d'afegir usuari
+	10:59:37	Camps del formulari buidats
+	10:59:37	Camps i botons desactivats

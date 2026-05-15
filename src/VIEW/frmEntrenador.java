@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuari
  */
 public class frmEntrenador extends javax.swing.JFrame {
-
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frmEntrenador.class.getName());
 
     /**
@@ -34,21 +34,21 @@ public class frmEntrenador extends javax.swing.JFrame {
         initComponents();
         desactivarCamps();
         GestiorFitxersTXT.escripturaAFitxerLog("Formulari entrenador iniciat amb camps desactivats");
-
+        
         carregarTipusEsport();
-
+        
         Querys.mostrarEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Entrenaments carregats des de la base de dades");
-
+        
         omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog("Taula d'entrenaments omplerta");
-
+        
         afegirListennerTaulaEntrenament();
         GestiorFitxersTXT.escripturaAFitxerLog("Listener de selecció d'entrenaments activat");
-
+        
         afegirDocumentListener(txtComentari);
         afegirDocumentListener(txtIdEntrenador);
-
+        
     }
 
     /**
@@ -218,47 +218,47 @@ public class frmEntrenador extends javax.swing.JFrame {
             public void insertUpdate(javax.swing.event.DocumentEvent e) {
                 validarBoto();
             }
-
+            
             @Override
             public void removeUpdate(javax.swing.event.DocumentEvent e) {
                 validarBoto();
             }
-
+            
             @Override
             public void changedUpdate(javax.swing.event.DocumentEvent e) {
                 validarBoto();
             }
         });
     }
-
+    
     public void activarCamps() {
         txtComentari.setEnabled(true);
         txtIdEntrenador.setEnabled(true);
         btnAfegirComentari.setEnabled(false);
 
-        ckValidar.setEnabled(true);
+        //ckValidar.setEnabled(true);
         GestiorFitxersTXT.escripturaAFitxerLog("Camps activats després de seleccionar entrenament");
-
+        
     }
-
+    
     public void desactivarCamps() {
         txtComentari.setEnabled(false);
         txtIdEntrenador.setEnabled(false);
         btnAfegirComentari.setEnabled(false);
-
-        //ckValidar.setEnabled(false);
+        
+        ckValidar.setEnabled(false);
         GestiorFitxersTXT.escripturaAFitxerLog("Camps desactivats (formulari bloquejat o reset)");
-
+        
     }
-
+    
     public void validarBoto() {
-
+        
         int fila = tblEntranaments.getSelectedRow();
-
+        
         boolean entrenamentSeleccionat = (fila != -1);
         boolean comentariOk = !txtComentari.getText().trim().isEmpty();
         boolean idOk = !txtIdEntrenador.getText().trim().isEmpty();
-
+        
         btnAfegirComentari.setEnabled(
                 entrenamentSeleccionat && comentariOk && idOk
         );
@@ -267,7 +267,7 @@ public class frmEntrenador extends javax.swing.JFrame {
     private void btnAfegirComentariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirComentariActionPerformed
         // TODO add your handling code here:
         int fila = tblEntranaments.getSelectedRow();
-
+        
         if (fila != -1) {
             Integer idEntranament = (Integer) tblEntranaments.getModel().getValueAt(fila, 0);
             Integer idEntrenador = Integer.parseInt(txtIdEntrenador.getText());
@@ -276,13 +276,13 @@ public class frmEntrenador extends javax.swing.JFrame {
             afegirComentari(text,
                     data, idEntrenador, idEntranament);
             int filaSeleccionada = tblEntranaments.getSelectedRow();
-
+            
             desactivarCamps();
-
+            
             GestiorFitxersTXT.escripturaAFitxerLog(
                     "Comentari afegit ? formulari reiniciat i desactivat"
             );
-
+            
             if (filaSeleccionada != -1) {
 
                 // Agafem el ID de l'entrenament (columna 0)
@@ -312,39 +312,38 @@ public class frmEntrenador extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean validat = ckValidar.isSelected();
         int fila = tblEntranaments.getSelectedRow();
-
+        
         if (fila == -1) {
             return; // no hi ha res seleccionat
         }
-
+        
         int id = (int) tblEntranaments.getValueAt(fila, 0);
         Querys.validarEntrenament(id, validat);
+        ckValidar.setSelected(false);
         ckValidar.setEnabled(false);
-// desactivarCamps();
-
+        Querys.mostrarEntrenaments();
+        omplirTaulaEntrenaments();
         GestiorFitxersTXT.escripturaAFitxerLog(
-                "Entrenament validat ? formulari bloquejat"
+                "Entrenament validat  formulari bloquejat"
         );
     }//GEN-LAST:event_ckValidarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public void omplirTaulaEntrenaments() {
-
+        
         String[] columnes = {
             "ID", "DATA", "DURADA", "DISTANCIA",
             "DESCRIPCIO", "INTENSITAT", "COMPLETAT", "VALIDAT",
             "ID_USUARI", "TIPUS ESPORT"
         };
-
+        
         javax.swing.table.DefaultTableModel model
                 = new javax.swing.table.DefaultTableModel();
-
+        
         model.setColumnIdentifiers(columnes);
-
+        
         for (MODEL.Entrenament e : CONTROLLER.Principal.entrenaments) {
-
+            
             Object[] fila = {
                 e.getId(),
                 e.getData(),
@@ -357,54 +356,54 @@ public class frmEntrenador extends javax.swing.JFrame {
                 e.getUsuariId(),
                 obtenirNomTipusEsport(e.getTipusEsportId())
             };
-
+            
             model.addRow(fila);
         }
-
+        
         tblEntranaments.setModel(model);
         GestiorFitxersTXT.escripturaAFitxerLog("Omplint taula entrenaments");
     }
-
+    
     private void carregarTipusEsport() {
-
+        
         Principal.tipusesports.clear();
-
+        
         try {
             ResultSet rs = Querys.getTipusEsport();
-
+            
             while (rs.next()) {
-
+                
                 int id = rs.getInt("id");
                 String nom = rs.getString("nom");
-
+                
                 TipusEsport tipus = new TipusEsport(id, nom);
-
+                
                 Principal.tipusesports.add(tipus);
-
+                
                 GestiorFitxersTXT.escripturaAFitxerLog("Carreguem tipus esport");
             }
-
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
+    
     private String obtenirNomTipusEsport(int idTipus) {
-
+        
         if (Principal.tipusesports != null) {
-
+            
             for (TipusEsport t : Principal.tipusesports) {
                 if (t.getId() == idTipus) {
                     return t.getNom();
                 }
             }
         }
-
+        
         return "Desconegut";
     }
-
+    
     public void omplirTaulaComentaris() {
-
+        
         String[] columnes = {
             "ID",
             "TEXT",
@@ -412,13 +411,13 @@ public class frmEntrenador extends javax.swing.JFrame {
             "ENTRENAMENT_ID",
             "ENTRENADOR_ID"
         };
-
+        
         DefaultTableModel model = new DefaultTableModel();
-
+        
         model.setColumnIdentifiers(columnes);
-
+        
         for (Comentari c : CONTROLLER.Principal.comentaris) {
-
+            
             Object[] fila = {
                 c.getId(),
                 c.getText(),
@@ -426,28 +425,28 @@ public class frmEntrenador extends javax.swing.JFrame {
                 c.getEntrenamentId(),
                 c.getEntrenadorId()
             };
-
+            
             model.addRow(fila);
         }
-
+        
         tblComentaris.setModel(model);
         GestiorFitxersTXT.escripturaAFitxerLog(
                 "Taula de comentaris omplerta correctament"
         );
     }
-
+    
     private void afegirListennerTaulaEntrenament() {
-
+        
         tblEntranaments.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
+            
             @Override
             public void valueChanged(ListSelectionEvent e) {
 
                 // Evita que es dispari dues vegades
                 if (!e.getValueIsAdjusting()) {
-
+                    
                     int filaSeleccionada = tblEntranaments.getSelectedRow();
-
+                    
                     if (filaSeleccionada != -1) {
 
                         // Agafem el ID de l'entrenament (columna 0)
@@ -455,7 +454,15 @@ public class frmEntrenador extends javax.swing.JFrame {
                                 tblEntranaments.getValueAt(filaSeleccionada, 0).toString()
                         );
                         activarCamps();
-
+                        boolean esCompletat = (boolean) tblEntranaments.getValueAt(filaSeleccionada, 6);
+                        boolean esValidat = (boolean) tblEntranaments.getValueAt(filaSeleccionada, 7);
+                        
+                        if (esCompletat && !esValidat) {
+                            ckValidar.setEnabled(true);
+                        } else {
+                            ckValidar.setEnabled(false);
+                        }
+                        
                         GestiorFitxersTXT.escripturaAFitxerLog(
                                 "Entrenament seleccionat ? ID: " + idEntrenament
                         );
@@ -475,7 +482,7 @@ public class frmEntrenador extends javax.swing.JFrame {
             }
         });
     }
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

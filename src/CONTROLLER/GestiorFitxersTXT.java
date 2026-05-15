@@ -70,7 +70,7 @@ public class GestiorFitxersTXT {
     /**
      * Escriu un missatge al fitxer de log.
      * 
-     * @param text missatge que es guardar? al log
+     * @param text missatge que es guarda al log
      */
     public static void escripturaAFitxerLog(String text) {
 

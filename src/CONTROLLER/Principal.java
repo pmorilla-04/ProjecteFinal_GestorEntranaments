@@ -78,7 +78,7 @@ public class Principal {
     public static ArrayList<TipusEsport> tipusesports = new ArrayList<>();
 
     /**
-     * M?tode principal que inicia l'aplicació.
+     * Metode principal que inicia l'aplicació.
      * 
      * @param args arguments de línia de comandes
      */

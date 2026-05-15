@@ -298,9 +298,7 @@ public class frmUsuari extends javax.swing.JFrame {
         GestiorFitxersTXT.escripturaAFitxerLog("Camps i botons desactivats");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+  
     public void omplirTaulaUsuaris() {
         String[] columnes = {"ID", "NOM", "CONTRASSENYA", "ROL"};
 
