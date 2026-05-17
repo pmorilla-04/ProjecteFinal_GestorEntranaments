@@ -4,6 +4,7 @@
  */
 package VIEW;
 
+import CONTROLLER.GestioFitxersXML;
 import CONTROLLER.GestiorFitxersTXT;
 import DATA.Querys;
 import MODEL.Usuari;
@@ -204,6 +205,7 @@ public class frmUsuari extends javax.swing.JFrame {
     }
     private void btnAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfegirActionPerformed
         // TODO add your handling code here:
+        int id = (int) (System.currentTimeMillis() % 100000);
         String nom = txtNom.getText();
 
         String contrassenya = new String(txtPassword.getPassword());
@@ -213,6 +215,8 @@ public class frmUsuari extends javax.swing.JFrame {
         );
 
         Querys.afegirUsuari(nom, contrassenya, rol);
+        GestioFitxersXML.afegirUsuari(id, nom, contrassenya, rol.name(), "src/FITXERS/Usuaris.xml");
+
        GestiorFitxersTXT.escripturaAFitxerLog("Usuari afegit: " + nom);
 
         Querys.mostrarUsuaris();
@@ -251,6 +255,7 @@ public class frmUsuari extends javax.swing.JFrame {
         );
 
         Querys.modificarUsuari(id, nom, contrassenya, rol);
+        GestioFitxersXML.modificarUsuari(id, nom, contrassenya, rol.name(), "src/FITXERS/Usuaris.xml");
        GestiorFitxersTXT.escripturaAFitxerLog("Usuari modificat amb ID: " + id);
 
         Querys.mostrarUsuaris();
@@ -281,6 +286,7 @@ public class frmUsuari extends javax.swing.JFrame {
         int id = (int) tblUsuaris.getValueAt(fila, 0);
 
         Querys.eliminarUsuari(id);
+        GestioFitxersXML.eliminarUsuari(id, "src/FITXERS/Usuaris.xml");
         GestiorFitxersTXT.escripturaAFitxerLog("Usuari eliminat amb ID: " + id);
 
         Querys.mostrarUsuaris();

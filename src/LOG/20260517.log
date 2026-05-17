@@ -1,0 +1,126 @@
+	21:26:11	Programa iniciat
+	21:26:12	Conexio base de dades
+	21:26:12	Formulari de validació iniciat
+	21:26:12	Obrint formulari Validacio
+	21:26:19	Intent de validació de l'usuari: Pau
+	21:26:20	Validació correcta amb rol esportista
+	21:26:20	Carreguem tipus esport
+	21:26:20	Carreguem tipus esport
+	21:26:20	Carreguem tipus esport
+	21:26:20	Carreguem tipus esport
+	21:26:20	Carreguem tipus esport
+	21:26:20	Carraguem Intensitats
+	21:26:20	Carraguem Intensitats
+	21:26:20	Carraguem Intensitats
+	21:26:20	Omplint taula entrenaments
+	21:26:20	Obrin formulari rol esportista
+	21:26:20	Tancant formulari de validació
+	21:26:48	Carreguem tipus esport
+	21:26:48	Carreguem tipus esport
+	21:26:48	Carreguem tipus esport
+	21:26:48	Carreguem tipus esport
+	21:26:48	Carreguem tipus esport
+	21:26:48	carreguem les intensitats al combo box
+	21:26:48	carreguem les intensitats al combo box
+	21:26:48	carreguem les intensitats al combo box
+	21:26:48	Omplint taula entrenaments
+	21:26:48	Obrin formulari entrenaments
+	21:26:50	Entrenament seleccionat de la taula ? ID: 1
+	21:26:50	Camps i botons activats
+	21:26:50	Dades de l'entrenament carregades als camps
+	21:26:59	Programa iniciat
+	21:27:00	Conexio base de dades
+	21:27:00	Formulari de validació iniciat
+	21:27:00	Obrint formulari Validacio
+	21:46:33	Programa iniciat
+	21:46:34	Conexio base de dades
+	21:46:34	Formulari de validació iniciat
+	21:46:34	Obrint formulari Validacio
+	21:46:44	Intent de validació de l'usuari: Carles
+	21:46:45	Validació correcta amb rol administrador
+	21:46:45	Formulari d'administrador iniciat
+	21:46:45	Formulari esportista obert
+	21:46:45	Tancant formulari de validació
+	21:46:48	Formulari d'usuaris iniciat amb camps desactivats
+	21:46:48	Taula d'usuaris omplerta correctament
+	21:46:48	Taula d'usuaris carregada
+	21:46:48	Obrin formulari usuaris
+	21:46:51	Usuari seleccionat de la taula
+	21:46:51	Camps i botons activats
+	21:47:10	Usuari afegit: Manel
+	21:47:10	Taula d'usuaris omplerta correctament
+	21:47:10	Taula actualitzada despres d'afegir usuari
+	21:47:10	Camps del formulari buidats
+	21:47:10	Camps i botons desactivats
+	21:50:49	Usuari seleccionat de la taula
+	21:50:49	Camps i botons activats
+	21:50:53	Usuari seleccionat de la taula
+	21:50:53	Camps i botons activats
+	21:51:10	Usuari afegit: Josep
+	21:51:10	Taula d'usuaris omplerta correctament
+	21:51:10	Taula actualitzada despres d'afegir usuari
+	21:51:10	Camps del formulari buidats
+	21:51:10	Camps i botons desactivats
+	21:56:56	Programa iniciat
+	21:56:56	Conexio base de dades
+	21:56:56	Formulari de validació iniciat
+	21:56:56	Obrint formulari Validacio
+	21:57:04	Intent de validació de l'usuari: Pau
+	22:05:57	Programa iniciat
+	22:05:57	Conexio base de dades
+	22:05:58	Formulari de validació iniciat
+	22:05:58	Obrint formulari Validacio
+	22:06:13	Intent de validació de l'usuari: Pau
+	22:06:15	Intent de validació de l'usuari: Pau
+	22:06:16	Intent de validació de l'usuari: Pau
+	22:08:06	Programa iniciat
+	22:08:07	Conexio base de dades
+	22:08:07	Formulari de validació iniciat
+	22:08:07	Obrint formulari Validacio
+	22:08:15	Intent de validació de l'usuari: Pau
+	22:08:17	Validació correcta amb rol esportista
+	22:08:17	Carreguem tipus esport
+	22:08:17	Carreguem tipus esport
+	22:08:17	Carreguem tipus esport
+	22:08:17	Carreguem tipus esport
+	22:08:17	Carreguem tipus esport
+	22:08:17	Carraguem Intensitats
+	22:08:17	Carraguem Intensitats
+	22:08:17	Carraguem Intensitats
+	22:08:17	Omplint taula entrenaments
+	22:08:17	Obrin formulari rol esportista
+	22:08:17	Tancant formulari de validació
+	22:08:22	Programa iniciat
+	22:08:23	Conexio base de dades
+	22:08:23	Formulari de validació iniciat
+	22:08:23	Obrint formulari Validacio
+	22:08:31	Intent de validació de l'usuari: Carles
+	22:08:32	Validació correcta amb rol administrador
+	22:08:32	Formulari d'administrador iniciat
+	22:08:33	Formulari esportista obert
+	22:08:33	Tancant formulari de validació
+	22:08:35	Formulari d'usuaris iniciat amb camps desactivats
+	22:08:35	Taula d'usuaris omplerta correctament
+	22:08:35	Taula d'usuaris carregada
+	22:08:35	Obrin formulari usuaris
+	22:08:36	Usuari seleccionat de la taula
+	22:08:36	Camps i botons activats
+	22:08:43	Usuari modificat amb ID: 8
+	22:08:43	Taula d'usuaris omplerta correctament
+	22:08:43	Taula actualitzada després de modificar usuari
+	22:08:43	Camps buidats
+	22:08:43	Camps i botons desactivats
+	22:09:02	Usuari seleccionat de la taula
+	22:09:02	Camps i botons activats
+	22:09:04	Usuari eliminat amb ID: 8
+	22:09:04	Taula d'usuaris omplerta correctament
+	22:09:04	Taula actualitzada després d'eliminar usuari
+	22:09:04	Camps buidats
+	22:09:04	Camps i botons desactivats
+	22:09:18	Usuari seleccionat de la taula
+	22:09:18	Camps i botons activats
+	22:09:39	Usuari afegit: Laia
+	22:09:39	Taula d'usuaris omplerta correctament
+	22:09:39	Taula actualitzada despres d'afegir usuari
+	22:09:39	Camps del formulari buidats
+	22:09:39	Camps i botons desactivats

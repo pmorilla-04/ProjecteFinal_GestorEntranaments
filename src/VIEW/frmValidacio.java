@@ -135,7 +135,7 @@ public class frmValidacio extends javax.swing.JFrame {
         }
 
         switch (rol) {
-            case "admin":
+            case "ADMIN":
                 JOptionPane.showMessageDialog(null, "Ets administrador");
                 GestiorFitxersTXT.escripturaAFitxerLog(
                         "Validació correcta amb rol administrador"
@@ -154,7 +154,7 @@ public class frmValidacio extends javax.swing.JFrame {
                 );
                 break;
 
-            case "esportista":
+            case "ESPORTISTA":
                 JOptionPane.showMessageDialog(null, "Ets esportista");
                 GestiorFitxersTXT.escripturaAFitxerLog("Validació correcta amb rol esportista");
 
@@ -169,7 +169,7 @@ public class frmValidacio extends javax.swing.JFrame {
                 );
                 break;
 
-            case "entrenador":
+            case "ENTRENADOR":
                 JOptionPane.showMessageDialog(null, "Ets entrenador");
                 GestiorFitxersTXT.escripturaAFitxerLog("Validació correcta amb rol entrenador");
 

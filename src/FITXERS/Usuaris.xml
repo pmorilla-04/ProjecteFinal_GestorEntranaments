@@ -1,20 +1,165 @@
-<?xml version="1.0" encoding="windows-1250"?>
+<?xml version="1.0" encoding="windows-1250" standalone="no"?>
 <usuaris>
+                
+    
+    
     <usuari id="1">
-        <nom>Carles</nom>
+                                
+        
+        
+        <nom>Pau</nom>
+                                
+        
+        
         <contrassenya>1234</contrassenya>
-        <rol>admin</rol>
+                                
+        
+        
+        <rol>ESPORTISTA</rol>
+                            
+    
+    
     </usuari>
+                
+    
     
     <usuari id="2">
-        <nom>Pau</nom>
+                                
+        
+        
+        <nom>Carles</nom>
+                                
+        
+        
         <contrassenya>1234</contrassenya>
-        <rol>esportista</rol>
+                                
+        
+        
+        <rol>ADMIN</rol>
+                            
+    
+    
     </usuari>
+                
+    
     
     <usuari id="3">
+                                
+        
+        
         <nom>Pep</nom>
+                                
+        
+        
         <contrassenya>1234</contrassenya>
-        <rol>entrenador</rol>
+                                
+        
+        
+        <rol>ENTRENADOR</rol>
+                            
+    
+    
     </usuari>
+                
+    
+    
+    <usuari id="4">
+                                
+        
+        
+        <nom>admin1</nom>
+                                
+        
+        
+        <contrassenya>admin123</contrassenya>
+                                
+        
+        
+        <rol>ADMIN</rol>
+                            
+    
+    
+    </usuari>
+                
+    
+    
+    <usuari id="5">
+                                
+        
+        
+        <nom>joan</nom>
+                                
+        
+        
+        <contrassenya>joan123</contrassenya>
+                                
+        
+        
+        <rol>ESPORTISTA</rol>
+                            
+    
+    
+    </usuari>
+                
+    
+    
+    <usuari id="6">
+                                
+        
+        
+        <nom>marta</nom>
+                                
+        
+        
+        <contrassenya>marta123</contrassenya>
+                                
+        
+        
+        <rol>ESPORTISTA</rol>
+                            
+    
+    
+    </usuari>
+                
+    
+    
+    <usuari id="7">
+                                
+        
+        
+        <nom>pere</nom>
+                                
+        
+        
+        <contrassenya>pere123</contrassenya>
+                                
+        
+        
+        <rol>ENTRENADOR</rol>
+                            
+    
+    
+    </usuari>
+                
+    <usuari id="8">
+                                
+        
+        
+        <nom>laia</nom>
+                                
+        
+        
+        <contrassenya>laia123</contrassenya>
+                                
+        
+        
+        <rol>ENTRENADOR</rol>
+                            
+    
+    
+    </usuari>
+    
+
+
+    
 </usuaris>
