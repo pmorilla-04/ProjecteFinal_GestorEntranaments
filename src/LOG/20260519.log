@@ -1,0 +1,262 @@
+	09:02:18	Programa iniciat
+	09:02:18	Conexio base de dades
+	09:02:18	Formulari de validació iniciat
+	09:02:18	Obrint formulari Validacio
+	09:02:36	Intent de validació de l'usuari: Pau
+	09:02:40	Validació correcta amb rol esportista
+	09:02:41	Carreguem tipus esport
+	09:02:41	Carreguem tipus esport
+	09:02:41	Carreguem tipus esport
+	09:02:41	Carreguem tipus esport
+	09:02:41	Carreguem tipus esport
+	09:02:41	Carraguem Intensitats
+	09:02:41	Carraguem Intensitats
+	09:02:41	Carraguem Intensitats
+	09:02:41	Omplint taula entrenaments
+	09:02:41	Obrin formulari rol esportista
+	09:02:41	Tancant formulari de validació
+	09:03:04	Omplint taula entrenaments
+	09:03:14	Omplint taula entrenaments
+	09:03:14	filtratge cancelat
+	09:03:19	Omplint taula entrenaments
+	09:03:24	Omplint taula entrenaments
+	09:03:26	Carreguem tipus esport
+	09:03:26	Carreguem tipus esport
+	09:03:26	Carreguem tipus esport
+	09:03:26	Carreguem tipus esport
+	09:03:26	Carreguem tipus esport
+	09:03:26	carreguem les intensitats al combo box
+	09:03:26	carreguem les intensitats al combo box
+	09:03:26	carreguem les intensitats al combo box
+	09:03:26	Omplint taula entrenaments
+	09:03:26	Obrin formulari entrenaments
+	09:03:29	Entrenament seleccionat de la taula ? ID: 5
+	09:03:29	Camps i botons activats
+	09:03:29	Dades de l'entrenament carregades als camps
+	09:03:35	Entrenament modificat
+	09:03:35	Agafem el Id del tipus d'esport seleccionat
+	09:03:35	Camps buidats
+	09:03:35	Omplint taula entrenaments
+	09:03:35	Taula actualitzada
+	09:03:35	Camps desactivats
+	09:03:44	Entrenament seleccionat de la taula ? ID: 6
+	09:03:44	Camps i botons activats
+	09:03:44	Dades de l'entrenament carregades als camps
+	09:03:47	Entrenament eliminat
+	09:03:47	Camps buidats
+	09:03:47	Omplint taula entrenaments
+	09:03:47	Taula actualitzada
+	09:03:47	Camps desactivats
+	09:03:52	Entrenament seleccionat de la taula ? ID: 5
+	09:03:52	Camps i botons activats
+	09:03:52	Dades de l'entrenament carregades als camps
+	09:03:57	Agafem el Id del tipus d'esport seleccionat
+	09:03:59	Entrenament afegit
+	09:03:59	Agafem el Id del tipus d'esport seleccionat
+	09:03:59	Camps buidats
+	09:03:59	Omplint taula entrenaments
+	09:03:59	Taula actualitzatda
+	09:03:59	Camps desactivats
+	09:04:09	Programa iniciat
+	09:04:10	Conexio base de dades
+	09:04:10	Formulari de validació iniciat
+	09:04:10	Obrint formulari Validacio
+	09:04:19	Intent de validació de l'usuari: Pep
+	09:04:21	Validació correcta amb rol entrenador
+	09:04:21	Camps desactivats (formulari bloquejat o reset)
+	09:04:21	Formulari entrenador iniciat amb camps desactivats
+	09:04:21	Carreguem tipus esport
+	09:04:21	Carreguem tipus esport
+	09:04:21	Carreguem tipus esport
+	09:04:21	Carreguem tipus esport
+	09:04:21	Carreguem tipus esport
+	09:04:21	Entrenaments carregats des de la base de dades
+	09:04:21	Omplint taula entrenaments
+	09:04:21	Taula d'entrenaments omplerta
+	09:04:21	Listener de selecció d'entrenaments activat
+	09:04:21	Formulari entrenador obert
+	09:04:21	Tancant formulari de validació
+	09:04:31	Camps activats després de seleccionar entrenament
+	09:04:31	Entrenament seleccionat ? ID: 8
+	09:04:31	Comentaris carregats per l'entrenament ID: 8
+	09:04:31	Taula de comentaris omplerta correctament
+	09:04:31	Taula de comentaris actualitzada
+	09:04:57	Omplint taula entrenaments
+	09:04:57	Entrenament validat  formulari bloquejat
+	09:05:03	Camps activats després de seleccionar entrenament
+	09:05:03	Entrenament seleccionat ? ID: 8
+	09:05:03	Comentaris carregats per l'entrenament ID: 8
+	09:05:03	Taula de comentaris omplerta correctament
+	09:05:03	Taula de comentaris actualitzada
+	09:05:10	Camps activats després de seleccionar entrenament
+	09:05:10	Entrenament seleccionat ? ID: 4
+	09:05:10	Comentaris carregats per l'entrenament ID: 4
+	09:05:10	Taula de comentaris omplerta correctament
+	09:05:10	Taula de comentaris actualitzada
+	09:05:11	Camps activats després de seleccionar entrenament
+	09:05:11	Entrenament seleccionat ? ID: 5
+	09:05:12	Comentaris carregats per l'entrenament ID: 5
+	09:05:12	Taula de comentaris omplerta correctament
+	09:05:12	Taula de comentaris actualitzada
+	09:05:22	Programa iniciat
+	09:05:23	Conexio base de dades
+	09:05:23	Formulari de validació iniciat
+	09:05:23	Obrint formulari Validacio
+	09:05:31	Intent de validació de l'usuari: Pep
+	09:05:33	Validació correcta amb rol entrenador
+	09:05:33	Camps desactivats (formulari bloquejat o reset)
+	09:05:33	Formulari entrenador iniciat amb camps desactivats
+	09:05:33	Carreguem tipus esport
+	09:05:33	Carreguem tipus esport
+	09:05:33	Carreguem tipus esport
+	09:05:33	Carreguem tipus esport
+	09:05:33	Carreguem tipus esport
+	09:05:33	Entrenaments carregats des de la base de dades
+	09:05:33	Omplint taula entrenaments
+	09:05:33	Taula d'entrenaments omplerta
+	09:05:33	Listener de selecció d'entrenaments activat
+	09:05:33	Formulari entrenador obert
+	09:05:33	Tancant formulari de validació
+	09:05:35	Camps activats després de seleccionar entrenament
+	09:05:35	Entrenament seleccionat ? ID: 8
+	09:05:35	Comentaris carregats per l'entrenament ID: 8
+	09:05:35	Taula de comentaris omplerta correctament
+	09:05:35	Taula de comentaris actualitzada
+	09:05:37	Camps activats després de seleccionar entrenament
+	09:05:37	Entrenament seleccionat ? ID: 5
+	09:05:37	Comentaris carregats per l'entrenament ID: 5
+	09:05:37	Taula de comentaris omplerta correctament
+	09:05:37	Taula de comentaris actualitzada
+	09:05:38	Camps activats després de seleccionar entrenament
+	09:05:38	Entrenament seleccionat ? ID: 8
+	09:05:38	Comentaris carregats per l'entrenament ID: 8
+	09:05:38	Taula de comentaris omplerta correctament
+	09:05:38	Taula de comentaris actualitzada
+	09:05:49	Camps activats després de seleccionar entrenament
+	09:05:49	Entrenament seleccionat ? ID: 5
+	09:05:49	Comentaris carregats per l'entrenament ID: 5
+	09:05:49	Taula de comentaris omplerta correctament
+	09:05:49	Taula de comentaris actualitzada
+	09:05:50	Camps activats després de seleccionar entrenament
+	09:05:50	Entrenament seleccionat ? ID: 3
+	09:05:51	Comentaris carregats per l'entrenament ID: 3
+	09:05:51	Taula de comentaris omplerta correctament
+	09:05:51	Taula de comentaris actualitzada
+	09:05:56	Camps desactivats (formulari bloquejat o reset)
+	09:05:56	Comentari afegit ? formulari reiniciat i desactivat
+	09:05:56	Comentaris carregats de l'entrenament ID: 3
+	09:05:56	Taula de comentaris omplerta correctament
+	09:05:56	Taula de comentaris actualitzada
+	09:06:11	Camps activats després de seleccionar entrenament
+	09:06:11	Entrenament seleccionat ? ID: 1
+	09:06:11	Comentaris carregats per l'entrenament ID: 1
+	09:06:11	Taula de comentaris omplerta correctament
+	09:06:11	Taula de comentaris actualitzada
+	09:06:16	Camps activats després de seleccionar entrenament
+	09:06:16	Entrenament seleccionat ? ID: 1
+	09:06:16	Comentaris carregats per l'entrenament ID: 1
+	09:06:16	Taula de comentaris omplerta correctament
+	09:06:16	Taula de comentaris actualitzada
+	09:06:17	Camps activats després de seleccionar entrenament
+	09:06:17	Entrenament seleccionat ? ID: 2
+	09:06:17	Comentaris carregats per l'entrenament ID: 2
+	09:06:17	Taula de comentaris omplerta correctament
+	09:06:17	Taula de comentaris actualitzada
+	09:06:18	Camps activats després de seleccionar entrenament
+	09:06:18	Entrenament seleccionat ? ID: 5
+	09:06:18	Comentaris carregats per l'entrenament ID: 5
+	09:06:18	Taula de comentaris omplerta correctament
+	09:06:18	Taula de comentaris actualitzada
+	09:06:19	Camps activats després de seleccionar entrenament
+	09:06:19	Entrenament seleccionat ? ID: 8
+	09:06:20	Comentaris carregats per l'entrenament ID: 8
+	09:06:20	Taula de comentaris omplerta correctament
+	09:06:20	Taula de comentaris actualitzada
+	09:06:21	Camps activats després de seleccionar entrenament
+	09:06:21	Entrenament seleccionat ? ID: 5
+	09:06:21	Comentaris carregats per l'entrenament ID: 5
+	09:06:21	Taula de comentaris omplerta correctament
+	09:06:21	Taula de comentaris actualitzada
+	09:06:21	Camps activats després de seleccionar entrenament
+	09:06:21	Entrenament seleccionat ? ID: 4
+	09:06:21	Comentaris carregats per l'entrenament ID: 4
+	09:06:21	Taula de comentaris omplerta correctament
+	09:06:21	Taula de comentaris actualitzada
+	09:06:23	Camps activats després de seleccionar entrenament
+	09:06:23	Entrenament seleccionat ? ID: 3
+	09:06:23	Comentaris carregats per l'entrenament ID: 3
+	09:06:23	Taula de comentaris omplerta correctament
+	09:06:23	Taula de comentaris actualitzada
+	09:06:40	Programa iniciat
+	09:06:41	Conexio base de dades
+	09:06:41	Formulari de validació iniciat
+	09:06:41	Obrint formulari Validacio
+	09:06:50	Intent de validació de l'usuari: Carles
+	09:06:52	Validació correcta amb rol administrador
+	09:06:52	Formulari d'administrador iniciat
+	09:06:52	Formulari esportista obert
+	09:06:52	Tancant formulari de validació
+	09:06:56	Canviem a la seccio: Estadístiques
+	09:06:56	Omplim la taula d'estadistiques
+	09:07:37	Canviem a la seccio: Registres
+	09:07:37	Activem cerca de registres
+	09:07:46	Busquem logs de la data: 20260519
+	09:07:46	Omplim la taula de logs
+	09:07:58	Canviem a la seccio: Entrenaments
+	09:07:58	Omplim la taula d'entrenaments
+	09:08:03	Carreguem tipus esport
+	09:08:03	Carreguem tipus esport
+	09:08:03	Carreguem tipus esport
+	09:08:03	Carreguem tipus esport
+	09:08:03	Carreguem tipus esport
+	09:08:03	carreguem les intensitats al combo box
+	09:08:03	carreguem les intensitats al combo box
+	09:08:03	carreguem les intensitats al combo box
+	09:08:03	Omplint taula entrenaments
+	09:08:03	Obrin formulari entrenaments
+	09:08:15	Formulari d'usuaris iniciat amb camps desactivats
+	09:08:15	Taula d'usuaris omplerta correctament
+	09:08:15	Taula d'usuaris carregada
+	09:08:15	Obrin formulari usuaris
+	09:08:22	Usuari seleccionat de la taula
+	09:08:22	Camps i botons activats
+	09:08:29	Usuari seleccionat de la taula
+	09:08:29	Camps i botons activats
+	09:08:38	Usuari modificat amb ID: 5
+	09:08:38	Taula d'usuaris omplerta correctament
+	09:08:38	Taula actualitzada després de modificar usuari
+	09:08:38	Camps buidats
+	09:08:38	Camps i botons desactivats
+	09:08:43	Usuari seleccionat de la taula
+	09:08:43	Camps i botons activats
+	09:08:45	Usuari eliminat amb ID: 9
+	09:08:45	Taula d'usuaris omplerta correctament
+	09:08:45	Taula actualitzada després d'eliminar usuari
+	09:08:45	Camps buidats
+	09:08:45	Camps i botons desactivats
+	09:08:48	Usuari seleccionat de la taula
+	09:08:48	Camps i botons activats
+	09:09:01	Usuari afegit: Xevi
+	09:09:01	Taula d'usuaris omplerta correctament
+	09:09:01	Taula actualitzada despres d'afegir usuari
+	09:09:01	Camps del formulari buidats
+	09:09:01	Camps i botons desactivats
+	10:49:43	Programa iniciat
+	10:49:43	Conexio base de dades
+	10:49:44	Formulari de validació iniciat
+	10:49:44	Obrint formulari Validacio
+	10:49:53	Intent de validació de l'usuari: Carles
+	10:49:56	Validació correcta amb rol administrador
+	10:49:56	Formulari d'administrador iniciat
+	10:49:56	Formulari esportista obert
+	10:49:56	Tancant formulari de validació
+	10:50:04	Canviem a la seccio: Registres
+	10:50:04	Activem cerca de registres
+	10:50:10	Canviem a la seccio: Entrenaments
+	10:50:10	Omplim la taula d'entrenaments
+	10:50:13	Canviem a la seccio: Estadístiques
+	10:50:13	Omplim la taula d'estadistiques
+	10:50:19	Canviem a la seccio: Registres
+	10:50:19	Activem cerca de registres
+	10:50:30	Busquem logs de la data: 20260511
+	10:50:30	Omplim la taula de logs

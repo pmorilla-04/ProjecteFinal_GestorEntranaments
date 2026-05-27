@@ -9,6 +9,7 @@ import MODEL.Log;
 import MODEL.TipusEsport;
 import MODEL.Usuari;
 import VIEW.frmValidacio;
+import com.formdev.flatlaf.FlatLightLaf;
 import java.util.ArrayList;
 
 /**
@@ -83,7 +84,7 @@ public class Principal {
      * @param args arguments de línia de comandes
      */
     public static void main(String[] args) {
-
+        FlatLightLaf.setup();
         GestiorFitxersTXT.creacioLog();
         GestiorFitxersTXT.escripturaAFitxerLog("Programa iniciat");
 
